@@ -17,6 +17,42 @@ namespace Cheewbacca_PDFSharp
         //Abstração da referência para o PDFSharp
         //Estes devem ser os métodos invocados
         
+        public void RemovePage(string filePath, string filename, int pageNumber) {
+            //Remove a página indica no ficheiro dado
+            
+            // Open the file
+            PdfDocument inputDocument = PdfReader.Open(Path.Combine(filePath, filename), PdfDocumentOpenMode.Import);
+
+            if(pageNumber > inputDocument.PageCount || pageNumber <= 0)
+            {
+
+                throw new ArgumentException("Número da página a remover é inválido.");
+            }
+            else
+            {
+                // Create new document
+                PdfDocument outputDocument = new PdfDocument();
+                outputDocument.Version = inputDocument.Version;
+                outputDocument.Info.Title = inputDocument.Info.Title;
+                outputDocument.Info.Creator = inputDocument.Info.Creator;
+                for (int idx = 0; idx < inputDocument.PageCount; idx++)
+                {
+                    
+
+                    // Add the page 
+                    if(pageNumber == idx + 1) {
+                        //página a ignorar
+                    }
+                    else
+                    {
+                        outputDocument.AddPage(inputDocument.Pages[idx]);
+                    }
+                    
+                }
+                outputDocument.Save(Path.Combine(filePath, filename));
+            }
+        }
+        
         public int CountPages(string filePath, string filename) {
             //Devolve o número de páginas que o ficheiro PDF indicado tem
 

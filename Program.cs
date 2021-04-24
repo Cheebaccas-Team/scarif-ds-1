@@ -13,7 +13,9 @@ namespace Cheewbacca_PDFSharp
             Console.WriteLine(obj.CountPages("c://PDFTests", "pdf1.pdf")); //Testado deu 9
             Console.WriteLine(obj.CountPages("c://PDFTests", "pdf2.pdf")); //Testado deu 96
             Console.WriteLine(obj.CountPages("c://PDFTests", "pdf3.pdf")); //Testado deu 83
-            obj.WatermarkFile("c://PDFTests", "21111SO-20-efA.pdf","PDF Sharp");
+            obj.WatermarkFile("c://PDFTests", "21111SO-20-efA.pdf","PDF Sharp");//Testado
+            obj.RemovePage("c://PDFTests", "21111SO-20-efA.pdf", 2);
+            
 
         }
     }
