@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\LaboratorioDesenvolvimentoSoftware\\Cheewbacca_PDFSharp\\Cheewbacca_PDFSharp.csproj": {}
+    "C:\\Cheewbacca\\scarif-ds-1\\Cheewbacca_PDFSharp.csproj": {}
   },
   "projects": {
-    "C:\\LaboratorioDesenvolvimentoSoftware\\Cheewbacca_PDFSharp\\Cheewbacca_PDFSharp.csproj": {
+    "C:\\Cheewbacca\\scarif-ds-1\\Cheewbacca_PDFSharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\LaboratorioDesenvolvimentoSoftware\\Cheewbacca_PDFSharp\\Cheewbacca_PDFSharp.csproj",
+        "projectUniqueName": "C:\\Cheewbacca\\scarif-ds-1\\Cheewbacca_PDFSharp.csproj",
         "projectName": "Cheewbacca_PDFSharp",
-        "projectPath": "C:\\LaboratorioDesenvolvimentoSoftware\\Cheewbacca_PDFSharp\\Cheewbacca_PDFSharp.csproj",
+        "projectPath": "C:\\Cheewbacca\\scarif-ds-1\\Cheewbacca_PDFSharp.csproj",
         "packagesPath": "C:\\Users\\nunor\\.nuget\\packages\\",
-        "outputPath": "C:\\LaboratorioDesenvolvimentoSoftware\\Cheewbacca_PDFSharp\\obj\\",
+        "outputPath": "C:\\Cheewbacca\\scarif-ds-1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nunor\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,20 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "PdfSharp": {
+              "target": "Package",
+              "version": "[1.50.5147, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

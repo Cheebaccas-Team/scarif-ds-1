@@ -1,8 +1,25 @@
 {
   "version": 2,
-  "dgSpecHash": "Y+8qcjuvhCOu9CWy8ar23VY0sDnb9y7UIX59pqoZkK3jUm5O7mHhSiQzshKM2PP1zeMsJjLOeJcjespBwb6eXg==",
+  "dgSpecHash": "iqOl+5crYgGjZEE9y0fms+UCYT+65KD1V57y42OJAct0/QC7B1p7YW4jbtQ19avwGgVHPtuTRFHYJggVSqS8Sw==",
   "success": true,
-  "projectFilePath": "C:\\LaboratorioDesenvolvimentoSoftware\\Cheewbacca_PDFSharp\\Cheewbacca_PDFSharp.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "projectFilePath": "C:\\Cheewbacca\\scarif-ds-1\\Cheewbacca_PDFSharp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nunor\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\nunor\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\nunor\\.nuget\\packages\\pdfsharp\\1.50.5147\\pdfsharp.1.50.5147.nupkg.sha512",
+    "C:\\Users\\nunor\\.nuget\\packages\\system.drawing.common\\5.0.2\\system.drawing.common.5.0.2.nupkg.sha512",
+    "C:\\Users\\nunor\\.nuget\\packages\\system.text.encoding.codepages\\5.0.0\\system.text.encoding.codepages.5.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'PDFsharp 1.50.5147' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto 'net5.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "libraryId": "PDFsharp",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }
