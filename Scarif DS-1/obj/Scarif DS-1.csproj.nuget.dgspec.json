@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Cheewbacca_PDFSharp.csproj": {}
+    "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj": {}
   },
   "projects": {
-    "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Cheewbacca_PDFSharp.csproj": {
+    "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Cheewbacca_PDFSharp.csproj",
-        "projectName": "Cheewbacca_PDFSharp",
-        "projectPath": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Cheewbacca_PDFSharp.csproj",
+        "projectUniqueName": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj",
+        "projectName": "Scarif DS-1",
+        "projectPath": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj",
         "packagesPath": "/home/paulojmnicolau/.nuget/packages/",
-        "outputPath": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/obj/",
+        "outputPath": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/paulojmnicolau/.nuget/NuGet/NuGet.Config"
@@ -41,14 +41,6 @@
             "PdfSharp": {
               "target": "Package",
               "version": "[1.50.5147, )"
-            },
-            "System.Drawing.Common": {
-              "target": "Package",
-              "version": "[5.0.2, )"
-            },
-            "System.Text.Encoding.CodePages": {
-              "target": "Package",
-              "version": "[5.0.0, )"
             }
           },
           "imports": [

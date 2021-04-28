@@ -246,26 +246,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nunor\\.nuget\\packages\\": {}
+    "/home/paulojmnicolau/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Cheewbacca\\scarif-ds-1\\Cheewbacca_PDFSharp.csproj",
+      "projectUniqueName": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Cheewbacca_PDFSharp.csproj",
       "projectName": "Cheewbacca_PDFSharp",
-      "projectPath": "C:\\Cheewbacca\\scarif-ds-1\\Cheewbacca_PDFSharp.csproj",
-      "packagesPath": "C:\\Users\\nunor\\.nuget\\packages\\",
-      "outputPath": "C:\\Cheewbacca\\scarif-ds-1\\obj\\",
+      "projectPath": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Cheewbacca_PDFSharp.csproj",
+      "packagesPath": "/home/paulojmnicolau/.nuget/packages/",
+      "outputPath": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\nunor\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/paulojmnicolau/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -307,12 +305,22 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.202/RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -321,7 +329,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "O pacote 'PDFsharp 1.50.5147' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto 'net5.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "message": "Package 'PDFsharp 1.50.5147' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
       "libraryId": "PDFsharp",
       "targetGraphs": [
         "net5.0"
