@@ -13,6 +13,7 @@
     <ItemGroup>
       <Compile Remove="teste.cs" />
       <Compile Remove="ui\View.cs" />
+      <Compile Remove="modulos\CountMod.cs" />
     </ItemGroup>
 
 </Project>

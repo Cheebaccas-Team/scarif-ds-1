@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace Scarif_DS_1
 {
     public abstract class View
@@ -14,6 +16,10 @@ namespace Scarif_DS_1
         public abstract void AtivarInterface();
         
         public abstract void DisponibilizarOpcoes();
+
+        public abstract void processarDados();
+        public Controller Controlador => controlador;
+        public Model Modelo => modelo;
 
     }
 }

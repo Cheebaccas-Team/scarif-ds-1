@@ -10,17 +10,57 @@ namespace Scarif_DS_1.ui
         public override void AtivarInterface() {
             //Ativar a interface
             Console.WriteLine("Obrigado por utilizar o nosso Software!");
-            DisponibilizarOpcoes();
+            processarDados();
+            //DisponibilizarOpcoes();
+       
         }
 
         public override void DisponibilizarOpcoes()
         {
-            Console.WriteLine("Qual a tarefa que pretende executar?");
-            
+            int opcao = 0;
+            do
+            {
+                do
+                {
+                    Console.WriteLine("Qual a tarefa que pretende executar?");
+                    Console.WriteLine("1 - Editar Ficheiros");
+                    Console.WriteLine("2 - Criar Ficheiro");
+                    Console.WriteLine("3 - Proteção Ficheiros");
+                    Console.WriteLine("Escolha 0 para sair!");
+                    opcao = Int32.Parse(Console.ReadLine());
+                    if (opcao < 0 || opcao > 3)
+                        Console.WriteLine("Opção Inválida! Escolha novamente.");
+                } while (opcao < 0 || opcao > 3);
+            } while (opcao != 0);
         }
-        
-        
-        
+
+        private void opcaoEdit()
+        {
+            int opcao = 0;
+            do
+            {
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Escolha uma opção:");
+                    Console.WriteLine("1 - Adicionar Página");
+                    Console.WriteLine("2 - Remover Página");
+                    Console.WriteLine("3 - Unir Ficheiros - Concatenar");
+                    Console.WriteLine("4 - Unir Ficheiros - Alternado");
+                    Console.WriteLine("5 - Separar Ficheiros");
+                    Console.WriteLine("Escolha 0 para voltar!");
+                    opcao = Int32.Parse(Console.ReadLine());
+                    if (opcao < 0 || opcao > 5)
+                        Console.WriteLine("Opção Inválida! Escolha novamente.");
+                } while (opcao < 0 || opcao > 5);
+            } while (opcao != 0);
+        }
+
+        public override void processarDados()
+        {
+            Controlador.processarDados(1);
+            Console.WriteLine(Modelo.NumPages);
+        }
         /*
             PDFSharpIntegrate obj = new PDFSharpIntegrate();
             obj.SplitDocument("c://PDFTests", "21111SO-20-efA.pdf", "c://PDFTests/Output"); //Testado
