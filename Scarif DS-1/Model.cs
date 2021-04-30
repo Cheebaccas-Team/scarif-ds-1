@@ -1,14 +1,8 @@
-using System;
-using System.IO;
-using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
-
 namespace Scarif_DS_1
 {
     public class Model
     {
         private View ui;
-        private PdfDocument documento;
         private string pathDestino;
         private string pathOrigem;
         private string fileOrigem;
@@ -16,10 +10,15 @@ namespace Scarif_DS_1
         private string conteudo;
         private int numPages;
 
+        public delegate void EfetuarProcessamento(Model modelo);
+
+        public EfetuarProcessamento EfetuarProcesso;
+        
+        
         internal Model(View ui)
         {
             this.ui = ui;
-            this.numPages = 0;
+            numPages = 0;
         }
         public int NumPages {
             get { return numPages; }
@@ -37,30 +36,28 @@ namespace Scarif_DS_1
 
         public string PathOrigem
         {
-            get
-            {
-                return pathOrigem;
-            }
+            get => pathOrigem;
             set => pathOrigem = value;
         }
 
         public string FileOrigem
         {
-            get
-            {
-                return fileOrigem;
-            }
+            get => fileOrigem;
             set => fileOrigem = value;
         }
 
-        public void CountPages()
+        public string PathDestino
         {
-            //Devolve o número de páginas que o ficheiro PDF indicado tem
-            NumPages = 0;
-            // Open the file
-            PdfDocument inputDocument = PdfReader.Open(Path.Combine(PathOrigem, FileOrigem), PdfDocumentOpenMode.Import);
-            NumPages = inputDocument.PageCount;
+            get => pathDestino;
+            set => pathDestino = value;
         }
 
+        public string FileDestino
+        {
+            get => fileDestino;
+            set => fileDestino = value;
+        }
+
+        
     }
 }

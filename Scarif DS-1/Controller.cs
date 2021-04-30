@@ -7,23 +7,34 @@ namespace Scarif_DS_1
         private Model modelo;
         private View ui;
 
+        
+        
         internal Controller()
         {
-            this.modelo = new Model(this.ui);
-            this.ui = new Consola(this.modelo, this);
+            modelo = new Model(ui);
+            ui = new Consola(modelo, this);
             ui.AtivarInterface();
         }
 
+        public bool SubmeterDados(string pathOrigem, string pathDestino, string fileOrigem, string fileDestino)
+        {
+            modelo.PathOrigem = pathOrigem;
+            modelo.PathDestino = pathDestino;
+            modelo.FileOrigem = fileOrigem;
+            modelo.FileDestino = fileDestino;
+            return true;
+        }
+        
+        
         public void processarDados(int op)
         {
             switch (op)
             {
                 case 1:
-                    modelo.PathOrigem = "/home/paulojmnicolau/Livros";
-                    modelo.FileOrigem = "IAProlog.pdf";
-                    modelo.CountPages();
+                    modelo.EfetuarProcesso = CountMod.ProcessarDados;
                     break;
             }
+            modelo.EfetuarProcesso(modelo);
         }
     }
 }

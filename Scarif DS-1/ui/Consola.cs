@@ -4,18 +4,26 @@ namespace Scarif_DS_1.ui
 {
     public class Consola : View
     {
-
-        internal Consola(Model modelo, Controller controlador) : base(controlador, modelo){ }
         
-        public override void AtivarInterface() {
+        internal Consola(Model modelo, Controller controlo)
+        {
+            ((View) this).Controlador = controlo;
+            ((View) this).Modelo = modelo;
+        }
+
+        Controller View.Controlador { get; set;}
+
+        Model View.Modelo { get; set; }
+
+        public  void AtivarInterface() {
             //Ativar a interface
             Console.WriteLine("Obrigado por utilizar o nosso Software!");
-            processarDados();
+            ProcessarDados();
             //DisponibilizarOpcoes();
        
         }
 
-        public override void DisponibilizarOpcoes()
+        public void DisponibilizarOpcoes()
         {
             int opcao = 0;
             do
@@ -34,7 +42,7 @@ namespace Scarif_DS_1.ui
             } while (opcao != 0);
         }
 
-        private void opcaoEdit()
+        private void OpcaoEdit()
         {
             int opcao = 0;
             do
@@ -56,10 +64,13 @@ namespace Scarif_DS_1.ui
             } while (opcao != 0);
         }
 
-        public override void processarDados()
+        public void ProcessarDados()
         {
-            Controlador.processarDados(1);
-            Console.WriteLine(Modelo.NumPages);
+            string pathOrigem = "/home/paulojmnicolau/Livros";
+            string fileOrigem = "IAProlog.pdf";
+            ((View) this).Controlador.SubmeterDados(pathOrigem, null, fileOrigem, null);
+            ((View) this).Controlador.processarDados(1);
+            Console.WriteLine(((View) this).Modelo.NumPages);
         }
         /*
             PDFSharpIntegrate obj = new PDFSharpIntegrate();

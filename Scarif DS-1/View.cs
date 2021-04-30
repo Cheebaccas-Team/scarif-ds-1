@@ -2,24 +2,17 @@ using System.Runtime.CompilerServices;
 
 namespace Scarif_DS_1
 {
-    public abstract class View
+    public interface View
     {
-        private Controller controlador;
-        private Model modelo;
+        public Controller Controlador { get; set;}
 
-        internal View(Controller controlo, Model modelo)
-        {
-            controlador = controlo;
-            this.modelo = modelo;
-        }
+        public Model Modelo { get; set; }
 
-        public abstract void AtivarInterface();
+        public  void AtivarInterface();
         
-        public abstract void DisponibilizarOpcoes();
+        public  void DisponibilizarOpcoes();
 
-        public abstract void processarDados();
-        public Controller Controlador => controlador;
-        public Model Modelo => modelo;
-
+        public  void ProcessarDados();
+        
     }
 }
