@@ -12,7 +12,6 @@ namespace Scarif_DS_1.ui
         }
 
         Controller View.Controlador { get; set;}
-
         Model View.Modelo { get; set; }
 
         public  void AtivarInterface() {
@@ -67,7 +66,7 @@ namespace Scarif_DS_1.ui
         public void ProcessarDados()
         {
             string pathOrigem = "/home/paulojmnicolau/Livros";
-            string fileOrigem = "IAProlog.pdf";
+            string fileOrigem = null;
             ((View) this).Controlador.SubmeterDados(pathOrigem, null, fileOrigem, null);
             ((View) this).Controlador.processarDados(1);
             Console.WriteLine(((View) this).Modelo.NumPages);

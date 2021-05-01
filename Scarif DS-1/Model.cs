@@ -11,7 +11,6 @@ namespace Scarif_DS_1
         private int numPages;
 
         public delegate void EfetuarProcessamento(Model modelo);
-
         public EfetuarProcessamento EfetuarProcesso;
         
         
@@ -21,7 +20,7 @@ namespace Scarif_DS_1
             numPages = 0;
         }
         public int NumPages {
-            get { return numPages; }
+            get => numPages;
             set {
                 if (value == 0)
                 {
@@ -57,7 +56,5 @@ namespace Scarif_DS_1
             get => fileDestino;
             set => fileDestino = value;
         }
-
-        
     }
 }
