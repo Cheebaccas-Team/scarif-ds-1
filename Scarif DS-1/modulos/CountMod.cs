@@ -24,7 +24,7 @@ namespace Scarif_DS_1
                 string caminho = Path.Combine(modelo.PathOrigem, modelo.FileOrigem);
                 if (!File.Exists(caminho))
                 {
-                    throw new ExceptionDadosInvalidos(null,null);
+                    throw new ExceptionFileNotFound("Ficheiro não encontrado!",caminho);
                 }
                 //Devolve o número de páginas que o ficheiro PDF indicado tem
                 modelo.NumPages = 0;
@@ -35,6 +35,10 @@ namespace Scarif_DS_1
             catch (ExceptionDadosInvalidos erro)
             {
                 Console.WriteLine("Erro: " + erro.Message + " [" + erro.ListaErros()+"]");
+            }
+            catch (ExceptionFileNotFound erro)
+            {
+                Console.WriteLine("Erro: " + erro.Message + " [" + erro.Ficheiro+"]");
             }
         }
 

@@ -66,7 +66,7 @@ namespace Scarif_DS_1.ui
         public void ProcessarDados()
         {
             string pathOrigem = "/home/paulojmnicolau/Livros";
-            string fileOrigem = null;
+            string fileOrigem = "IA.pdf";
             ((View) this).Controlador.SubmeterDados(pathOrigem, null, fileOrigem, null);
             ((View) this).Controlador.processarDados(1);
             Console.WriteLine(((View) this).Modelo.NumPages);
