@@ -13,12 +13,14 @@ namespace Scarif_DS_1
         public delegate void EfetuarProcessamento(Model modelo);
         public EfetuarProcessamento EfetuarProcesso;
         
-        
+        //Construtor do Modelo
         internal Model(View ui)
         {
             this.ui = ui;
             numPages = 0;
         }
+        
+        //Propiedades (getter e setter) da quantidade de Páginas
         public int NumPages {
             get => numPages;
             set {
@@ -33,24 +35,28 @@ namespace Scarif_DS_1
             }
         }
 
+        //Propriedades (getter e setter) do Caminho de Origem dos ficheiros
         public string PathOrigem
         {
             get => pathOrigem;
             set => pathOrigem = value;
         }
 
+        //Propriedades (getter e setter) do Ficheiro de Origem
         public string FileOrigem
         {
             get => fileOrigem;
             set => fileOrigem = value;
         }
 
+        //Propriedades (getter e setter) do caminho de destino
         public string PathDestino
         {
             get => pathDestino;
             set => pathDestino = value;
         }
 
+        //Propriedades (getter e setter) do ficheiro de destino
         public string FileDestino
         {
             get => fileDestino;

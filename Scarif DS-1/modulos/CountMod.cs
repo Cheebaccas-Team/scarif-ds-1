@@ -12,8 +12,10 @@ namespace Scarif_DS_1
         {
             try
             {
+                //Validar os dados no model
                 if (modelo.PathOrigem == null || modelo.FileOrigem == null)
                 {
+                    //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
                     if(modelo.PathOrigem == null)
                         erros.Add("Caminho de Origem");
@@ -21,24 +23,28 @@ namespace Scarif_DS_1
                         erros.Add("Ficheiro de Origem");
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
                 }
+                //Cria o caminho para o endereço
                 string caminho = Path.Combine(modelo.PathOrigem, modelo.FileOrigem);
+                //Valida se o caminho é válido
                 if (!File.Exists(caminho))
                 {
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!",caminho);
                 }
-                //Devolve o número de páginas que o ficheiro PDF indicado tem
+                //Inicializa o valor de quantidade de páginas no modelo
                 modelo.NumPages = 0;
-                // Open the file
+                //Abre o ficheiro para analisar
                 PdfDocument inputDocument = PdfReader.Open(caminho,PdfDocumentOpenMode.Import);
+                //Atualiza valor de quantidade de páginas no modelo com a quantidade de páginas calculadas do ficheiro
                 modelo.NumPages = inputDocument.PageCount;
             }
+            //Verifica as Excepções apanhadas
             catch (ExceptionDadosInvalidos erro)
             {
-                Console.WriteLine("Erro: " + erro.Message + " [" + erro.ListaErros()+"]");
+                throw new ExceptionDadosInvalidos(erro);
             }
             catch (ExceptionFileNotFound erro)
             {
-                Console.WriteLine("Erro: " + erro.Message + " [" + erro.Ficheiro+"]");
+                throw new ExceptionFileNotFound(erro);
             }
         }
 
