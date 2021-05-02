@@ -17,14 +17,29 @@ namespace Scarif_DS_1
         }
 
         //Função que permite atualizar os dados do modelo
-        public bool SubmeterDados(string pathOrigem, string pathDestino, string fileOrigem, string fileDestino)
+        public void SubmeterDados(string caminhoOrigem, string caminhoDestino)
         {
-            modelo.PathOrigem = pathOrigem;
-            modelo.PathDestino = pathDestino;
-            modelo.FileOrigem = fileOrigem;
-            modelo.FileDestino = fileDestino;
+            validarDados(caminhoOrigem,caminhoDestino);
             modelo.NumPages = 0;
-            return true;
+        }
+
+        //Valida os dados
+        private void validarDados(string caminhoOrigem, string caminhoDestino)
+        {
+            if (caminhoOrigem != null)
+            {
+                //Prepara os dados para fornecer ao Modelo
+                int separar = caminhoOrigem.LastIndexOf("/");
+                modelo.PathOrigem = caminhoOrigem.Substring(0, separar+1);
+                modelo.FileOrigem = caminhoOrigem.Substring(separar + 1);
+            }
+            if (caminhoDestino != null)
+            {
+                //Prepara os dados para fornecer ao Modelo
+                int separar = caminhoOrigem.LastIndexOf("/");
+                modelo.PathDestino = caminhoDestino.Substring(0, separar+1);
+                modelo.FileDestino = caminhoDestino.Substring(separar + 1);
+            }
         }
         
         //Função que executa a funcionalidade

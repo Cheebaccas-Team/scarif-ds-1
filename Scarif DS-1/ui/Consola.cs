@@ -171,17 +171,13 @@ namespace Scarif_DS_1.ui
                 //Solicita os dados ao utilizador
                 Console.WriteLine("Introduza o caminho para o ficheiro");
                 caminho = Console.ReadLine();
-                //Prepara os dados para fornecer ao Controlador
-                int separar = caminho.LastIndexOf("/");
-                diretoria = caminho.Substring(0, separar+1);
-                nomeFicheiro = caminho.Substring(separar + 1);
                 //Submete os dados no controlador
-                ((View) this).Controlador.SubmeterDados(diretoria, null, nomeFicheiro, null);
+                ((View) this).Controlador.SubmeterDados(caminho, null);
                 //Processa os dados no Modelo verificando se ocorrem erros
                 try
                 {
                     ((View) this).Controlador.ProcessarDados(1);
-                    Console.WriteLine("O ficheiro " + nomeFicheiro + " possui " + ((View) this).Modelo.NumPages +
+                    Console.WriteLine("O ficheiro " + ((View) this).Modelo.FileOrigem + " possui " + ((View) this).Modelo.NumPages +
                                       " páginas");
                 }
                 catch (ExceptionDadosInvalidos erro)
