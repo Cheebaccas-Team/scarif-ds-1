@@ -22,7 +22,8 @@ namespace Scarif_DS_1.ui
             Remover,
             Concatenar,
             Alternar,
-            Separar
+            Separar,
+            MarcaAgua
         }
 
         //Enumerador das Opções do Menu de Outras Funcionalidades
@@ -105,22 +106,27 @@ namespace Scarif_DS_1.ui
                     Console.WriteLine("3 - Unir Ficheiros - Concatenar");
                     Console.WriteLine("4 - Unir Ficheiros - Alternado");
                     Console.WriteLine("5 - Separar Ficheiros");
+                    Console.WriteLine("6 - Marca de Água");
                     Console.WriteLine("Escolha 0 para voltar!");
                     opcao = Int32.Parse(Console.ReadLine());
-                    if (opcao < 0 || opcao > 5)
+                    if (opcao < 0 || opcao > 6)
                         Console.WriteLine("Opção Inválida! Escolha novamente.");
-                } while (opcao < 0 || opcao > 5);
+                } while (opcao < 0 || opcao > 6);
                 switch (opcao)
                 {
                     case (int) OpcoesMenuEdit.Adicionar:
                         break;
                     case (int) OpcoesMenuEdit.Remover:
+                        MenuRemover();
                         break;
                     case (int) OpcoesMenuEdit.Alternar:
                         break;
                     case (int) OpcoesMenuEdit.Concatenar:
                         break;
                     case (int) OpcoesMenuEdit.Separar:
+                        break;
+                    case (int) OpcoesMenuEdit.MarcaAgua:
+                        MenuMarcaAgua();
                         break;
                     case (int) OpcoesMenuEdit.Sair:
                         Console.Clear();
@@ -172,7 +178,7 @@ namespace Scarif_DS_1.ui
                 Console.WriteLine("Introduza o caminho para o ficheiro");
                 caminho = Console.ReadLine();
                 //Submete os dados no controlador
-                ((View) this).Controlador.SubmeterDados(caminho, null);
+                ((View) this).Controlador.SubmeterDados(caminho, null, null, 0);
                 //Processa os dados no Modelo verificando se ocorrem erros
                 try
                 {
@@ -187,6 +193,86 @@ namespace Scarif_DS_1.ui
                 catch (ExceptionFileNotFound erro)
                 {
                     Console.WriteLine("Erro: " + erro.Message + " [" + erro.Ficheiro+"]");
+                }
+                //valida se é para continuar na mesma tarefa
+                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
+                string opcao = Console.ReadLine();
+                if (opcao.ToUpper() != "S" || opcao.ToUpper() != "SIM")
+                    continuar = false;
+            } while (continuar);
+            Console.Clear();
+        }
+
+        //Executa função de Remover página
+        public void MenuRemover()
+        {
+            string caminho;
+            int pagina;
+            bool continuar = true;
+            do
+            {
+                //Limpa o terminal
+                Console.Clear();
+                //Solicita os dados ao utilizador
+                Console.WriteLine("Introduza o caminho para o ficheiro");
+                caminho = Console.ReadLine();
+                Console.WriteLine("Indique o número da página a remover");
+                pagina = Convert.ToInt32(Console.ReadLine());
+                //Submete os dados no controlador
+                ((View)this).Controlador.SubmeterDados(caminho, null, null, pagina);
+                //Processa os dados no Modelo verificando se ocorrem erros
+                try
+                {
+                    ((View)this).Controlador.ProcessarDados(2);
+                    Console.WriteLine(string.Format("Foi removida a página {0} do ficheiro {1}.", ((View)this).Modelo.PageToRemove, ((View)this).Modelo.FileOrigem));
+                }
+                catch (ExceptionDadosInvalidos erro)
+                {
+                    Console.WriteLine("Erro: " + erro.Message + " [" + erro.ListaErros() + "]");
+                }
+                catch (ExceptionFileNotFound erro)
+                {
+                    Console.WriteLine("Erro: " + erro.Message + " [" + erro.Ficheiro + "]");
+                }
+                //valida se é para continuar na mesma tarefa
+                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
+                string opcao = Console.ReadLine();
+                if (opcao.ToUpper() != "S" || opcao.ToUpper() != "SIM")
+                    continuar = false;
+            } while (continuar);
+            Console.Clear();
+        }
+
+        //Executa função de Marca Água
+        public void MenuMarcaAgua()
+        {
+            string caminho;
+            string marcaAgua;
+            bool continuar = true;
+            do
+            {
+                //Limpa o terminal
+                Console.Clear();
+                //Solicita os dados ao utilizador
+                Console.WriteLine("Introduza o caminho para o ficheiro");
+                caminho = Console.ReadLine();
+                Console.WriteLine("Indique o texto a colocar como Marca de Água");
+                marcaAgua = Console.ReadLine();
+                //Submete os dados no controlador
+                ((View)this).Controlador.SubmeterDados(caminho, null, marcaAgua, 0);
+                //Processa os dados no Modelo verificando se ocorrem erros
+                try
+                {
+                    ((View)this).Controlador.ProcessarDados(3);
+                    Console.WriteLine(string.Format("Foi adicionada a seguinte marca de água '{0}' no ficheiro {1}.", ((View)this).Modelo.Watermark, ((View)this).Modelo.FileOrigem));
+                }
+                catch (ExceptionDadosInvalidos erro)
+                {
+                    Console.WriteLine("Erro: " + erro.Message + " [" + erro.ListaErros() + "]");
+                }
+                catch (ExceptionFileNotFound erro)
+                {
+                    Console.WriteLine("Erro: " + erro.Message + " [" + erro.Ficheiro + "]");
                 }
                 //valida se é para continuar na mesma tarefa
                 Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");

@@ -9,6 +9,8 @@ namespace Scarif_DS_1
         private string fileDestino;
         private string conteudo;
         private int numPages;
+        private int pageToRemove;
+        private string watermark;
 
         public delegate void EfetuarProcessamento(Model modelo);
         public EfetuarProcessamento EfetuarProcesso;
@@ -62,5 +64,20 @@ namespace Scarif_DS_1
             get => fileDestino;
             set => fileDestino = value;
         }
+
+        //Propriedades (getter e setter) da marca de água
+        public string Watermark
+        {
+            get => watermark;
+            set => watermark = value;
+        }
+
+        //Propriedades (getter e setter) da página a remover
+        public int PageToRemove
+        {
+            get => pageToRemove;
+            set => pageToRemove = value;
+        }
+
     }
 }

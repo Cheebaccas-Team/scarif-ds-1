@@ -17,14 +17,14 @@ namespace Scarif_DS_1
         }
 
         //Função que permite atualizar os dados do modelo
-        public void SubmeterDados(string caminhoOrigem, string caminhoDestino)
+        public void SubmeterDados(string caminhoOrigem, string caminhoDestino, string watermark, int pageToRemove)
         {
-            validarDados(caminhoOrigem,caminhoDestino);
+            validarDados(caminhoOrigem, caminhoDestino, watermark, pageToRemove);
             modelo.NumPages = 0;
         }
 
         //Valida os dados
-        private void validarDados(string caminhoOrigem, string caminhoDestino)
+        private void validarDados(string caminhoOrigem, string caminhoDestino, string watermark, int pageToRemove)
         {
             if (caminhoOrigem != null)
             {
@@ -40,6 +40,14 @@ namespace Scarif_DS_1
                 modelo.PathDestino = caminhoDestino.Substring(0, separar+1);
                 modelo.FileDestino = caminhoDestino.Substring(separar + 1);
             }
+            if (watermark != null)
+            {
+                modelo.Watermark = watermark;
+            }
+            if (pageToRemove != 0)
+            {
+                modelo.PageToRemove = pageToRemove;
+            }
         }
         
         //Função que executa a funcionalidade
@@ -51,6 +59,12 @@ namespace Scarif_DS_1
                 {
                     case 1:
                         modelo.EfetuarProcesso = CountMod.ProcessarDados;
+                        break;
+                    case 2:
+                        modelo.EfetuarProcesso = EditMod.RemovePage;
+                        break;
+                    case 3:
+                        modelo.EfetuarProcesso = EditMod.WatermarkFile;
                         break;
                 }
 
