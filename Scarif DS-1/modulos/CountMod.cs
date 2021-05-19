@@ -8,7 +8,7 @@ namespace Scarif_DS_1
 {
     public class CountMod
     {
-        public static void ProcessarDados(Model modelo)
+        public static void ContarPaginas(Model modelo)
         {
             try
             {
@@ -48,6 +48,5 @@ namespace Scarif_DS_1
                 throw new ExceptionFileNotFound(erro);
             }
         }
-
     }
 }

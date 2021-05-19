@@ -123,7 +123,7 @@ namespace Scarif_DS_1
                 switch (op)
                 {
                     case OpcoesExecucao.ContarPaginas:
-                        modelo.EfetuarProcesso = CountMod.ProcessarDados;
+                        modelo.EfetuarProcesso = CountMod.ContarPaginas;
                         break;
                     case OpcoesExecucao.RemoverPagina:
                         modelo.EfetuarProcesso = EditMod.RemovePage;
