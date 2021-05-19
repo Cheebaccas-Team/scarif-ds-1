@@ -440,7 +440,7 @@ namespace Scarif_DS_1.ui
                 try
                 {
                     //Submete os dados no controlador
-                    ((View) this).Controlador.SubmeterDados(caminhoOrigem, caminhoDestino, caminhoOrigem2, null);
+                    ((View) this).Controlador.SubmeterDados(caminhoOrigem, caminhoDestino, caminhoOrigem2, null, 0);
                     //Processa os dados no Modelo verificando se ocorrem erros
                     switch (op)
                     {
@@ -473,6 +473,46 @@ namespace Scarif_DS_1.ui
 
         private void MenuSeparar()
         {
+            string caminhoOrigem;
+            string caminhoDestino;
+            string caminhoDestino2;
+            int pagina;
+            bool continuar = true;
+            do
+            {
+                //Limpa o terminal
+                Console.Clear();
+                //Solicita os dados ao utilizador
+                caminhoOrigem = this.caminhoOrigem();
+                caminhoDestino = this.caminhoDestino(caminhoOrigem);
+                Console.WriteLine("Dados de 2ºMetade do ficheiro");
+                caminhoDestino2 = this.caminhoOrigem();
+                Console.WriteLine("Página onde realizar a separação?");
+                pagina = Int32.Parse(Console.ReadLine());
+                try
+                {
+                    //Submete os dados no controlador
+                    ((View) this).Controlador.SubmeterDados(caminhoOrigem, caminhoDestino, null, caminhoDestino2, pagina);
+                    //Processa os dados no Modelo verificando se ocorrem erros
+                    ProcessarDados(OpcoesExecucao.SepararFicheiro);
+                }
+                catch (ExceptionDadosInvalidos erro)
+                {
+                    Console.WriteLine("Erro: " + erro.Message + " [" + erro.ListaErros() + "]");
+                }
+                catch (ExceptionFileNotFound erro)
+                {
+                    Console.WriteLine("Erro: " + erro.Message + " [" + erro.Ficheiro + "]");
+                }
+
+                //valida se é para continuar na mesma tarefa
+                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
+                string opcao = Console.ReadLine();
+                if (opcao.ToUpper() != "S" || opcao.ToUpper() != "SIM")
+                    continuar = false;
+            } while (continuar);
+
+            Console.Clear();
         }
 
         private void MenuAdicionar()
@@ -491,7 +531,7 @@ namespace Scarif_DS_1.ui
                         ((View) this).Controlador.ProcessarDados(op);
                         if (((View) this).Modelo.Resultado)
                         {
-                            Console.WriteLine("Foi removida a página " + ((View) this).Modelo.PageToRemove +
+                            Console.WriteLine("Foi removida a página " + ((View) this).Modelo.Page +
                                               " do ficheiro "
                                               + ((View) this).Modelo.FileOrigem + ".");
                         }
@@ -581,6 +621,18 @@ namespace Scarif_DS_1.ui
                         }
                         break;
                     case OpcoesExecucao.SepararFicheiro:
+                        ((View) this).Controlador.ProcessarDados(OpcoesExecucao.SepararFicheiro);
+                        if (((View) this).Modelo.Resultado)
+                        {
+                            Console.WriteLine("O ficheiro " + ((View) this).Modelo.FileOrigem + " foi dividido na página " +
+                                              ((View) this).Modelo.Page +" criando os ficheiros " + ((View) this).Modelo.FileDestino +
+                                              " e " + ((View) this).Modelo.FileDestino2);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Não foi possível separar o ficheiro " +
+                                              ((View) this).Modelo.FileOrigem);
+                        }
                         break;
                     case OpcoesExecucao.Criar:
                         break;

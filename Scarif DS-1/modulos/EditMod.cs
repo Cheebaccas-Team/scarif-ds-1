@@ -41,7 +41,7 @@ namespace Scarif_DS_1
                     // Abrir ficheiro
                     PdfDocument inputDocument = PdfReader.Open(caminho, PdfDocumentOpenMode.Import);
 
-                    if (modelo.PageToRemove > inputDocument.PageCount || modelo.PageToRemove <= 0)
+                    if (modelo.Page > inputDocument.PageCount || modelo.Page <= 0)
                     {
                         List<string> erros = new List<string>();
                         erros.Add("Número Página");
@@ -57,7 +57,7 @@ namespace Scarif_DS_1
                         for (int idx = 0; idx < inputDocument.PageCount; idx++)
                         {
                             // Valida se é página a remover 
-                            if (modelo.PageToRemove == idx + 1)
+                            if (modelo.Page == idx + 1)
                             {
                                 //página a ignorar
                             }

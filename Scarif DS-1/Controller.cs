@@ -32,17 +32,17 @@ namespace Scarif_DS_1
         }
         
         //Função que permite atualizar os dados do modelo
-        public void SubmeterDados(string caminhoOrigem, string caminhoDestino, string caminhoOrigem2, string caminhoDestino2)
+        public void SubmeterDados(string caminhoOrigem, string caminhoDestino, string caminhoOrigem2, string caminhoDestino2, int pagina)
         {
             ValidarDados(caminhoOrigem, caminhoDestino, caminhoOrigem2,caminhoDestino2);
-            ValidarDados(null, null,0, null);
+            ValidarDados(null, null,pagina, null);
         }
         
         //Função que permite atualizar os dados do modelo
-        public void SubmeterDados(string caminhoOrigem, string caminhoDestino, int pageToRemove,  string senha, string watermark)
+        public void SubmeterDados(string caminhoOrigem, string caminhoDestino, int page,  string senha, string watermark)
         {
             ValidarDados(caminhoOrigem, caminhoDestino, null,null);
-            ValidarDados(watermark, senha, pageToRemove, null);
+            ValidarDados(watermark, senha, page, null);
         }
 
         //Validar os Dados
@@ -93,7 +93,7 @@ namespace Scarif_DS_1
             }
         }
 
-        private void ValidarDados(string watermark, string senha, int pageToRemove, string texto)
+        private void ValidarDados(string watermark, string senha, int page, string texto)
         {
             if (watermark != null)
             {
@@ -103,9 +103,9 @@ namespace Scarif_DS_1
             {
                 modelo.Senha = senha;
             }
-            if (pageToRemove != 0)
+            if (page != 0)
             {
-                modelo.PageToRemove = pageToRemove;
+                modelo.Page = page;
             }
             if (texto != null)
             {

@@ -13,7 +13,7 @@ namespace Scarif_DS_1
         private string fileDestino2;
         private string conteudo;
         private int numPages;
-        private int pageToRemove;
+        private int page;
         private string texto;
         private string senha;
         private bool resultado;
@@ -107,10 +107,10 @@ namespace Scarif_DS_1
         }
 
         //Propriedades (getter e setter) da página a remover
-        public int PageToRemove
+        public int Page
         {
-            get => pageToRemove;
-            set => pageToRemove = value;
+            get => page;
+            set => page = value;
         }
 
         public string Senha
