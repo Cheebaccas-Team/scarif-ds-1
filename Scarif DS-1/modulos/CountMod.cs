@@ -36,6 +36,7 @@ namespace Scarif_DS_1
                 PdfDocument inputDocument = PdfReader.Open(caminho,PdfDocumentOpenMode.Import);
                 //Atualiza valor de quantidade de páginas no modelo com a quantidade de páginas calculadas do ficheiro
                 modelo.NumPages = inputDocument.PageCount;
+                modelo.Resultado = true;
             }
             //Verifica as Excepções apanhadas
             catch (ExceptionDadosInvalidos erro)

@@ -90,7 +90,7 @@ namespace Scarif_DS_1
             {
 
                 //Validar os dados no model
-                if (modelo.PathOrigem == null || modelo.FileOrigem == null || modelo.Watermark == null)
+                if (modelo.PathOrigem == null || modelo.FileOrigem == null || modelo.Texto == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
@@ -98,7 +98,7 @@ namespace Scarif_DS_1
                         erros.Add("Caminho de Origem");
                     if (modelo.FileOrigem == null)
                         erros.Add("Ficheiro de Origem");
-                    if (modelo.Watermark == null)
+                    if (modelo.Texto == null)
                         erros.Add("Necessário marca de água");
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
@@ -130,7 +130,7 @@ namespace Scarif_DS_1
                     var gfx = XGraphics.FromPdfPage(page, XGraphicsPdfPageOptions.Prepend);
 
                     // Get the size (in points) of the text.
-                    var size = gfx.MeasureString(modelo.Watermark, font);
+                    var size = gfx.MeasureString(modelo.Texto, font);
 
                     // Define a rotation transformation at the center of the page.
                     gfx.TranslateTransform(page.Width / 2, page.Height / 2);
@@ -146,7 +146,7 @@ namespace Scarif_DS_1
                     XBrush brush = new XSolidBrush(XColor.FromArgb(128, 255, 0, 0));
 
                     // Draw the string
-                    gfx.DrawString(modelo.Watermark, font, brush,
+                    gfx.DrawString(modelo.Texto, font, brush,
                         new XPoint((page.Width - size.Width) / 2, (page.Height - size.Height) / 2),
                         format);
                 }

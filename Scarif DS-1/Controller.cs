@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Scarif_DS_1.ui;
 
 namespace Scarif_DS_1
@@ -17,57 +18,120 @@ namespace Scarif_DS_1
         }
 
         //Função que permite atualizar os dados do modelo
-        public void SubmeterDados(string caminhoOrigem, string caminhoDestino, string watermark, int pageToRemove)
+        public void SubmeterDados(string caminhoOrigem, string caminhoDestino)
         {
-            validarDados(caminhoOrigem, caminhoDestino, watermark, pageToRemove);
-            modelo.NumPages = 0;
+            ValidarDados(caminhoOrigem, caminhoDestino, null,null);
+            ValidarDados(null, null,0, null);
+        }
+        
+        //Função que permite atualizar os dados do modelo
+        public void SubmeterDados(string caminhoOrigem, string caminhoDestino, string texto)
+        {
+            ValidarDados(caminhoOrigem, caminhoDestino, null,null);
+            ValidarDados(null, null,0, texto);
+        }
+        
+        //Função que permite atualizar os dados do modelo
+        public void SubmeterDados(string caminhoOrigem, string caminhoDestino, string caminhoOrigem2, string caminhoDestino2)
+        {
+            ValidarDados(caminhoOrigem, caminhoDestino, caminhoOrigem2,caminhoDestino2);
+            ValidarDados(null, null,0, null);
+        }
+        
+        //Função que permite atualizar os dados do modelo
+        public void SubmeterDados(string caminhoOrigem, string caminhoDestino, int pageToRemove,  string senha, string watermark)
+        {
+            ValidarDados(caminhoOrigem, caminhoDestino, null,null);
+            ValidarDados(watermark, senha, pageToRemove, null);
         }
 
-        //Valida os dados
-        private void validarDados(string caminhoOrigem, string caminhoDestino, string watermark, int pageToRemove)
+        //Validar os Dados
+        private void ValidarDados(string caminhoOrigem, string caminhoDestino, string caminhoOrigem2, string caminhoDestino2)
         {
-            if (caminhoOrigem != null)
+            try
             {
-                //Prepara os dados para fornecer ao Modelo
-                int separar = caminhoOrigem.LastIndexOf("/");
-                modelo.PathOrigem = caminhoOrigem.Substring(0, separar+1);
-                modelo.FileOrigem = caminhoOrigem.Substring(separar + 1);
+                if (caminhoOrigem != null)
+                {
+                    //Prepara os dados para fornecer ao Modelo
+                    int separar = caminhoOrigem.LastIndexOf("/");
+                    modelo.PathOrigem = caminhoOrigem.Substring(0, separar+1);
+                    modelo.FileOrigem = caminhoOrigem.Substring(separar + 1);
+                    if (!File.Exists(caminhoOrigem))
+                    {
+                        throw new ExceptionFileNotFound("Ficheiro não encontrado!" , caminhoOrigem);
+                    }
+                }
+                if (caminhoOrigem2 != null)
+                {
+                    //Prepara os dados para fornecer ao Modelo
+                    int separar = caminhoOrigem2.LastIndexOf("/");
+                    modelo.PathOrigem2 = caminhoOrigem2.Substring(0, separar+1);
+                    modelo.FileOrigem2 = caminhoOrigem2.Substring(separar + 1);
+                    if (!File.Exists(caminhoOrigem))
+                    {
+                        throw new ExceptionFileNotFound("Ficheiro não encontrado!" , caminhoOrigem);
+                    }
+                }
+                if (caminhoDestino != null)
+                {
+                    //Prepara os dados para fornecer ao Modelo
+                    int separar = caminhoOrigem.LastIndexOf("/");
+                    modelo.PathDestino = caminhoDestino.Substring(0, separar+1);
+                    modelo.FileDestino = caminhoDestino.Substring(separar + 1);
+                }
+                if (caminhoDestino2 != null)
+                {
+                    //Prepara os dados para fornecer ao Modelo
+                    int separar = caminhoOrigem2.LastIndexOf("/");
+                    modelo.PathDestino2 = caminhoDestino2.Substring(0, separar+1);
+                    modelo.FileDestino2 = caminhoDestino2.Substring(separar + 1);
+                }
             }
-            if (caminhoDestino != null)
+            catch (ExceptionFileNotFound erro)
             {
-                //Prepara os dados para fornecer ao Modelo
-                int separar = caminhoOrigem.LastIndexOf("/");
-                modelo.PathDestino = caminhoDestino.Substring(0, separar+1);
-                modelo.FileDestino = caminhoDestino.Substring(separar + 1);
+                throw new ExceptionFileNotFound(erro);
             }
+        }
+
+        private void ValidarDados(string watermark, string senha, int pageToRemove, string texto)
+        {
             if (watermark != null)
             {
-                modelo.Watermark = watermark;
+                modelo.Texto = watermark;
+            }
+            if (senha != null)
+            {
+                modelo.Senha = senha;
             }
             if (pageToRemove != 0)
             {
                 modelo.PageToRemove = pageToRemove;
             }
+            if (texto != null)
+            {
+                modelo.Texto = texto;
+            }
+            modelo.NumPages = 0;
         }
-        
+
+
         //Função que executa a funcionalidade
-        public void ProcessarDados(int op)
+        public void ProcessarDados(OpcoesExecucao op)
         {
             try
             {
                 switch (op)
                 {
-                    case 1:
+                    case OpcoesExecucao.ContarPaginas:
                         modelo.EfetuarProcesso = CountMod.ProcessarDados;
                         break;
-                    case 2:
+                    case OpcoesExecucao.RemoverPagina:
                         modelo.EfetuarProcesso = EditMod.RemovePage;
                         break;
-                    case 3:
+                    case OpcoesExecucao.AdicionarMarca:
                         modelo.EfetuarProcesso = EditMod.WatermarkFile;
                         break;
                 }
-
                 modelo.EfetuarProcesso(modelo);
             }
             catch (ExceptionDadosInvalidos erro)
