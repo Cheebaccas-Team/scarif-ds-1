@@ -27,40 +27,6 @@ namespace Scarif_DS_1
                     String.Format("{0} - Page {1}_tempfile.pdf", name, idx + 1)));
             }
         }
-
-        public void RemovePage(string filePath, string filename, int pageNumber)
-        {
-            //Remove a página indica no ficheiro dado
-            // Open the file
-            PdfDocument inputDocument = PdfReader.Open(Path.Combine(filePath, filename), PdfDocumentOpenMode.Import);
-
-            if (pageNumber > inputDocument.PageCount || pageNumber <= 0)
-            {
-                throw new ArgumentException("Número da página a remover é inválido.");
-            }
-            else
-            {
-                // Create new document
-                PdfDocument outputDocument = new PdfDocument();
-                outputDocument.Version = inputDocument.Version;
-                outputDocument.Info.Title = inputDocument.Info.Title;
-                outputDocument.Info.Creator = inputDocument.Info.Creator;
-                for (int idx = 0; idx < inputDocument.PageCount; idx++)
-                {
-                    // Add the page 
-                    if (pageNumber == idx + 1)
-                    {
-                        //página a ignorar
-                    }
-                    else
-                    {
-                        outputDocument.AddPage(inputDocument.Pages[idx]);
-                    }
-                }
-            }
-
-            outputDocument.Save(Path.Combine(filePath, filename));
-        }
     }*/
     }
 }

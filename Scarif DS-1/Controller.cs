@@ -8,13 +8,24 @@ namespace Scarif_DS_1
     {
         private Model modelo;
         private View ui;
-
+        private bool executar;
+        
         //Construtor do Controlador
         internal Controller()
         {
             modelo = new Model(ui);
             ui = new Consola(modelo, this);
+            IniciarPrograma();
+        }
+
+        private void IniciarPrograma()
+        {
             ui.AtivarInterface();
+            Executar = true;
+            while(Executar){
+                ui.DisponibilizarOpcoes();
+            }
+            ui.EncerrarPrograma();
         }
 
         //Função que permite atualizar os dados do modelo
@@ -142,6 +153,11 @@ namespace Scarif_DS_1
             {
                 throw new ExceptionFileNotFound(erro);
             }
+        }
+        public bool Executar
+        {
+            get => executar;
+            set => executar = value;
         }
     }
 }

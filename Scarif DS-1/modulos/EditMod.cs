@@ -11,7 +11,6 @@ namespace Scarif_DS_1
     public class EditMod
     {
 
-
         public static void RemovePage(Model modelo)
         {
             try { 
@@ -69,6 +68,7 @@ namespace Scarif_DS_1
                         
                         //gravar documento substituindo
                         outputDocument.Save(caminho);
+                        modelo.Resultado = true;
                     }
 
             }
@@ -85,10 +85,8 @@ namespace Scarif_DS_1
 
 
         public static void WatermarkFile(Model modelo) {
-
             try
             {
-
                 //Validar os dados no model
                 if (modelo.PathOrigem == null || modelo.FileOrigem == null || modelo.Texto == null)
                 {

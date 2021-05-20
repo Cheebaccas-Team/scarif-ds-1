@@ -21,7 +21,6 @@ namespace Scarif_DS_1.ui
         public void AtivarInterface()
         {
             Console.WriteLine("Obrigado por utilizar o nosso Software!");
-            DisponibilizarOpcoes();
         }
 
         //Disponibilizar as opções do menu principal
@@ -30,39 +29,35 @@ namespace Scarif_DS_1.ui
             int opcao = 0;
             do
             {
-                do
-                {
-                    Console.WriteLine("Qual a tarefa que pretende executar?");
-                    Console.WriteLine("1 - Editar Ficheiros");
-                    Console.WriteLine("2 - Criar Ficheiro");
-                    Console.WriteLine("3 - Proteção Ficheiros");
-                    Console.WriteLine("4 - Outras Funções");
-                    Console.WriteLine("Escolha 0 para sair!");
-                    Console.Write("Opção: ");
-                    opcao = Int32.Parse(Console.ReadLine());
-                    if (opcao < 0 || opcao > 4)
-                        Console.WriteLine("Opção Inválida! Escolha novamente.");
-                } while (opcao < 0 || opcao > 4);
-
-                switch (opcao)
-                {
-                    case (int) OpcoesMenuPrincipal.Editar:
-                        OpcaoEdit();
-                        break;
-                    case (int) OpcoesMenuPrincipal.Criar:
-                        OpcaoCriar();
-                        break;
-                    case (int) OpcoesMenuPrincipal.Proteger:
-                        OpcaoProteger();
-                        break;
-                    case (int) OpcoesMenuPrincipal.Outra:
-                        OpcaoOutra();
-                        break;
-                    case (int) OpcoesMenuPrincipal.Sair:
-                        Console.WriteLine("Adeus");
-                        break;
-                }
-            } while (opcao != 0);
+                Console.WriteLine("Qual a tarefa que pretende executar?");
+                Console.WriteLine("1 - Editar Ficheiros");
+                Console.WriteLine("2 - Criar Ficheiro");
+                Console.WriteLine("3 - Proteção Ficheiros");
+                Console.WriteLine("4 - Outras Funções");
+                Console.WriteLine("Escolha 0 para sair!");
+                Console.Write("Opção: ");
+                opcao = Int32.Parse(Console.ReadLine());
+                if (opcao < 0 || opcao > 4)
+                    Console.WriteLine("Opção Inválida! Escolha novamente.");
+            } while (opcao < 0 || opcao > 4);
+            switch (opcao)
+            {
+                case (int) OpcoesMenuPrincipal.Editar:
+                    OpcaoEdit();
+                    break;
+                case (int) OpcoesMenuPrincipal.Criar:
+                    OpcaoCriar();
+                    break;
+                case (int) OpcoesMenuPrincipal.Proteger:
+                    OpcaoProteger();
+                    break;
+                case (int) OpcoesMenuPrincipal.Outra:
+                    OpcaoOutra();
+                    break;
+                case (int) OpcoesMenuPrincipal.Sair:
+                    ((View) this).Controlador.Executar = false;
+                    break;
+            }
         }
 
         //Disponibilizar as opções do Menu de Edição
@@ -71,47 +66,44 @@ namespace Scarif_DS_1.ui
             int opcao = 0;
             do
             {
-                do
-                {
-                    Console.Clear();
-                    Console.WriteLine("Escolha uma opção:");
-                    Console.WriteLine("1 - Adicionar Página");
-                    Console.WriteLine("2 - Remover Página");
-                    Console.WriteLine("3 - Unir Ficheiros - Concatenar");
-                    Console.WriteLine("4 - Unir Ficheiros - Alternado");
-                    Console.WriteLine("5 - Separar Ficheiros");
-                    Console.WriteLine("6 - Marca de Água");
-                    Console.WriteLine("Escolha 0 para voltar!");
-                    opcao = Int32.Parse(Console.ReadLine());
-                    if (opcao < 0 || opcao > 6)
-                        Console.WriteLine("Opção Inválida! Escolha novamente.");
-                } while (opcao < 0 || opcao > 6);
+                Console.Clear();
+                Console.WriteLine("Escolha uma opção:");
+                Console.WriteLine("1 - Adicionar Página");
+                Console.WriteLine("2 - Remover Página");
+                Console.WriteLine("3 - Unir Ficheiros - Concatenar");
+                Console.WriteLine("4 - Unir Ficheiros - Alternado");
+                Console.WriteLine("5 - Separar Ficheiros");
+                Console.WriteLine("6 - Marca de Água");
+                Console.WriteLine("Escolha 0 para voltar!");
+                opcao = Int32.Parse(Console.ReadLine());
+                if (opcao < 0 || opcao > 6)
+                    Console.WriteLine("Opção Inválida! Escolha novamente.");
+            } while (opcao < 0 || opcao > 6);
 
-                switch (opcao)
-                {
-                    case (int) OpcoesMenuEdit.Adicionar:
-                        MenuAdicionar();
-                        break;
-                    case (int) OpcoesMenuEdit.Remover:
-                        MenuRemover();
-                        break;
-                    case (int) OpcoesMenuEdit.Alternar:
-                        MenuUnir(OpcoesExecucao.Unir);
-                        break;
-                    case (int) OpcoesMenuEdit.Concatenar:
-                        MenuUnir(OpcoesExecucao.Concatenar);
-                        break;
-                    case (int) OpcoesMenuEdit.Separar:
-                        MenuSeparar();
-                        break;
-                    case (int) OpcoesMenuEdit.MarcaAgua:
-                        MenuMarcaAgua();
-                        break;
-                    case (int) OpcoesMenuEdit.Sair:
-                        Console.Clear();
-                        break;
-                }
-            } while (opcao != 0);
+            switch (opcao)
+            {
+                case (int) OpcoesMenuEdit.Adicionar:
+                    MenuAdicionar();
+                    break;
+                case (int) OpcoesMenuEdit.Remover:
+                    MenuRemover();
+                    break;
+                case (int) OpcoesMenuEdit.Alternar:
+                    MenuUnir(OpcoesExecucao.Unir);
+                    break;
+                case (int) OpcoesMenuEdit.Concatenar:
+                    MenuUnir(OpcoesExecucao.Concatenar);
+                    break;
+                case (int) OpcoesMenuEdit.Separar:
+                    MenuSeparar();
+                    break;
+                case (int) OpcoesMenuEdit.MarcaAgua:
+                    MenuMarcaAgua();
+                    break;
+                case (int) OpcoesMenuEdit.Sair:
+                    Console.Clear();
+                    break;
+            }
         }
 
         private void OpcaoCriar()
@@ -119,27 +111,23 @@ namespace Scarif_DS_1.ui
             int opcao = 0;
             do
             {
-                do
-                {
+                Console.Clear();
+                Console.WriteLine("Escolha uma opção:");
+                Console.WriteLine("1 - Criar Ficheiro");
+                Console.WriteLine("Escolha 0 para voltar!");
+                opcao = Int32.Parse(Console.ReadLine());
+                if (opcao < 0 || opcao > 6)
+                    Console.WriteLine("Opção Inválida! Escolha novamente.");
+            } while (opcao < 0 || opcao > 6);
+            switch (opcao)
+            {
+                case (int) OpcoesMenuCriar.Criar:
+
+                    break;
+                case (int) OpcoesMenuCriar.Sair:
                     Console.Clear();
-                    Console.WriteLine("Escolha uma opção:");
-                    Console.WriteLine("1 - Criar Ficheiro");
-                    Console.WriteLine("Escolha 0 para voltar!");
-                    opcao = Int32.Parse(Console.ReadLine());
-                    if (opcao < 0 || opcao > 6)
-                        Console.WriteLine("Opção Inválida! Escolha novamente.");
-                } while (opcao < 0 || opcao > 6);
-
-                switch (opcao)
-                {
-                    case (int) OpcoesMenuCriar.Criar:
-
-                        break;
-                    case (int) OpcoesMenuCriar.Sair:
-                        Console.Clear();
-                        break;
-                }
-            } while (opcao != 0);
+                    break;
+            }
         }
 
         private void OpcaoProteger()
@@ -147,31 +135,27 @@ namespace Scarif_DS_1.ui
             int opcao = 0;
             do
             {
-                do
-                {
+                Console.Clear();
+                Console.WriteLine("Escolha uma opção:");
+                Console.WriteLine("1 - Adicionar Encriptação");
+                Console.WriteLine("2 - Remover Encriptação");
+                Console.WriteLine("Escolha 0 para voltar!");
+                opcao = Int32.Parse(Console.ReadLine());
+                if (opcao < 0 || opcao > 6)
+                    Console.WriteLine("Opção Inválida! Escolha novamente.");
+            } while (opcao < 0 || opcao > 6);
+            switch (opcao)
+            {
+                case (int) OpcoesMenuEncriptar.Adicionar:
+                    MenuAdicionarEncriptar();
+                    break;
+                case (int) OpcoesMenuEncriptar.Remover:
+                    MenuRemoverEncriptacao();
+                    break;
+                case (int) OpcoesMenuEncriptar.Sair:
                     Console.Clear();
-                    Console.WriteLine("Escolha uma opção:");
-                    Console.WriteLine("1 - Adicionar Encriptação");
-                    Console.WriteLine("2 - Remover Encriptação");
-                    Console.WriteLine("Escolha 0 para voltar!");
-                    opcao = Int32.Parse(Console.ReadLine());
-                    if (opcao < 0 || opcao > 6)
-                        Console.WriteLine("Opção Inválida! Escolha novamente.");
-                } while (opcao < 0 || opcao > 6);
-
-                switch (opcao)
-                {
-                    case (int) OpcoesMenuEncriptar.Adicionar:
-                        MenuAdicionarEncriptar();
-                        break;
-                    case (int) OpcoesMenuEncriptar.Remover:
-                        MenuRemoverEncriptacao();
-                        break;
-                    case (int) OpcoesMenuEncriptar.Sair:
-                        Console.Clear();
-                        break;
-                }
-            } while (opcao != 0);
+                    break;
+            }
         }
 
         //Disponibiliza as opções do Menu de Outras Tarefas
@@ -180,27 +164,24 @@ namespace Scarif_DS_1.ui
             int opcao = 0;
             do
             {
-                do
-                {
-                    Console.Clear();
-                    Console.WriteLine("Escolha uma opção:");
-                    Console.WriteLine("1 - Contar Páginas");
-                    Console.WriteLine("Escolha 0 para voltar!");
-                    opcao = Int32.Parse(Console.ReadLine());
-                    if (opcao < 0 || opcao > 1)
-                        Console.WriteLine("Opção Inválida! Escolha novamente.");
-                } while (opcao < 0 || opcao > 1);
+                Console.Clear();
+                Console.WriteLine("Escolha uma opção:");
+                Console.WriteLine("1 - Contar Páginas");
+                Console.WriteLine("Escolha 0 para voltar!");
+                opcao = Int32.Parse(Console.ReadLine());
+                if (opcao < 0 || opcao > 1)
+                    Console.WriteLine("Opção Inválida! Escolha novamente.");
+            } while (opcao < 0 || opcao > 1);
 
-                switch (opcao)
-                {
-                    case (int) OpcoesMenuOutra.Contar:
-                        MenuContar();
-                        break;
-                    case (int) OpcoesMenuOutra.Sair:
-                        Console.Clear();
-                        break;
-                }
-            } while (opcao != 0);
+            switch (opcao)
+            {
+                case (int) OpcoesMenuOutra.Contar:
+                    MenuContar();
+                    break;
+                case (int) OpcoesMenuOutra.Sair:
+                    Console.Clear();
+                    break;
+            }
         }
 
         //Executa função de Contar páginas
@@ -233,10 +214,9 @@ namespace Scarif_DS_1.ui
                 //valida se é para continuar na mesma tarefa
                 Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
                 string opcao = Console.ReadLine();
-                if (opcao.ToUpper() != "S" || opcao.ToUpper() != "SIM")
+                if (opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
                     continuar = false;
             } while (continuar);
-
             Console.Clear();
         }
 
@@ -275,10 +255,9 @@ namespace Scarif_DS_1.ui
                 //valida se é para continuar na mesma tarefa
                 Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
                 string opcao = Console.ReadLine();
-                if (opcao.ToUpper() != "S" || opcao.ToUpper() != "SIM")
+                if (opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
                     continuar = false;
             } while (continuar);
-
             Console.Clear();
         }
 
@@ -318,10 +297,9 @@ namespace Scarif_DS_1.ui
                 //valida se é para continuar na mesma tarefa
                 Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
                 string opcao = Console.ReadLine();
-                if (opcao.ToUpper() != "S" || opcao.ToUpper() != "SIM")
+                if (opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
                     continuar = false;
             } while (continuar);
-
             Console.Clear();
         }
 
@@ -369,7 +347,7 @@ namespace Scarif_DS_1.ui
                 //valida se é para continuar na mesma tarefa
                 Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
                 string opcao = Console.ReadLine();
-                if (opcao.ToUpper() != "S" || opcao.ToUpper() != "SIM")
+                if (opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
                     continuar = false;
             } while (continuar);
 
@@ -411,10 +389,9 @@ namespace Scarif_DS_1.ui
                 //valida se é para continuar na mesma tarefa
                 Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
                 string opcao = Console.ReadLine();
-                if (opcao.ToUpper() != "S" || opcao.ToUpper() != "SIM")
+                if (opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
                     continuar = false;
             } while (continuar);
-
             Console.Clear();
         }
 
@@ -423,7 +400,6 @@ namespace Scarif_DS_1.ui
             string caminhoOrigem;
             string caminhoOrigem2;
             string caminhoDestino;
-            string senha;
             bool continuar = true;
             do
             {
@@ -434,9 +410,6 @@ namespace Scarif_DS_1.ui
                 Console.WriteLine("Dados do 2º ficheiro:");
                 caminhoOrigem2 = this.caminhoOrigem();
                 caminhoDestino = this.caminhoDestino(caminhoOrigem);
-                //Solicitar Senha
-                Console.WriteLine("Qual a senha do ficheiro?");
-                senha = Console.ReadLine();
                 try
                 {
                     //Submete os dados no controlador
@@ -464,7 +437,7 @@ namespace Scarif_DS_1.ui
                 //valida se é para continuar na mesma tarefa
                 Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
                 string opcao = Console.ReadLine();
-                if (opcao.ToUpper() != "S" || opcao.ToUpper() != "SIM")
+                if (opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
                     continuar = false;
             } while (continuar);
 
@@ -492,7 +465,8 @@ namespace Scarif_DS_1.ui
                 try
                 {
                     //Submete os dados no controlador
-                    ((View) this).Controlador.SubmeterDados(caminhoOrigem, caminhoDestino, null, caminhoDestino2, pagina);
+                    ((View) this).Controlador.SubmeterDados(caminhoOrigem, caminhoDestino, null, caminhoDestino2,
+                        pagina);
                     //Processa os dados no Modelo verificando se ocorrem erros
                     ProcessarDados(OpcoesExecucao.SepararFicheiro);
                 }
@@ -508,7 +482,7 @@ namespace Scarif_DS_1.ui
                 //valida se é para continuar na mesma tarefa
                 Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
                 string opcao = Console.ReadLine();
-                if (opcao.ToUpper() != "S" || opcao.ToUpper() != "SIM")
+                if (opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
                     continuar = false;
             } while (continuar);
 
@@ -569,6 +543,7 @@ namespace Scarif_DS_1.ui
                             Console.WriteLine("Não foi possível unir ficheiros " + ((View) this).Modelo.FileOrigem +
                                               " e " + ((View) this).Modelo.FileOrigem2);
                         }
+
                         break;
                     case OpcoesExecucao.Concatenar:
                         ((View) this).Controlador.ProcessarDados(OpcoesExecucao.Concatenar);
@@ -583,6 +558,7 @@ namespace Scarif_DS_1.ui
                             Console.WriteLine("Não foi possível unir ficheiros " + ((View) this).Modelo.FileOrigem +
                                               " e " + ((View) this).Modelo.FileOrigem2);
                         }
+
                         break;
                     case OpcoesExecucao.Encriptar:
                         ((View) this).Controlador.ProcessarDados(OpcoesExecucao.Encriptar);
@@ -592,19 +568,23 @@ namespace Scarif_DS_1.ui
                         }
                         else
                         {
-                            Console.WriteLine("Não foi possível encriptar o ficheiro" + ((View) this).Modelo.FileOrigem);
+                            Console.WriteLine("Não foi possível encriptar o ficheiro" +
+                                              ((View) this).Modelo.FileOrigem);
                         }
+
                         break;
                     case OpcoesExecucao.Decriptar:
                         ((View) this).Controlador.ProcessarDados(OpcoesExecucao.Decriptar);
                         if (((View) this).Modelo.Resultado)
                         {
-                            Console.WriteLine("Foi removida a encriptação no ficheiro " + ((View) this).Modelo.FileDestino);
+                            Console.WriteLine("Foi removida a encriptação no ficheiro " +
+                                              ((View) this).Modelo.FileDestino);
                         }
                         else
                         {
                             Console.WriteLine("Não foi possível remover encriptação! Senha não é válida.");
                         }
+
                         break;
                     case OpcoesExecucao.ContarPaginas:
                         ((View) this).Controlador.ProcessarDados(OpcoesExecucao.ContarPaginas);
@@ -619,13 +599,16 @@ namespace Scarif_DS_1.ui
                             Console.WriteLine("Não foi possível contar as páginas do ficheiro " +
                                               ((View) this).Modelo.FileOrigem);
                         }
+
                         break;
                     case OpcoesExecucao.SepararFicheiro:
                         ((View) this).Controlador.ProcessarDados(OpcoesExecucao.SepararFicheiro);
                         if (((View) this).Modelo.Resultado)
                         {
-                            Console.WriteLine("O ficheiro " + ((View) this).Modelo.FileOrigem + " foi dividido na página " +
-                                              ((View) this).Modelo.Page +" criando os ficheiros " + ((View) this).Modelo.FileDestino +
+                            Console.WriteLine("O ficheiro " + ((View) this).Modelo.FileOrigem +
+                                              " foi dividido na página " +
+                                              ((View) this).Modelo.Page + " criando os ficheiros " +
+                                              ((View) this).Modelo.FileDestino +
                                               " e " + ((View) this).Modelo.FileDestino2);
                         }
                         else
@@ -633,6 +616,7 @@ namespace Scarif_DS_1.ui
                             Console.WriteLine("Não foi possível separar o ficheiro " +
                                               ((View) this).Modelo.FileOrigem);
                         }
+
                         break;
                     case OpcoesExecucao.Criar:
                         break;
@@ -664,9 +648,12 @@ namespace Scarif_DS_1.ui
                     Console.WriteLine("Erro: Opção Inválida!");
                 }
             } while (!opcao.Equals("s") && !opcao.Equals("sim") && !opcao.Equals("n") && !opcao.Equals("não"));
-            if (opcao.Equals("s") || opcao.Equals("sim")) {
-                    return caminho;
+
+            if (opcao.Equals("s") || opcao.Equals("sim"))
+            {
+                return caminho;
             }
+
             Console.WriteLine("Qual o caminho de destino onde pretende guardar o ficheiro?");
             return Console.ReadLine();
         }
@@ -676,6 +663,12 @@ namespace Scarif_DS_1.ui
         {
             Console.WriteLine("Introduza o caminho para o ficheiro");
             return Console.ReadLine();
+        }
+
+
+        public void EncerrarPrograma()
+        {
+            Console.WriteLine("Adeus");
         }
     }
 }

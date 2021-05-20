@@ -14,6 +14,7 @@ namespace Scarif_DS_1
         public  void DisponibilizarOpcoes();
 
         public  void ProcessarDados(OpcoesExecucao op);
-        
+
+        public void EncerrarPrograma();
     }
 }
