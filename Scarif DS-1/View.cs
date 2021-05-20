@@ -1,9 +1,10 @@
-using System.Runtime.CompilerServices;
+
+using Scarif_DS_1.modulos;
 
 namespace Scarif_DS_1
 {
     //Interface para as possiveis diferentes View a serem desenvolvidas
-    public interface View
+    public interface IView
     {
         public Controller Controlador { get; set;}
 

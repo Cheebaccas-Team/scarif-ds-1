@@ -2,7 +2,6 @@ namespace Scarif_DS_1
 {
     public class Model
     {
-        private View ui;
         private string pathOrigem;
         private string fileOrigem;
         private string pathDestino;
@@ -11,7 +10,6 @@ namespace Scarif_DS_1
         private string fileOrigem2;
         private string pathDestino2;
         private string fileDestino2;
-        private string conteudo;
         private int numPages;
         private int page;
         private string texto;
@@ -22,9 +20,8 @@ namespace Scarif_DS_1
         public EfetuarProcessamento EfetuarProcesso;
         
         //Construtor do Modelo
-        internal Model(View ui)
+        internal Model()
         {
-            this.ui = ui;
             numPages = 0;
         }
         
@@ -59,15 +56,15 @@ namespace Scarif_DS_1
         
         public string PathOrigem2
         {
-            get => pathOrigem;
-            set => pathOrigem = value;
+            get => pathOrigem2;
+            set => pathOrigem2 = value;
         }
 
         //Propriedades (getter e setter) do Ficheiro de Origem
         public string FileOrigem2
         {
-            get => fileOrigem;
-            set => fileOrigem = value;
+            get => fileOrigem2;
+            set => fileOrigem2= value;
         }
 
         //Propriedades (getter e setter) do caminho de destino

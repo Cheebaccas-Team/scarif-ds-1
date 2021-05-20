@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using Scarif_DS_1.exceptions;
+using Scarif_DS_1.modulos;
 using Scarif_DS_1.ui;
 
 namespace Scarif_DS_1
@@ -7,18 +9,19 @@ namespace Scarif_DS_1
     public class Controller
     {
         private Model modelo;
-        private View ui;
+        private IView ui;
         private bool executar;
-        
+        private string conteudo;
+        private int valor;
+
         //Construtor do Controlador
         internal Controller()
         {
-            modelo = new Model(ui);
+            modelo = new Model();
             ui = new Consola(modelo, this);
-            IniciarPrograma();
         }
 
-        private void IniciarPrograma()
+        public void IniciarPrograma()
         {
             ui.AtivarInterface();
             Executar = true;
@@ -29,100 +32,73 @@ namespace Scarif_DS_1
         }
 
         //Função que permite atualizar os dados do modelo
-        public void SubmeterDados(string caminhoOrigem, string caminhoDestino)
+        public void SubmeterDados(string texto, TipoDados tipo)
         {
-            ValidarDados(caminhoOrigem, caminhoDestino, null,null);
-            ValidarDados(null, null,0, null);
+            Conteudo = texto;
+            ValidarDados(tipo);
         }
         
-        //Função que permite atualizar os dados do modelo
-        public void SubmeterDados(string caminhoOrigem, string caminhoDestino, string texto)
+        public void SubmeterDados(int pagina, TipoDados tipo)
         {
-            ValidarDados(caminhoOrigem, caminhoDestino, null,null);
-            ValidarDados(null, null,0, texto);
-        }
-        
-        //Função que permite atualizar os dados do modelo
-        public void SubmeterDados(string caminhoOrigem, string caminhoDestino, string caminhoOrigem2, string caminhoDestino2, int pagina)
-        {
-            ValidarDados(caminhoOrigem, caminhoDestino, caminhoOrigem2,caminhoDestino2);
-            ValidarDados(null, null,pagina, null);
-        }
-        
-        //Função que permite atualizar os dados do modelo
-        public void SubmeterDados(string caminhoOrigem, string caminhoDestino, int page,  string senha, string watermark)
-        {
-            ValidarDados(caminhoOrigem, caminhoDestino, null,null);
-            ValidarDados(watermark, senha, page, null);
+            Valor = pagina;
+            ValidarDados(tipo);
         }
 
-        //Validar os Dados
-        private void ValidarDados(string caminhoOrigem, string caminhoDestino, string caminhoOrigem2, string caminhoDestino2)
+        private void ValidarDados(TipoDados tipo)
         {
+            int separar;
             try
             {
-                if (caminhoOrigem != null)
+                switch (tipo)
                 {
-                    //Prepara os dados para fornecer ao Modelo
-                    int separar = caminhoOrigem.LastIndexOf("/");
-                    modelo.PathOrigem = caminhoOrigem.Substring(0, separar+1);
-                    modelo.FileOrigem = caminhoOrigem.Substring(separar + 1);
-                    if (!File.Exists(caminhoOrigem))
-                    {
-                        throw new ExceptionFileNotFound("Ficheiro não encontrado!" , caminhoOrigem);
-                    }
-                }
-                if (caminhoOrigem2 != null)
-                {
-                    //Prepara os dados para fornecer ao Modelo
-                    int separar = caminhoOrigem2.LastIndexOf("/");
-                    modelo.PathOrigem2 = caminhoOrigem2.Substring(0, separar+1);
-                    modelo.FileOrigem2 = caminhoOrigem2.Substring(separar + 1);
-                    if (!File.Exists(caminhoOrigem))
-                    {
-                        throw new ExceptionFileNotFound("Ficheiro não encontrado!" , caminhoOrigem);
-                    }
-                }
-                if (caminhoDestino != null)
-                {
-                    //Prepara os dados para fornecer ao Modelo
-                    int separar = caminhoOrigem.LastIndexOf("/");
-                    modelo.PathDestino = caminhoDestino.Substring(0, separar+1);
-                    modelo.FileDestino = caminhoDestino.Substring(separar + 1);
-                }
-                if (caminhoDestino2 != null)
-                {
-                    //Prepara os dados para fornecer ao Modelo
-                    int separar = caminhoOrigem2.LastIndexOf("/");
-                    modelo.PathDestino2 = caminhoDestino2.Substring(0, separar+1);
-                    modelo.FileDestino2 = caminhoDestino2.Substring(separar + 1);
+                    case TipoDados.CaminhoOrigem:
+                        //Prepara os dados para fornecer ao Modelo                                                  
+                        separar = Conteudo.LastIndexOf("/", StringComparison.Ordinal);                                               
+                        modelo.PathOrigem = Conteudo.Substring(0, separar+1);                                  
+                        modelo.FileOrigem = Conteudo.Substring(separar + 1);                                   
+                        if (!File.Exists(Conteudo))                                                            
+                        {                                                                                           
+                            throw new ExceptionFileNotFound("Ficheiro não encontrado!" , Conteudo);            
+                        }                                                                                           
+                        break;
+                    case TipoDados.CaminhoOrigem2:
+                        //Prepara os dados para fornecer ao Modelo                                                   
+                        separar = Conteudo.LastIndexOf("/", StringComparison.Ordinal);                                               
+                        modelo.PathOrigem2 = Conteudo.Substring(0, separar+1);                                 
+                        modelo.FileOrigem2 = Conteudo.Substring(separar + 1);                                  
+                        if (!File.Exists(Conteudo))                                                             
+                        {                                                                                            
+                            throw new ExceptionFileNotFound("Ficheiro não encontrado!" , Conteudo);             
+                        }                                                                                            
+                        break;
+                    case TipoDados.CaminhoDestino:
+                        //Prepara os dados para fornecer ao Modelo                  
+                        separar = Conteudo.LastIndexOf("/", StringComparison.Ordinal);               
+                        modelo.PathDestino = Conteudo.Substring(0, separar+1);
+                        modelo.FileDestino = Conteudo.Substring(separar + 1); 
+                        break;
+                    case TipoDados.CaminhoDestino2:
+                        //Prepara os dados para fornecer ao Modelo                     
+                        separar = Conteudo.LastIndexOf("/", StringComparison.Ordinal);                 
+                        modelo.PathDestino2 = Conteudo.Substring(0, separar+1); 
+                        modelo.FileDestino2 = Conteudo.Substring(separar + 1);  
+                        break;
+                    case TipoDados.Pagina:
+                        modelo.Page = Valor;
+                        break;
+                    case TipoDados.Senha:
+                        modelo.Senha = Conteudo;
+                        break;
+                    case TipoDados.Texto:
+                    case TipoDados.MarcaAgua:        
+                        modelo.Texto = Conteudo; 
+                        break;                   
                 }
             }
             catch (ExceptionFileNotFound erro)
             {
                 throw new ExceptionFileNotFound(erro);
             }
-        }
-
-        private void ValidarDados(string watermark, string senha, int page, string texto)
-        {
-            if (watermark != null)
-            {
-                modelo.Texto = watermark;
-            }
-            if (senha != null)
-            {
-                modelo.Senha = senha;
-            }
-            if (page != 0)
-            {
-                modelo.Page = page;
-            }
-            if (texto != null)
-            {
-                modelo.Texto = texto;
-            }
-            modelo.NumPages = 0;
         }
 
 
@@ -152,12 +128,27 @@ namespace Scarif_DS_1
             catch (ExceptionFileNotFound erro)
             {
                 throw new ExceptionFileNotFound(erro);
+            }catch (DllNotFoundException erro)
+            {
+                throw new DllNotFoundException(erro.Message);
             }
         }
         public bool Executar
         {
             get => executar;
             set => executar = value;
+        }
+
+        public int Valor
+        {
+            get => valor;
+            set => valor = value;
+        }
+
+        public string Conteudo
+        {
+            get => conteudo;
+            set => conteudo = value;
         }
     }
 }

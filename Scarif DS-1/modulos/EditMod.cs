@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
-using PdfSharp.Drawing;
+using Scarif_DS_1.exceptions;
 
-namespace Scarif_DS_1
+namespace Scarif_DS_1.modulos
 {
     public class EditMod
     {
@@ -80,6 +81,9 @@ namespace Scarif_DS_1
             catch (ExceptionFileNotFound erro)
             {
                 throw new ExceptionFileNotFound(erro);
+            }catch (DllNotFoundException erro)
+            {
+                throw new DllNotFoundException(erro.Message);
             }
         }
 
@@ -161,9 +165,12 @@ namespace Scarif_DS_1
             catch (ExceptionFileNotFound erro)
             {
                 throw new ExceptionFileNotFound(erro);
+            }catch (DllNotFoundException erro)
+            {
+                throw new DllNotFoundException(erro.Message);
             }
             
-           }
+        }
      }
      
 }

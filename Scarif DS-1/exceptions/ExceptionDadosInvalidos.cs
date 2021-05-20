@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace Scarif_DS_1
+namespace Scarif_DS_1.exceptions
 {
     //Classe para as Excepções de Dados Inválidos
     public class ExceptionDadosInvalidos : Exception

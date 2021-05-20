@@ -1,6 +1,6 @@
 using System;
 
-namespace Scarif_DS_1
+namespace Scarif_DS_1.exceptions
 {
     //Classe para excepções de Ficheiro Não Encontrado
     public class ExceptionFileNotFound : Exception

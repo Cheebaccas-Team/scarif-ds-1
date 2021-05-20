@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
+using Scarif_DS_1.exceptions;
 
-namespace Scarif_DS_1
+namespace Scarif_DS_1.modulos
 {
     public class CountMod
     {
@@ -46,6 +47,9 @@ namespace Scarif_DS_1
             catch (ExceptionFileNotFound erro)
             {
                 throw new ExceptionFileNotFound(erro);
+            }catch (DllNotFoundException erro)
+            {
+                throw new DllNotFoundException(erro.Message);
             }
         }
     }
