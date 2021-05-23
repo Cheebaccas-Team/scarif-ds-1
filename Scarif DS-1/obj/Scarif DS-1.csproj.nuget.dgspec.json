@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj": {}
+    "C:\\UAb\\LDS\\git\\Scarif DS-1\\Scarif DS-1.csproj": {}
   },
   "projects": {
-    "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj": {
+    "C:\\UAb\\LDS\\git\\Scarif DS-1\\Scarif DS-1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj",
+        "projectUniqueName": "C:\\UAb\\LDS\\git\\Scarif DS-1\\Scarif DS-1.csproj",
         "projectName": "Scarif DS-1",
-        "projectPath": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj",
-        "packagesPath": "/home/paulojmnicolau/.nuget/packages/",
-        "outputPath": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/obj/",
+        "projectPath": "C:\\UAb\\LDS\\git\\Scarif DS-1\\Scarif DS-1.csproj",
+        "packagesPath": "C:\\Users\\nmiguero\\.nuget\\packages\\",
+        "outputPath": "C:\\UAb\\LDS\\git\\Scarif DS-1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/paulojmnicolau/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\nmiguero\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -57,22 +59,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

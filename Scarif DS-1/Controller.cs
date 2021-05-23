@@ -86,6 +86,9 @@ namespace Scarif_DS_1
                     case TipoDados.Pagina:
                         modelo.Page = Valor;
                         break;
+                    case TipoDados.PosicaoAdicionar:
+                        modelo.AddPosition = Valor;
+                        break;
                     case TipoDados.Senha:
                         modelo.Senha = Conteudo;
                         break;
@@ -117,6 +120,9 @@ namespace Scarif_DS_1
                         break;
                     case OpcoesExecucao.AdicionarMarca:
                         modelo.EfetuarProcesso = EditMod.WatermarkFile;
+                        break;
+                    case OpcoesExecucao.AdicionarPagina:
+                        modelo.EfetuarProcesso = EditMod.AddPage;
                         break;
                 }
                 modelo.EfetuarProcesso(modelo);

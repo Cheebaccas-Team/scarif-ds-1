@@ -12,6 +12,7 @@ namespace Scarif_DS_1
         private string fileDestino2;
         private int numPages;
         private int page;
+        private int addPosition;
         private string texto;
         private string senha;
         private bool resultado;
@@ -108,6 +109,13 @@ namespace Scarif_DS_1
         {
             get => page;
             set => page = value;
+        }
+
+        //Propriedades (getter e setter) da posição da página a adicionar
+        public int AddPosition
+        {
+            get => addPosition;
+            set => addPosition = value;
         }
 
         public string Senha

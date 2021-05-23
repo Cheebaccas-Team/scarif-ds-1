@@ -9,6 +9,7 @@ namespace Scarif_DS_1.modulos
         Pagina,
         Texto,
         MarcaAgua,
-        Senha
+        Senha,
+        PosicaoAdicionar
     }
 }

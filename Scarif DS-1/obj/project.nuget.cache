@@ -1,15 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "QHK5AbIfcUCpfg0cMW4URC4GkInZqZE0Va4JrI3itwizrXCObjjeWaPjJ4Sgl2wuLyXs7hw7FMZHzP92IAHOsQ==",
+  "dgSpecHash": "seQGmTHoe6UL9WZHoNDS8iRJjKCBNAOfEAayaL6J82Mr5dSVylf2VxDN6Bbnh9k/Cf8T8uCf3j9TzmDMtWYLRg==",
   "success": true,
-  "projectFilePath": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj",
+  "projectFilePath": "C:\\UAb\\LDS\\git\\Scarif DS-1\\Scarif DS-1.csproj",
   "expectedPackageFiles": [
-    "/home/paulojmnicolau/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
-    "/home/paulojmnicolau/.nuget/packages/microsoft.win32.systemevents/5.0.0/microsoft.win32.systemevents.5.0.0.nupkg.sha512",
-    "/home/paulojmnicolau/.nuget/packages/pdfsharp/1.50.5147/pdfsharp.1.50.5147.nupkg.sha512",
-    "/home/paulojmnicolau/.nuget/packages/system.drawing.common/5.0.2/system.drawing.common.5.0.2.nupkg.sha512",
-    "/home/paulojmnicolau/.nuget/packages/microsoft.netcore.app.ref/5.0.0/microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
-    "/home/paulojmnicolau/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
+    "C:\\Users\\nmiguero\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\nmiguero\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\nmiguero\\.nuget\\packages\\pdfsharp\\1.50.5147\\pdfsharp.1.50.5147.nupkg.sha512",
+    "C:\\Users\\nmiguero\\.nuget\\packages\\system.drawing.common\\5.0.2\\system.drawing.common.5.0.2.nupkg.sha512"
   ],
   "logs": [
     {

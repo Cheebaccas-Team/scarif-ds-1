@@ -527,6 +527,56 @@ namespace Scarif_DS_1.ui
 
         private void MenuAdicionar()
         {
+            string caminhoOrigem;
+            string caminhoOrigem2;
+            string caminhoDestino;
+            int pagina;
+            int posicao;
+            bool continuar = true;
+            do
+            {
+                //Limpa o terminal
+                Console.Clear();
+                //Solicita os dados ao utilizador
+                caminhoOrigem = this.caminhoOrigem();
+                Console.WriteLine("Indique o caminho para o ficheiro com a página pretendida");
+                caminhoOrigem2 = Console.ReadLine();
+                caminhoDestino = this.caminhoDestino(caminhoOrigem);
+                Console.WriteLine("Indique o número da página a adicionar");
+                pagina = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Indique a posição para adicionar a página no primeiro ficheiro");
+                posicao = Convert.ToInt32(Console.ReadLine());
+                //Submete os dados no controlador
+                try
+                {
+                    ((IView)this).Controlador.SubmeterDados(caminhoOrigem, TipoDados.CaminhoOrigem);
+                    ((IView)this).Controlador.SubmeterDados(caminhoOrigem2, TipoDados.CaminhoOrigem2);
+                    ((IView)this).Controlador.SubmeterDados(caminhoDestino, TipoDados.CaminhoDestino);
+                    ((IView)this).Controlador.SubmeterDados(pagina, TipoDados.Pagina);
+                    ((IView)this).Controlador.SubmeterDados(posicao, TipoDados.PosicaoAdicionar);
+                    //Processa os dados no Modelo verificando se ocorrem erros
+                    ProcessarDados(OpcoesExecucao.AdicionarPagina);
+                }
+                catch (ExceptionDadosInvalidos erro)
+                {
+                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
+                }
+                catch (ExceptionFileNotFound erro)
+                {
+                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
+                }
+                catch (DllNotFoundException erro)
+                {
+                    Console.WriteLine("Erro: {0}", erro.Message);
+                }
+
+                //valida se é para continuar na mesma tarefa
+                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
+                string opcao = Console.ReadLine();
+                if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
+                    continuar = false;
+            } while (continuar);
+            Console.Clear();
         }
 
         public void ProcessarDados(OpcoesExecucao op)
@@ -536,16 +586,26 @@ namespace Scarif_DS_1.ui
                 switch (op)
                 {
                     case OpcoesExecucao.AdicionarPagina:
+                        ((IView)this).Controlador.ProcessarDados(op);
+                        if (((IView)this).Modelo.Resultado)
+                        {
+                            Console.WriteLine("Foi adicionada a página {0} do ficheiro {1}, na posição {2} do ficheiro {3}.", ((IView)this).Modelo.Page, ((IView)this).Modelo.FileOrigem2, ((IView)this).Modelo.AddPosition, ((IView)this).Modelo.FileDestino);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Não foi possível adicionar a página ao ficheiro {0}", ((IView)this).Modelo.FileDestino);
+                        }
+
                         break;
                     case OpcoesExecucao.RemoverPagina:
                         ((IView) this).Controlador.ProcessarDados(op);
                         if (((IView) this).Modelo.Resultado)
                         {
-                            Console.WriteLine("Foi removida a página {0} do ficheiro {1}.", ((IView) this).Modelo.Page, ((IView) this).Modelo.FileOrigem);
+                            Console.WriteLine("Foi removida a página {0} do ficheiro {1}.", ((IView) this).Modelo.Page, ((IView) this).Modelo.FileDestino);
                         }
                         else
                         {
-                            Console.WriteLine("Não foi possível remover a página do ficheiro {0}", ((IView) this).Modelo.FileOrigem);
+                            Console.WriteLine("Não foi possível remover a página do ficheiro {0}", ((IView) this).Modelo.FileDestino);
                         }
 
                         break;
@@ -557,7 +617,7 @@ namespace Scarif_DS_1.ui
                         }
                         else
                         {
-                            Console.WriteLine("Não Foi possível adicionar a marca de água no ficheiro {0}", ((IView) this).Modelo.FileOrigem);
+                            Console.WriteLine("Não Foi possível adicionar a marca de água no ficheiro {0}", ((IView) this).Modelo.FileDestino);
                         }
 
                         break;
