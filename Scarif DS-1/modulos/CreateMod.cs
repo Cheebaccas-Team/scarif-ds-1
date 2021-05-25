@@ -88,7 +88,15 @@ namespace Scarif_DS_1.modulos
                         if (idx < modelo.Page) ;
                         { 
                         //adicionar uma página e guardar
-                        outputDocument2.AddPage(inputDocument.Pages[idx]);
+                        //Obter página a adicionar
+                         PdfPage pageToAdd = inputDocument.Pages[modelo.Page>1];
+
+                         //Inserir página na posição
+                         inputDocument.InsertPage(modelo.AddPosition - 1, pageToAdd);
+
+                        //gravar documento substituindo
+                        inputDocument.Save(caminhoDestino2);
+                        modelo.Resultado = true;
                         }
 
                     outputDocument1.Save(Path.Combine(caminhoDestino));
