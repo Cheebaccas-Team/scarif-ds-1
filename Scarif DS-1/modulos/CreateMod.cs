@@ -89,8 +89,7 @@ namespace Scarif_DS_1.modulos
                     page1 = outputDocument.AddPage(page1);
                     page2 = outputDocument.AddPage(page2);
                 }
- 
-// Save the document...
+                //salvar documento
                 outputDocument.Save(caminhoDestino);
                 modelo.Resultado = true;
             }
@@ -188,7 +187,7 @@ namespace Scarif_DS_1.modulos
                         PdfPage page = inputDocument.Pages[idx];
                         outputDocument.AddPage(page);
                     }
-// salvar documento
+                //salvar documento
                 outputDocument.Save(caminhoDestino);
                 modelo.Resultado = true;
             }
