@@ -124,6 +124,9 @@ namespace Scarif_DS_1
                     case OpcoesExecucao.AdicionarPagina:
                         modelo.EfetuarProcesso = EditMod.AddPage;
                         break;
+                    case OpcoesExecucao.SepararFicheiro:
+                        modelo.EfetuarProcesso = CreateMod.SplitDocument;
+                        break;
                 }
                 modelo.EfetuarProcesso(modelo);
             }
