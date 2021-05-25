@@ -19,34 +19,55 @@
 /home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/obj/Debug/net5.0/ref/Scarif DS-1.dll
 /home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.pdb
 /home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.genruntimeconfig.cache
-/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/Microsoft.Win32.SystemEvents.dll
-/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/System.Drawing.Common.dll
-/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll
-/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll
-/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\Scarif DS-1.exe
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\Scarif DS-1.deps.json
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\Scarif DS-1.runtimeconfig.json
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\Scarif DS-1.runtimeconfig.dev.json
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\Scarif DS-1.dll
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\ref\Scarif DS-1.dll
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\Scarif DS-1.pdb
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\Microsoft.Win32.SystemEvents.dll
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\PdfSharp.Charting.dll
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\PdfSharp.dll
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\System.Drawing.Common.dll
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\de\PdfSharp.Charting.resources.dll
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\de\PdfSharp.resources.dll
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-C:\UAb\LDS\git\Scarif DS-1\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
-C:\UAb\LDS\git\Scarif DS-1\obj\Debug\net5.0\Scarif DS-1.csprojAssemblyReference.cache
-C:\UAb\LDS\git\Scarif DS-1\obj\Debug\net5.0\Scarif DS-1.GeneratedMSBuildEditorConfig.editorconfig
-C:\UAb\LDS\git\Scarif DS-1\obj\Debug\net5.0\Scarif DS-1.AssemblyInfoInputs.cache
-C:\UAb\LDS\git\Scarif DS-1\obj\Debug\net5.0\Scarif DS-1.AssemblyInfo.cs
-C:\UAb\LDS\git\Scarif DS-1\obj\Debug\net5.0\Scarif DS-1.csproj.CoreCompileInputs.cache
-C:\UAb\LDS\git\Scarif DS-1\obj\Debug\net5.0\Scarif DS-1.csproj.CopyComplete
-C:\UAb\LDS\git\Scarif DS-1\obj\Debug\net5.0\Scarif DS-1.dll
-C:\UAb\LDS\git\Scarif DS-1\obj\Debug\net5.0\ref\Scarif DS-1.dll
-C:\UAb\LDS\git\Scarif DS-1\obj\Debug\net5.0\Scarif DS-1.pdb
-C:\UAb\LDS\git\Scarif DS-1\obj\Debug\net5.0\Scarif DS-1.genruntimeconfig.cache
+C:/UAb/LDS/git/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.csprojAssemblyReference.cache
+C:/UAb/LDS/git/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.GeneratedMSBuildEditorConfig.editorconfig
+C:/UAb/LDS/git/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.AssemblyInfoInputs.cache
+C:/UAb/LDS/git/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.AssemblyInfo.cs
+C:/UAb/LDS/git/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.csproj.CoreCompileInputs.cache
+C:/UAb/LDS/git/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.dll
+C:/UAb/LDS/git/Scarif DS-1/obj/Debug/net5.0/ref/Scarif DS-1.dll
+C:/UAb/LDS/git/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.pdb
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/Scarif DS-1.exe
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/Scarif DS-1.deps.json
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/Scarif DS-1.runtimeconfig.json
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/Scarif DS-1.runtimeconfig.dev.json
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/Scarif DS-1.dll
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/ref/Scarif DS-1.dll
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/Scarif DS-1.pdb
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/Microsoft.Win32.SystemEvents.dll
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/PdfSharp.Charting.dll
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/PdfSharp.dll
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/System.Drawing.Common.dll
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/de/PdfSharp.Charting.resources.dll
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/de/PdfSharp.resources.dll
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll
+C:/UAb/LDS/git/Scarif DS-1/bin/Debug/net5.0/runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll
+C:/UAb/LDS/git/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.csproj.CopyComplete
+C:/UAb/LDS/git/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.genruntimeconfig.cache
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/Scarif DS-1
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/Scarif DS-1.deps.json
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/Scarif DS-1.runtimeconfig.json
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/Scarif DS-1.runtimeconfig.dev.json
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/Scarif DS-1.dll
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/ref/Scarif DS-1.dll
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/Scarif DS-1.pdb
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/Microsoft.Win32.SystemEvents.dll
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/PdfSharp.Charting.dll
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/PdfSharp.dll
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/System.Drawing.Common.dll
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/de/PdfSharp.Charting.resources.dll
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/de/PdfSharp.resources.dll
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/bin/Debug/net5.0/runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.csprojAssemblyReference.cache
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.GeneratedMSBuildEditorConfig.editorconfig
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.AssemblyInfoInputs.cache
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.AssemblyInfo.cs
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.csproj.CoreCompileInputs.cache
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.csproj.CopyComplete
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.dll
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/obj/Debug/net5.0/ref/Scarif DS-1.dll
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.pdb
+/home/rborges/RiderProjects/scarif-ds-1/Scarif DS-1/obj/Debug/net5.0/Scarif DS-1.genruntimeconfig.cache

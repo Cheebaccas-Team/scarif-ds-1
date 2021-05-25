@@ -124,6 +124,12 @@ namespace Scarif_DS_1
                     case OpcoesExecucao.AdicionarPagina:
                         modelo.EfetuarProcesso = EditMod.AddPage;
                         break;
+                    case OpcoesExecucao.Encriptar:
+                        modelo.EfetuarProcesso = EncriptMod.EncriptarMod;
+                        break;
+                    case OpcoesExecucao.Decriptar:
+                        modelo.EfetuarProcesso = EncriptMod.DecriptarMod;
+                        break;
                 }
                 modelo.EfetuarProcesso(modelo);
             }
