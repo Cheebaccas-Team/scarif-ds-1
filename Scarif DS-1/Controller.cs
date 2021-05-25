@@ -130,6 +130,12 @@ namespace Scarif_DS_1
                     case OpcoesExecucao.Decriptar:
                         modelo.EfetuarProcesso = EncriptMod.DecriptarMod;
                         break;
+                    case OpcoesExecucao.Concatenar:
+                        modelo.EfetuarProcesso = CreateMod.Concatenar;
+                        break;
+                    case OpcoesExecucao.Unir:
+                        modelo.EfetuarProcesso = CreateMod.Alternar;
+                        break;
                 }
                 modelo.EfetuarProcesso(modelo);
             }
