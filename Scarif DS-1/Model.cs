@@ -23,7 +23,20 @@ namespace Scarif_DS_1
         //Construtor do Modelo
         internal Model()
         {
+            pathOrigem = null;
+            pathOrigem2 = null;
+            pathDestino = null;
+            pathDestino2 = null;
+            fileOrigem = null;
+            fileOrigem2 = null;
+            fileDestino = null;
+            fileDestino2 = null;
+            page = 0;
+            addPosition = 0;
+            texto = null;
+            senha = null;
             numPages = 0;
+            resultado = false;
         }
         
         //Propiedades (getter e setter) da quantidade de Páginas

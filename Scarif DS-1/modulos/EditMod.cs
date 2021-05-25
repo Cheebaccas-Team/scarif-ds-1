@@ -114,7 +114,7 @@ namespace Scarif_DS_1.modulos
                             erros.Add("Caminho de Destino");
                         if (modelo.FileDestino == null)
                             erros.Add("Ficheiro de Destino");
-                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
+                        throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                     }
 
                     //Cria caminhos
