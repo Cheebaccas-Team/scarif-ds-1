@@ -192,11 +192,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\João\\Source\\Repos\\scarif-ds-1\\Scarif DS-1\\Scarif DS-1.csproj",
+      "projectUniqueName": "C:\\Users\\João\\Source\\Repos\\scarif-ds-1.2\\Scarif DS-1\\Scarif DS-1.csproj",
       "projectName": "Scarif DS-1",
-      "projectPath": "C:\\Users\\João\\Source\\Repos\\scarif-ds-1\\Scarif DS-1\\Scarif DS-1.csproj",
+      "projectPath": "C:\\Users\\João\\Source\\Repos\\scarif-ds-1.2\\Scarif DS-1\\Scarif DS-1.csproj",
       "packagesPath": "C:\\Users\\João\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\João\\Source\\Repos\\scarif-ds-1\\Scarif DS-1\\obj\\",
+      "outputPath": "C:\\Users\\João\\Source\\Repos\\scarif-ds-1.2\\Scarif DS-1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -258,6 +258,12 @@
     }
   },
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\João\\Source\\Repos\\scarif-ds-1.2\\Scarif DS-1\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",
