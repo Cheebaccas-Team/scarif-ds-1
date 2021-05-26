@@ -2,17 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
-using PdfSharp.Pdf.Security;
-using Scarif_DS_1.exceptions;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 using Scarif_DS_1.exceptions;
@@ -30,57 +19,59 @@ namespace Scarif_DS_1.modulos
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
-                    if(modelo.PathOrigem == null)
+                    if (modelo.PathOrigem == null)
                         erros.Add("Caminho de Origem");
-                    if(modelo.FileOrigem == null)
+                    if (modelo.FileOrigem == null)
                         erros.Add("Ficheiro de Origem");
-                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
+                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
+
                 if (modelo.PathOrigem2 == null || modelo.FileOrigem2 == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
-                    if(modelo.PathOrigem2 == null)
+                    if (modelo.PathOrigem2 == null)
                         erros.Add("Caminho de Origem");
-                    if(modelo.FileOrigem2 == null)
+                    if (modelo.FileOrigem2 == null)
                         erros.Add("Ficheiro de Origem");
-                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
+                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
+
                 //Validar os dados no model
                 if (modelo.PathDestino == null || modelo.FileDestino == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
-                    if(modelo.PathDestino == null)
+                    if (modelo.PathDestino == null)
                         erros.Add("Caminho de Destino");
-                    if(modelo.FileDestino == null)
+                    if (modelo.FileDestino == null)
                         erros.Add("Ficheiro de Destino");
-                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
+                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
-                
+
                 //Cria o caminho para o endereço de origem
                 string caminho = Path.Combine(modelo.PathOrigem, modelo.FileOrigem);
                 //Valida se o caminho é válido
                 if (!File.Exists(caminho))
                 {
-                    throw new ExceptionFileNotFound("Ficheiro não encontrado!",caminho);
+                    throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminho);
                 }
-                
+
                 //Cria o caminho para o endereço de origem
                 string caminho2 = Path.Combine(modelo.PathOrigem2, modelo.FileOrigem2);
                 //Valida se o caminho é válido
                 if (!File.Exists(caminho))
                 {
-                    throw new ExceptionFileNotFound("Ficheiro não encontrado!",caminho);
+                    throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminho);
                 }
-                
+
                 //Cria o caminho para o endereço
                 string caminhoDestino = Path.Combine(modelo.PathDestino, modelo.FileDestino);
                 //Abrir o ficheiro
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 PdfDocument ficheiro1 = PdfReader.Open(caminho, PdfDocumentOpenMode.Import);
                 PdfDocument ficheiro2 = PdfReader.Open(caminho2, PdfDocumentOpenMode.Import);
- 
+
                 //Criar o output 
                 PdfDocument outputDocument = new PdfDocument();
                 outputDocument.PageLayout = PdfPageLayout.TwoColumnLeft;
@@ -88,16 +79,15 @@ namespace Scarif_DS_1.modulos
                 for (int idx = 0; idx < count; idx++)
                 {
                     // Obter pagina do ficheiro 1
-                    PdfPage page1 = ficheiro1.PageCount > idx ?
-                        ficheiro1.Pages[idx] : new PdfPage();
- 
+                    PdfPage page1 = ficheiro1.PageCount > idx ? ficheiro1.Pages[idx] : new PdfPage();
+
                     // obter pagina do ficheiro 2
-                    PdfPage page2 = ficheiro2.PageCount > idx ?
-                        ficheiro2.Pages[idx] : new PdfPage();
+                    PdfPage page2 = ficheiro2.PageCount > idx ? ficheiro2.Pages[idx] : new PdfPage();
                     //Adicionar paginas ao documento de output
                     page1 = outputDocument.AddPage(page1);
                     page2 = outputDocument.AddPage(page2);
                 }
+
                 //salvar documento
                 outputDocument.Save(caminhoDestino);
                 modelo.Resultado = true;
@@ -110,13 +100,14 @@ namespace Scarif_DS_1.modulos
             catch (ExceptionFileNotFound erro)
             {
                 throw new ExceptionFileNotFound(erro);
-            }catch (DllNotFoundException erro)
+            }
+            catch (DllNotFoundException erro)
             {
                 throw new DllNotFoundException(erro.Message);
             }
         }
-    
-          public static void Concatenar(Model modelo)
+
+        public static void Concatenar(Model modelo)
         {
             try
             {
@@ -125,50 +116,52 @@ namespace Scarif_DS_1.modulos
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
-                    if(modelo.PathOrigem == null)
+                    if (modelo.PathOrigem == null)
                         erros.Add("Caminho de Origem");
-                    if(modelo.FileOrigem == null)
+                    if (modelo.FileOrigem == null)
                         erros.Add("Ficheiro de Origem");
-                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
+                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
+
                 if (modelo.PathOrigem2 == null || modelo.FileOrigem2 == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
-                    if(modelo.PathOrigem2 == null)
+                    if (modelo.PathOrigem2 == null)
                         erros.Add("Caminho de Origem");
-                    if(modelo.FileOrigem2 == null)
+                    if (modelo.FileOrigem2 == null)
                         erros.Add("Ficheiro de Origem");
-                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
+                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
+
                 //Validar os dados no model
                 if (modelo.PathDestino == null || modelo.FileDestino == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
-                    if(modelo.PathDestino == null)
+                    if (modelo.PathDestino == null)
                         erros.Add("Caminho de Destino");
-                    if(modelo.FileDestino == null)
+                    if (modelo.FileDestino == null)
                         erros.Add("Ficheiro de Destino");
-                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
+                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
-                
+
                 //Cria o caminho para o endereço de origem
                 string caminho = Path.Combine(modelo.PathOrigem, modelo.FileOrigem);
                 //Valida se o caminho é válido
                 if (!File.Exists(caminho))
                 {
-                    throw new ExceptionFileNotFound("Ficheiro não encontrado!",caminho);
+                    throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminho);
                 }
-                
+
                 //Cria o caminho para o endereço de origem
                 string caminho2 = Path.Combine(modelo.PathOrigem2, modelo.FileOrigem2);
                 //Valida se o caminho é válido
                 if (!File.Exists(caminho))
                 {
-                    throw new ExceptionFileNotFound("Ficheiro não encontrado!",caminho);
+                    throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminho);
                 }
-                
+
                 //Cria o caminho para o endereço
                 string caminhoDestino = Path.Combine(modelo.PathDestino, modelo.FileDestino);
                 //Abrir o ficheiro
@@ -176,26 +169,28 @@ namespace Scarif_DS_1.modulos
                 // Criar o documento de output
                 PdfDocument outputDocument = new PdfDocument();
                 //Abrir o documento e importar paginas deste
-                    PdfDocument inputDocument = PdfReader.Open(caminho, PdfDocumentOpenMode.Import);
- 
-                    // Adicionar paginas do ficheiro 1
-                    int count = inputDocument.PageCount;
-                    for (int idx = 0; idx < count; idx++)
-                    {
-                        // obtem a pagina do ficheiro de input e adiciona no ficheiro de output
-                        PdfPage page = inputDocument.Pages[idx];
-                        // ...and add it to the output document.
-                        outputDocument.AddPage(page);
-                    }
-                    //Adicionar paginas do ficheiro 2
-                    inputDocument = PdfReader.Open(caminho2, PdfDocumentOpenMode.Import);
-                    count = inputDocument.PageCount;
-                    for (int idx = 0; idx < count; idx++)
-                    {
-                        // obtem a pagina do ficheiro de input e adiciona no ficheiro de output
-                        PdfPage page = inputDocument.Pages[idx];
-                        outputDocument.AddPage(page);
-                    }
+                PdfDocument inputDocument = PdfReader.Open(caminho, PdfDocumentOpenMode.Import);
+
+                // Adicionar paginas do ficheiro 1
+                int count = inputDocument.PageCount;
+                for (int idx = 0; idx < count; idx++)
+                {
+                    // obtem a pagina do ficheiro de input e adiciona no ficheiro de output
+                    PdfPage page = inputDocument.Pages[idx];
+                    // ...and add it to the output document.
+                    outputDocument.AddPage(page);
+                }
+
+                //Adicionar paginas do ficheiro 2
+                inputDocument = PdfReader.Open(caminho2, PdfDocumentOpenMode.Import);
+                count = inputDocument.PageCount;
+                for (int idx = 0; idx < count; idx++)
+                {
+                    // obtem a pagina do ficheiro de input e adiciona no ficheiro de output
+                    PdfPage page = inputDocument.Pages[idx];
+                    outputDocument.AddPage(page);
+                }
+
                 //salvar documento
                 outputDocument.Save(caminhoDestino);
                 modelo.Resultado = true;
@@ -208,19 +203,20 @@ namespace Scarif_DS_1.modulos
             catch (ExceptionFileNotFound erro)
             {
                 throw new ExceptionFileNotFound(erro);
-            }catch (DllNotFoundException erro)
+            }
+            catch (DllNotFoundException erro)
             {
                 throw new DllNotFoundException(erro.Message);
             }
         }
-    }
-    
-    public static void SplitDocument(Model modelo)
+
+        public static void SplitDocument(Model modelo)
         {
             try
             {
                 //Validar os dados no model
-                if (modelo.PathOrigem == null || modelo.FileOrigem == null || modelo.PathDestino == null || modelo.FileDestino == null)
+                if (modelo.PathOrigem == null || modelo.FileOrigem == null || modelo.PathDestino == null ||
+                    modelo.FileDestino == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
@@ -249,6 +245,7 @@ namespace Scarif_DS_1.modulos
                 {
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminhoOrigem);
                 }
+
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 // Abrir ficheiro
                 PdfDocument inputDocument = PdfReader.Open(caminhoOrigem, PdfDocumentOpenMode.Import);
@@ -277,20 +274,21 @@ namespace Scarif_DS_1.modulos
                     //cria o primeiro documento com as páginas maiores ou iguais à selecionada
                     if (idx >= modelo.Page)
                     {
-                            outputDocument1.AddPage(inputDocument.Pages[idx]);
+                        outputDocument1.AddPage(inputDocument.Pages[idx]);
                     }
                     //cria o segundo documento com as restantes
                     else
-                    { 
-                            outputDocument2.AddPage(inputDocument.Pages[idx]); 
+                    {
+                        outputDocument2.AddPage(inputDocument.Pages[idx]);
                     }
-                   
+
                 }
+
                 //guarda documentos
                 outputDocument1.Save(Path.Combine(caminhoDestino));
                 outputDocument2.Save(Path.Combine(caminhoDestino2));
                 modelo.Resultado = true;
-                
+
             }
             //Verifica as Excepções apanhadas
             catch (ExceptionDadosInvalidos erro)
@@ -307,6 +305,7 @@ namespace Scarif_DS_1.modulos
                 throw new DllNotFoundException(erro.Message);
 
             }
+        }
     }
 }
 
