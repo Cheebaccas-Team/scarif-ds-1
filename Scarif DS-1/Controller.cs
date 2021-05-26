@@ -95,7 +95,16 @@ namespace Scarif_DS_1
                     case TipoDados.Texto:
                     case TipoDados.MarcaAgua:        
                         modelo.Texto = Conteudo; 
-                        break;                   
+                        break;      
+                    case TipoDados.Estilo:
+                        modelo.Estilo = conteudo;
+                        break;
+                    case TipoDados.Fonte:
+                        modelo.Fonte = conteudo;
+                        break;
+                    case TipoDados.Tamanho:        
+                        modelo.Tamanho = valor; 
+                        break;   
                 }
             }
             catch (ExceptionFileNotFound erro)
