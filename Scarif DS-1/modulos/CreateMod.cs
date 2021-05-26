@@ -81,29 +81,35 @@ namespace Scarif_DS_1.modulos
                     {
                         if (idx >= modelo.Page) ;
                         { 
-                        //adicionar uma página e guardar
-                        outputDocument1.AddPage(inputDocument.Pages[idx]);
+                             // Valida se é página a remover 
+                            if (modelo.Page == idx + 1)
+                            {
+                                //página a ignorar
+                            }
+                            else
+                            {
+                                outputDocument.AddPage(inputDocument.Pages[idx]);
                         }
 
                         if (idx < modelo.Page) ;
-                        { 
-                        //adicionar uma página e guardar
-                        //Obter página a adicionar
-                         PdfPage pageToAdd = inputDocument.Pages[modelo.Page>1];
-
-                         //Inserir página na posição
-                         inputDocument.InsertPage(modelo.AddPosition - 1, pageToAdd);
-
-                        //gravar documento substituindo
-                        inputDocument.Save(caminhoDestino2);
-                        modelo.Resultado = true;
+                        {
+                        {
+                             // Valida se é página a remover 
+                            if (modelo.Page == idx + 1)
+                            {
+                                //página a ignorar
+                            }
+                            else
+                            {
+                                outputDocument.AddPage(inputDocument.Pages[idx]);
                         }
+                    }
 
                     outputDocument1.Save(Path.Combine(caminhoDestino));
                     outputDocument2.Save(Path.Combine(caminhoDestino2));
 
                         //gravar documento substituindo
-                        outputDocument.Save(caminhoDestino);
+                        outputDocument1.Save(caminhoDestino);
                         modelo.Resultado = true;
                     }
 
