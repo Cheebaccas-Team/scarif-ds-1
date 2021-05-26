@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 using Scarif_DS_1.exceptions;
@@ -304,6 +305,63 @@ namespace Scarif_DS_1.modulos
             {
                 throw new DllNotFoundException(erro.Message);
 
+            }
+        }
+
+        public static void Criar(Model modelo)
+        {
+            try
+            {
+                //Validar os dados no model
+                if (modelo.PathDestino == null || modelo.FileDestino == null)
+                {
+                    //Cria uma lista com os erros encontrados nos dados
+                    List<string> erros = new List<string>();
+                    if (modelo.PathDestino == null)
+                        erros.Add("Caminho de Destino");
+                    if (modelo.FileDestino == null)
+                        erros.Add("Ficheiro de Destino");
+                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
+                }
+
+                //Cria o caminho para o endereço
+                string caminhoDestino = Path.Combine(modelo.PathDestino, modelo.FileDestino);
+
+                //Criar o output 
+                PdfDocument outputDocument = new PdfDocument();
+
+                //Cria uma página vazia
+                PdfPage page = outputDocument.AddPage();
+                
+                //Get an XGraphics object for drawing
+                var gfx = XGraphics.FromPdfPage(page);
+                
+                // Cria a fonte
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Regular;
+
+                //Escreve o texto
+                gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                new XRect(0, 0, page.Width, page.Height),
+                XStringFormat.Center);
+
+                //salvar documento
+                outputDocument.Save(caminhoDestino);
+                modelo.Resultado = true;
+
+            }
+            //Verifica as Excepções apanhadas
+            catch (ExceptionDadosInvalidos erro)
+            {
+                throw new ExceptionDadosInvalidos(erro);
+            }
+            catch (ExceptionFileNotFound erro)
+            {
+                throw new ExceptionFileNotFound(erro);
+            }
+            catch (DllNotFoundException erro)
+            {
+                throw new DllNotFoundException(erro.Message);
             }
         }
     }

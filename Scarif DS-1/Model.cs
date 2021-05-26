@@ -15,6 +15,9 @@ namespace Scarif_DS_1
         private int addPosition;
         private string texto;
         private string senha;
+        private string fonte;
+        private int tamanho;
+        private string estilo;
         private bool resultado;
 
         public delegate void EfetuarProcessamento(Model modelo);
@@ -30,6 +33,9 @@ namespace Scarif_DS_1
             fileOrigem = null;
             fileOrigem2 = null;
             fileDestino = null;
+            fonte = null;
+            tamanho = 0;
+            estilo = null;
             fileDestino2 = null;
             page = 0;
             addPosition = 0;
@@ -110,13 +116,30 @@ namespace Scarif_DS_1
             set => fileDestino2 = value;
         }
 
-        //Propriedades (getter e setter) da marca de água
+        //Propriedades (getter e setter) da fonte
+        public string Fonte
+        {
+            get => fonte;
+            set => fonte = value;
+        }
+        //Propriedades (getter e setter) da tamanho
+        public int Tamanho
+        {
+            get => tamanho;
+            set => tamanho = value;
+
+        }        //Propriedades (getter e setter) da marca de água
+        public string Estilo
+        {
+            get => estilo;
+            set => estilo = value;
+
+        }        //Propriedades (getter e setter) da marca de água
         public string Texto
         {
             get => texto;
             set => texto = value;
         }
-
         //Propriedades (getter e setter) da página a remover
         public int Page
         {

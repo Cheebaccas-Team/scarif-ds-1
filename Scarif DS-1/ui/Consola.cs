@@ -38,7 +38,8 @@ namespace Scarif_DS_1.ui
                 Console.WriteLine("4 - Outras Funções");
                 Console.WriteLine("Escolha 0 para sair!");
                 Console.Write("Opção: ");
-                opcao = Int32.Parse(Console.ReadLine());
+                
+                    opcao = Int32.Parse(Console.ReadLine());
                 if (opcao < 0 || opcao > 4)
                     Console.WriteLine("Opção Inválida! Escolha novamente.");
             } while (opcao < 0 || opcao > 4);
@@ -118,13 +119,13 @@ namespace Scarif_DS_1.ui
                 Console.WriteLine("1 - Criar Ficheiro");
                 Console.WriteLine("Escolha 0 para voltar!");
                 opcao = Int32.Parse(Console.ReadLine());
-                if (opcao < 0 || opcao > 6)
+                if (opcao < 0 || opcao > 1)
                     Console.WriteLine("Opção Inválida! Escolha novamente.");
-            } while (opcao < 0 || opcao > 6);
+            } while (opcao < 0 || opcao > 1);
             switch (opcao)
             {
                 case (int) OpcoesMenuCriar.Criar:
-
+                    MenuCriar();
                     break;
                 case (int) OpcoesMenuCriar.Sair:
                     Console.Clear();
@@ -143,9 +144,9 @@ namespace Scarif_DS_1.ui
                 Console.WriteLine("2 - Remover Encriptação");
                 Console.WriteLine("Escolha 0 para voltar!");
                 opcao = Int32.Parse(Console.ReadLine());
-                if (opcao < 0 || opcao > 6)
+                if (opcao < 0 || opcao > 2)
                     Console.WriteLine("Opção Inválida! Escolha novamente.");
-            } while (opcao < 0 || opcao > 6);
+            } while (opcao < 0 || opcao > 2);
             switch (opcao)
             {
                 case (int) OpcoesMenuEncriptar.Adicionar:
@@ -361,6 +362,65 @@ namespace Scarif_DS_1.ui
                 {
                     Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
                 }catch (DllNotFoundException erro)
+                {
+                    Console.WriteLine("Erro: {0}", erro.Message);
+                }
+
+                //valida se é para continuar na mesma tarefa
+                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
+                string opcao = Console.ReadLine();
+                if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
+                    continuar = false;
+            } while (continuar);
+
+            Console.Clear();
+        }
+        private void MenuCriar()
+        {
+            string caminhoDestino;
+            string texto;
+            string fonte;
+            int tamanho;
+            string estilo;
+            bool continuar = true;
+            do
+            {
+                //Limpa o terminal
+                Console.Clear();
+                //Solicita os dados ao utilizador
+                caminhoDestino = this.caminhoOrigem(); ;
+                //Solicitar Texto
+                    Console.WriteLine("Insira o texto a incluir no novo documento");
+                    texto = Console.ReadLine();
+
+                //Solicitar Fonte
+                    Console.WriteLine("Insira a fonte pretendida");
+                    fonte = Console.ReadLine();
+
+                //Solicitar Tamanho
+                    Console.WriteLine("Insira o tamanho");
+                    tamanho = Convert.ToInt32(Console.ReadLine());
+
+                //Solicitar Estilo
+                    Console.WriteLine("Insira o estilo: Regular/Bold/BoldItalic/Italic/Strikeout/Underline");
+                    estilo = Console.ReadLine();
+
+                try
+                {
+                    //Submete os dados no controlador
+                    ((IView)this).Controlador.SubmeterDados(caminhoDestino, TipoDados.CaminhoDestino);
+                    ((IView)this).Controlador.SubmeterDados(texto, TipoDados.Texto);
+                    ((IView)this).Controlador.SubmeterDados(fonte, TipoDados.Fonte);
+                    ((IView)this).Controlador.SubmeterDados(tamanho, TipoDados.Tamanho);
+                    ((IView)this).Controlador.SubmeterDados(estilo, TipoDados.Estilo);
+                    //Processa os dados no Modelo verificando se ocorrem erros
+                    ProcessarDados(OpcoesExecucao.Criar);
+                }
+                catch (ExceptionDadosInvalidos erro)
+                {
+                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
+                }
+                catch (DllNotFoundException erro)
                 {
                     Console.WriteLine("Erro: {0}", erro.Message);
                 }
@@ -598,70 +658,70 @@ namespace Scarif_DS_1.ui
 
                         break;
                     case OpcoesExecucao.RemoverPagina:
-                        ((IView) this).Controlador.ProcessarDados(op);
-                        if (((IView) this).Modelo.Resultado)
+                        ((IView)this).Controlador.ProcessarDados(op);
+                        if (((IView)this).Modelo.Resultado)
                         {
-                            Console.WriteLine("Foi removida a página {0} do ficheiro {1}.", ((IView) this).Modelo.Page, ((IView) this).Modelo.FileDestino);
+                            Console.WriteLine("Foi removida a página {0} do ficheiro {1}.", ((IView)this).Modelo.Page, ((IView)this).Modelo.FileDestino);
                         }
                         else
                         {
-                            Console.WriteLine("Não foi possível remover a página do ficheiro {0}", ((IView) this).Modelo.FileDestino);
+                            Console.WriteLine("Não foi possível remover a página do ficheiro {0}", ((IView)this).Modelo.FileDestino);
                         }
 
                         break;
                     case OpcoesExecucao.AdicionarMarca:
-                        ((IView) this).Controlador.ProcessarDados(op);
-                        if (((IView) this).Modelo.Resultado)
+                        ((IView)this).Controlador.ProcessarDados(op);
+                        if (((IView)this).Modelo.Resultado)
                         {
-                            Console.WriteLine("Foi adicionada a seguinte marca de água {0} no ficheiro {1}", ((IView) this).Modelo.Texto, ((IView) this).Modelo.FileDestino);
+                            Console.WriteLine("Foi adicionada a seguinte marca de água {0} no ficheiro {1}", ((IView)this).Modelo.Texto, ((IView)this).Modelo.FileDestino);
                         }
                         else
                         {
-                            Console.WriteLine("Não Foi possível adicionar a marca de água no ficheiro {0}", ((IView) this).Modelo.FileDestino);
+                            Console.WriteLine("Não Foi possível adicionar a marca de água no ficheiro {0}", ((IView)this).Modelo.FileDestino);
                         }
 
                         break;
                     case OpcoesExecucao.Unir:
-                        ((IView) this).Controlador.ProcessarDados(op);
-                        if (((IView) this).Modelo.Resultado)
+                        ((IView)this).Controlador.ProcessarDados(op);
+                        if (((IView)this).Modelo.Resultado)
                         {
-                            Console.WriteLine("Ficheiro {0} e {1} foram unidos de forma alternada.", ((IView) this).Modelo.FileOrigem, ((IView) this).Modelo.FileOrigem2);
+                            Console.WriteLine("Ficheiro {0} e {1} foram unidos de forma alternada.", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
                         }
                         else
                         {
-                            Console.WriteLine("Não foi possível unir ficheiros {0} e {1}", ((IView) this).Modelo.FileOrigem, ((IView) this).Modelo.FileOrigem2);
+                            Console.WriteLine("Não foi possível unir ficheiros {0} e {1}", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
                         }
 
                         break;
                     case OpcoesExecucao.Concatenar:
-                        ((IView) this).Controlador.ProcessarDados(OpcoesExecucao.Concatenar);
-                        if (((IView) this).Modelo.Resultado)
+                        ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Concatenar);
+                        if (((IView)this).Modelo.Resultado)
                         {
-                            Console.WriteLine("Ficheiro {0} e {1} foram concatenados.", ((IView) this).Modelo.FileOrigem, ((IView) this).Modelo.FileOrigem2);
+                            Console.WriteLine("Ficheiro {0} e {1} foram concatenados.", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
                         }
                         else
                         {
-                            Console.WriteLine("Não foi possível unir ficheiros {0} e {1}", ((IView) this).Modelo.FileOrigem, ((IView) this).Modelo.FileOrigem2);
+                            Console.WriteLine("Não foi possível unir ficheiros {0} e {1}", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
                         }
 
                         break;
                     case OpcoesExecucao.Encriptar:
-                        ((IView) this).Controlador.ProcessarDados(OpcoesExecucao.Encriptar);
-                        if (((IView) this).Modelo.Resultado)
+                        ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Encriptar);
+                        if (((IView)this).Modelo.Resultado)
                         {
-                            Console.WriteLine("O ficheiro {0} foi encriptado", ((IView) this).Modelo.FileDestino);
+                            Console.WriteLine("O ficheiro {0} foi encriptado", ((IView)this).Modelo.FileDestino);
                         }
                         else
                         {
-                            Console.WriteLine("Não foi possível encriptar o ficheiro{0}", ((IView) this).Modelo.FileOrigem);
+                            Console.WriteLine("Não foi possível encriptar o ficheiro{0}", ((IView)this).Modelo.FileOrigem);
                         }
 
                         break;
                     case OpcoesExecucao.Decriptar:
-                        ((IView) this).Controlador.ProcessarDados(OpcoesExecucao.Decriptar);
-                        if (((IView) this).Modelo.Resultado)
+                        ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Decriptar);
+                        if (((IView)this).Modelo.Resultado)
                         {
-                            Console.WriteLine("Foi removida a encriptação no ficheiro {0}", ((IView) this).Modelo.FileDestino);
+                            Console.WriteLine("Foi removida a encriptação no ficheiro {0}", ((IView)this).Modelo.FileDestino);
                         }
                         else
                         {
@@ -670,36 +730,47 @@ namespace Scarif_DS_1.ui
 
                         break;
                     case OpcoesExecucao.ContarPaginas:
-                        ((IView) this).Controlador.ProcessarDados(OpcoesExecucao.ContarPaginas);
-                        if (((IView) this).Modelo.Resultado)
+                        ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.ContarPaginas);
+                        if (((IView)this).Modelo.Resultado)
                         {
-                            Console.WriteLine("O ficheiro {0} possui {1} páginas.", ((IView) this).Modelo.FileOrigem,
-                                ((IView) this).Modelo.NumPages);
+                            Console.WriteLine("O ficheiro {0} possui {1} páginas.", ((IView)this).Modelo.FileOrigem,
+                                ((IView)this).Modelo.NumPages);
                         }
                         else
                         {
-                            Console.WriteLine("Não foi possível contar as páginas do ficheiro {0}", ((IView) this).Modelo.FileOrigem);
+                            Console.WriteLine("Não foi possível contar as páginas do ficheiro {0}", ((IView)this).Modelo.FileOrigem);
                         }
 
                         break;
                     case OpcoesExecucao.SepararFicheiro:
-                        ((IView) this).Controlador.ProcessarDados(OpcoesExecucao.SepararFicheiro);
-                        if (((IView) this).Modelo.Resultado)
+                        ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.SepararFicheiro);
+                        if (((IView)this).Modelo.Resultado)
                         {
                             Console.WriteLine(
                                 "O ficheiro {0} foi dividido na página {1} criando os ficheiros {2} e {3}",
-                                ((IView) this).Modelo.FileOrigem, ((IView) this).Modelo.Page,
-                                ((IView) this).Modelo.FileDestino, ((IView) this).Modelo.FileDestino2);
+                                ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.Page,
+                                ((IView)this).Modelo.FileDestino, ((IView)this).Modelo.FileDestino2);
                         }
                         else
                         {
-                            Console.WriteLine("Não foi possível separar o ficheiro {0}", ((IView) this).Modelo.FileOrigem);
+                            Console.WriteLine("Não foi possível separar o ficheiro {0}", ((IView)this).Modelo.FileOrigem);
+                        }
+                        break;
+
+                    case OpcoesExecucao.Criar:
+                        ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Criar);
+                        if (((IView)this).Modelo.Resultado)
+                        {
+                            Console.WriteLine("Foi adicionada a seguinte texto: {0} \r\nno ficheiro {1}", ((IView)this).Modelo.Texto, ((IView)this).Modelo.FileDestino);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Não Foi possível adicionar o texto no2 ficheiro {0}", ((IView)this).Modelo.FileDestino);
                         }
 
                         break;
-                    case OpcoesExecucao.Criar:
-                        break;
                 }
+
             }
             catch (ExceptionDadosInvalidos erro)
             {

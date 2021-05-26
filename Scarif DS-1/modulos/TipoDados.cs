@@ -10,6 +10,9 @@ namespace Scarif_DS_1.modulos
         Texto,
         MarcaAgua,
         Senha,
-        PosicaoAdicionar
+        PosicaoAdicionar,
+        Fonte,
+        Tamanho,
+        Estilo
     }
 }
