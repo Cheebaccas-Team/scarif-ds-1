@@ -217,7 +217,7 @@ namespace Scarif_DS_1.modulos
             {
                 //Validar os dados no model
                 if (modelo.PathOrigem == null || modelo.FileOrigem == null || modelo.PathDestino == null ||
-                    modelo.FileDestino == null)
+                    modelo.FileDestino == null || modelo.PathDestino2 == null || modelo.FileDestino2 == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
@@ -321,186 +321,113 @@ namespace Scarif_DS_1.modulos
                         erros.Add("Caminho de Destino");
                     if (modelo.FileDestino == null)
                         erros.Add("Ficheiro de Destino");
-                    /*
+                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
+                }
+
+                //Validar os dados no model
+                if (modelo.Texto == null)
+                {
+                    //Cria uma lista com os erros encontrados nos dados
+                    List<string> erros = new List<string>();
                     if (modelo.Texto == null)
                         erros.Add("Texto Inválido");
-                    if (modelo.PathDestino == null || modelo.FileDestino == null || (modelo.Fonte == null || (modelo.Fonte != /*paulo aqui não sei bem as fontes que a biblioteca aceita, como queres fazer?"*//*)));
+                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
+                }
+
+                //Validar os dados no model
+                if (modelo.Fonte == null)
+                {
+                    //Cria uma lista com os erros encontrados nos dados
+                    List<string> erros = new List<string>();
+                    if (modelo.Fonte == null)
                         erros.Add("Fonte Inválida");
-                    if (modelo.PathDestino == null || modelo.FileDestino == null || (modelo.Tamanho == null || (modelo.Tamanho != /*paulo aqui queria por caso não seja um nº e sim uma string por ex"*//*)));
-                        erros.Add("Tamanho Inválido");
-                    if (modelo.PathDestino == null || modelo.FileDestino == null || (modelo.Estilo == null || (modelo.Estilo != "Regular" && modelo.Estilo != "Bold" && modelo.Estilo != "BoldItalic" && modelo.Estilo != "Italic" && modelo.Estilo != "Strikeout" && modelo.Estilo != "Underline")));
-                        erros.Add("Alinhamento Inválido");
-                    if (modelo.PathDestino == null || modelo.FileDestino == null || (modelo.Alinhamento == null || (modelo.Alinhamento != "Left" && modelo.Alinhamento != "Center" && modelo.Alinhamento != "Right")));
-                        erros.Add("Alinhamento Inválido");
-                    */
+                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
+                }
+
+                //Validar os dados no model
+                if (modelo.Alinhamento == null)
+                {
+                    //Cria uma lista com os erros encontrados nos dados
+                    List<string> erros = new List<string>();
+                    if (modelo.Alinhamento == null || (modelo.Alinhamento != "Left" && modelo.Alinhamento != "Center" &&
+                                                       modelo.Alinhamento != "Right")) ;
+                    erros.Add("Alinhamento Inválido");
+                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
+                }
+
+                //Validar os dados no model
+                if (modelo.Tamanho == 0)
+                {
+                    //Cria uma lista com os erros encontrados nos dados
+                    List<string> erros = new List<string>();
+                    if (modelo.Tamanho == 0) ;
+                    erros.Add("Tamanho Inválido");
+                    throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
+                }
+
+                //Validar os dados no model
+                if (modelo.Estilo == null)
+                {
+                    //Cria uma lista com os erros encontrados nos dados
+                    List<string> erros = new List<string>();
+                    if (modelo.Estilo == null ||
+                        (modelo.Estilo != "Regular" && modelo.Estilo != "Bold" && modelo.Estilo != "BoldItalic"
+                         && modelo.Estilo != "Italic" && modelo.Estilo != "Strikeout" &&
+                         modelo.Estilo != "Underline")) ;
+                    erros.Add("Estilo Inválido");
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
                 //Cria o caminho para o endereço
                 string caminhoDestino = Path.Combine(modelo.PathDestino, modelo.FileDestino);
-
                 //Criar o output 
                 PdfDocument outputDocument = new PdfDocument();
 
                 //Cria uma página vazia
                 PdfPage page = outputDocument.AddPage();
-
-                //Get an XGraphics object for drawing
                 var gfx = XGraphics.FromPdfPage(page);
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-
+                XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Regular);
                 // Cria a fonte
-                if (modelo.Estilo == "Regular")
-                {
-                    XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Regular);
-
-                    if (modelo.Alinhamento == "Left")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopLeft);
-                    }
-                    if (modelo.Alinhamento == "Center")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopCenter);
-                    }
-                    if (modelo.Alinhamento == "Right")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopRight);
-
-                    }
-                }
-
                 if (modelo.Estilo == "Bold")
                 {
-                    XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Bold);
-
-                    if (modelo.Alinhamento == "Left")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopLeft);
-                    }
-                    if (modelo.Alinhamento == "Center")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopCenter);
-                    }
-                    if (modelo.Alinhamento == "Right")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopRight);
-
-                    }
+                    font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Bold);
                 }
-
-                if (modelo.Estilo == "BoldItalic")
+                else if (modelo.Estilo == "BoldItalic")
                 {
-                    XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.BoldItalic);
-
-                    if (modelo.Alinhamento == "Left")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopLeft);
-                    }
-                    if (modelo.Alinhamento == "Center")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopCenter);
-                    }
-                    if (modelo.Alinhamento == "Right")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopRight);
-
-                    }
+                    font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.BoldItalic);
                 }
-
-                if (modelo.Estilo == "Italic")
+                else if (modelo.Estilo == "Italic")
                 {
-                    XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Italic);
-
-                    if (modelo.Alinhamento == "Left")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopLeft);
-                    }
-                    if (modelo.Alinhamento == "Center")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopCenter);
-                    }
-                    if (modelo.Alinhamento == "Right")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopRight);
-
-                    }
+                    font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Italic);
                 }
-
-                if (modelo.Estilo == "Strikeout")
+                else if (modelo.Estilo == "Strikeout")
                 {
-                    XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Strikeout);
-                    
-                    if (modelo.Alinhamento == "Left")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopLeft);
-                    }
-                    if (modelo.Alinhamento == "Center")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopCenter);
-                    }
-                    if (modelo.Alinhamento == "Right")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopRight);
-
-                    }
+                    font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Strikeout);
                 }
-
-                if (modelo.Estilo == "Underline")
+                else if (modelo.Estilo == "Underline")
                 {
-                    XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Underline);
-
-                    if (modelo.Alinhamento == "Left")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                    font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Underline);
+                }
+                //Cria alinhamento
+                if (modelo.Alinhamento == "Left")
+                {
+                    gfx.DrawString(modelo.Texto, font, XBrushes.Black,
                         new XRect(0, 0, page.Width, page.Height),
                         XStringFormats.TopLeft);
-                    }
-                    if (modelo.Alinhamento == "Center")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                }
+                else if (modelo.Alinhamento == "Center")
+                {
+                    gfx.DrawString(modelo.Texto, font, XBrushes.Black,
                         new XRect(0, 0, page.Width, page.Height),
                         XStringFormats.TopCenter);
-                    }
-                    if (modelo.Alinhamento == "Right")
-                    {
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                }
+                else if (modelo.Alinhamento == "Right")
+                {
+                    gfx.DrawString(modelo.Texto, font, XBrushes.Black,
                         new XRect(0, 0, page.Width, page.Height),
                         XStringFormats.TopRight);
-                    }
-
-
                 }
-           
                 //salvar documento
                  outputDocument.Save(caminhoDestino);
                  modelo.Resultado = true;
