@@ -59,60 +59,43 @@ namespace Scarif_DS_1.modulos
                 PdfDocument inputDocument = PdfReader.Open(caminhoOrigem, PdfDocumentOpenMode.Import);
 
                 string name = Path.GetFileNameWithoutExtension(caminhoDestino);
-                
-                    if (modelo.Page > inputDocument.PageCount || modelo.Page <= 0)
-                    {
-                        List<string> erros = new List<string>();
-                        erros.Add("Número Página");
-                        throw new ExceptionDadosInvalidos("Número da página a remover é inválido.", erros);
-                    }
 
-                     //criar novo documento 1
-                        PdfDocument outputDocument1 = new PdfDocument();
-                        outputDocument1.Version = inputDocument.Version;
-                        outputDocument1.Info.Creator = inputDocument.Info.Creator;
+                if (modelo.Page > inputDocument.PageCount || modelo.Page <= 0)
+                {
+                    List<string> erros = new List<string>();
+                    erros.Add("Número Página");
+                    throw new ExceptionDadosInvalidos("Número da página a remover é inválido.", erros);
+                }
+
+                //criar novo documento 1
+                PdfDocument outputDocument1 = new PdfDocument();
+                outputDocument1.Version = inputDocument.Version;
+                outputDocument1.Info.Creator = inputDocument.Info.Creator;
+
+                //criar novo documento 2
+                PdfDocument outputDocument2 = new PdfDocument();
+                outputDocument2.Version = inputDocument.Version;
+                outputDocument2.Info.Creator = inputDocument.Info.Creator;
+
+                for (int idx = 0; idx < inputDocument.PageCount; idx++)
+                {
+                    //cria o primeiro documento com as páginas maiores ou iguais à selecionada
+                    if (idx >= modelo.Page)
+                    {
+                            outputDocument1.AddPage(inputDocument.Pages[idx]);
+                    }
+                    //cria o segundo documento com as restantes
+                    else
+                    { 
+                            outputDocument2.AddPage(inputDocument.Pages[idx]); 
+                    }
                    
-                    //criar novo documento 2
-                        PdfDocument outputDocument2 = new PdfDocument();
-                        outputDocument2.Version = inputDocument.Version;
-                        outputDocument2.Info.Creator = inputDocument.Info.Creator;
-
-                    for (int idx = 0; idx < inputDocument.PageCount; idx++)
-                    {
-                        if (idx >= modelo.Page) ;
-                        { 
-                             // Valida se é página a remover 
-                            if (modelo.Page == idx + 1)
-                            {
-                                //página a ignorar
-                            }
-                            else
-                            {
-                                outputDocument.AddPage(inputDocument.Pages[idx]);
-                        }
-
-                        if (idx < modelo.Page) ;
-                        {
-                        {
-                             // Valida se é página a remover 
-                            if (modelo.Page == idx + 1)
-                            {
-                                //página a ignorar
-                            }
-                            else
-                            {
-                                outputDocument.AddPage(inputDocument.Pages[idx]);
-                        }
-                    }
-
-                    outputDocument1.Save(Path.Combine(caminhoDestino));
-                    outputDocument2.Save(Path.Combine(caminhoDestino2));
-
-                        //gravar documento substituindo
-                        outputDocument1.Save(caminhoDestino);
-                        modelo.Resultado = true;
-                    }
-
+                }
+                //guarda documentos
+                outputDocument1.Save(Path.Combine(caminhoDestino));
+                outputDocument2.Save(Path.Combine(caminhoDestino2));
+                modelo.Resultado = true;
+                
             }
             //Verifica as Excepções apanhadas
             catch (ExceptionDadosInvalidos erro)
@@ -128,24 +111,24 @@ namespace Scarif_DS_1.modulos
             {
                 throw new DllNotFoundException(erro.Message);
 
-/*
-                string name = Path.GetFileNameWithoutExtension(filename);
+                /*
+                                string name = Path.GetFileNameWithoutExtension(filename);
 
-                for (int idx = 0; idx < inputDocument.PageCount; idx++)
-                {
-                   
-                    // Create new document
-                    PdfDocument outputDocument = new PdfDocument();
-                    outputDocument.Version = inputDocument.Version;
-                    outputDocument.Info.Title = String.Format("Page {0} of {1}", idx + 1, inputDocument.Info.Title);
-                    outputDocument.Info.Creator = inputDocument.Info.Creator;
+                                for (int idx = 0; idx < inputDocument.PageCount; idx++)
+                                {
 
-                    // Add the page and save it
-                    outputDocument.AddPage(inputDocument.Pages[idx]);
-                    outputDocument.Save(Path.Combine(outputPath,
-                        String.Format("{0} - Page {1}_tempfile.pdf", name, idx + 1)));
-                    */               
-                }
+                                    // Create new document
+                                    PdfDocument outputDocument = new PdfDocument();
+                                    outputDocument.Version = inputDocument.Version;
+                                    outputDocument.Info.Title = String.Format("Page {0} of {1}", idx + 1, inputDocument.Info.Title);
+                                    outputDocument.Info.Creator = inputDocument.Info.Creator;
+
+                                    // Add the page and save it
+                                    outputDocument.AddPage(inputDocument.Pages[idx]);
+                                    outputDocument.Save(Path.Combine(outputPath,
+                                        String.Format("{0} - Page {1}_tempfile.pdf", name, idx + 1)));
+                                    */
+            }
             } } 
 
 }
