@@ -321,8 +321,18 @@ namespace Scarif_DS_1.modulos
                         erros.Add("Caminho de Destino");
                     if (modelo.FileDestino == null)
                         erros.Add("Ficheiro de Destino");
-                    if (modelo.Alinhamento == null || (modelo.Alinhamento != "Left" && modelo.Alinhamento != "Center" && modelo.Alinhamento != "Right"));
+                    /*
+                    if (modelo.Texto == null)
+                        erros.Add("Texto Inválido");
+                    if (modelo.PathDestino == null || modelo.FileDestino == null || (modelo.Fonte == null || (modelo.Fonte != /*paulo aqui não sei bem as fontes que a biblioteca aceita, como queres fazer?"*//*)));
+                        erros.Add("Fonte Inválida");
+                    if (modelo.PathDestino == null || modelo.FileDestino == null || (modelo.Tamanho == null || (modelo.Tamanho != /*paulo aqui queria por caso não seja um nº e sim uma string por ex"*//*)));
+                        erros.Add("Tamanho Inválido");
+                    if (modelo.PathDestino == null || modelo.FileDestino == null || (modelo.Estilo == null || (modelo.Estilo != "Regular" && modelo.Estilo != "Bold" && modelo.Estilo != "BoldItalic" && modelo.Estilo != "Italic" && modelo.Estilo != "Strikeout" && modelo.Estilo != "Underline")));
                         erros.Add("Alinhamento Inválido");
+                    if (modelo.PathDestino == null || modelo.FileDestino == null || (modelo.Alinhamento == null || (modelo.Alinhamento != "Left" && modelo.Alinhamento != "Center" && modelo.Alinhamento != "Right")));
+                        erros.Add("Alinhamento Inválido");
+                    */
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -343,26 +353,126 @@ namespace Scarif_DS_1.modulos
                 if (modelo.Estilo == "Regular")
                 {
                     XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Regular);
+
+                    if (modelo.Alinhamento == "Left")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopLeft);
+                    }
+                    if (modelo.Alinhamento == "Center")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopCenter);
+                    }
+                    if (modelo.Alinhamento == "Right")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopRight);
+
+                    }
                 }
 
                 if (modelo.Estilo == "Bold")
                 {
                     XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Bold);
+
+                    if (modelo.Alinhamento == "Left")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopLeft);
+                    }
+                    if (modelo.Alinhamento == "Center")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopCenter);
+                    }
+                    if (modelo.Alinhamento == "Right")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopRight);
+
+                    }
                 }
 
                 if (modelo.Estilo == "BoldItalic")
                 {
                     XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.BoldItalic);
+
+                    if (modelo.Alinhamento == "Left")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopLeft);
+                    }
+                    if (modelo.Alinhamento == "Center")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopCenter);
+                    }
+                    if (modelo.Alinhamento == "Right")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopRight);
+
+                    }
                 }
 
                 if (modelo.Estilo == "Italic")
                 {
                     XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Italic);
+
+                    if (modelo.Alinhamento == "Left")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopLeft);
+                    }
+                    if (modelo.Alinhamento == "Center")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopCenter);
+                    }
+                    if (modelo.Alinhamento == "Right")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopRight);
+
+                    }
                 }
 
                 if (modelo.Estilo == "Strikeout")
                 {
                     XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Strikeout);
+                    
+                    if (modelo.Alinhamento == "Left")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopLeft);
+                    }
+                    if (modelo.Alinhamento == "Center")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopCenter);
+                    }
+                    if (modelo.Alinhamento == "Right")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopRight);
+
+                    }
                 }
 
                 if (modelo.Estilo == "Underline")
@@ -388,13 +498,13 @@ namespace Scarif_DS_1.modulos
                         XStringFormats.TopRight);
                     }
 
-                    //salvar documento
-                    outputDocument.Save(caminhoDestino);
-                    modelo.Resultado = true;
+
                 }
-            }
-
-
+           
+                //salvar documento
+                 outputDocument.Save(caminhoDestino);
+                 modelo.Resultado = true;
+             }
             //Verifica as Excepções apanhadas
             catch (ExceptionDadosInvalidos erro)
             {
