@@ -136,6 +136,9 @@ namespace Scarif_DS_1
                     case OpcoesExecucao.Unir:
                         modelo.EfetuarProcesso = CreateMod.Alternar;
                         break;
+                    case OpcoesExecucao.SepararFicheiro:
+                        modelo.EfetuarProcesso = CreateMod.SplitDocument;
+                        break;
                 }
                 modelo.EfetuarProcesso(modelo);
             }
