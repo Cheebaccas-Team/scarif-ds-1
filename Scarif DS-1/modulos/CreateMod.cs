@@ -429,29 +429,6 @@ namespace Scarif_DS_1.modulos
                     }
                 }
 
-                if (modelo.Estilo == "Italic")
-                {
-                    if (modelo.Alinhamento == "Left")
-                    {
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Italic);
-
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopLeft);
-                    }
-
-                    if (modelo.Alinhamento == "Center")
-                    {
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Italic);
-
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopCenter);
-                    }
-                }
-
                 if (modelo.Estilo == "Strikeout")
                 {
                     if (modelo.Alinhamento == "Left")
