@@ -407,7 +407,7 @@ namespace Scarif_DS_1.ui
                 estilo = Console.ReadLine();
 
                 //Solicitar Alinhamento
-                Console.WriteLine("Insira o estilo: Left/Center");
+                Console.WriteLine("Insira o alinhamento: Left/Center/Right");
                 alinhamento = Console.ReadLine();
 
                 try

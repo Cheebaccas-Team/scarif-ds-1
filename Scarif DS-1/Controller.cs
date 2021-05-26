@@ -106,7 +106,7 @@ namespace Scarif_DS_1
                         modelo.Tamanho = valor; 
                         break;
                     case TipoDados.Alinhamento:
-                        modelo.Tamanho = valor;
+                        modelo.Alinhamento = conteudo  ;
                         break;
                 }
             }

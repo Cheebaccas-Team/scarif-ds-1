@@ -321,6 +321,8 @@ namespace Scarif_DS_1.modulos
                         erros.Add("Caminho de Destino");
                     if (modelo.FileDestino == null)
                         erros.Add("Ficheiro de Destino");
+                    if (modelo.Alinhamento == null || (modelo.Alinhamento != "Left" && modelo.Alinhamento != "Center" && modelo.Alinhamento != "Right"));
+                        erros.Add("Alinhamento Inválido");
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -332,154 +334,67 @@ namespace Scarif_DS_1.modulos
 
                 //Cria uma página vazia
                 PdfPage page = outputDocument.AddPage();
-                
+
                 //Get an XGraphics object for drawing
                 var gfx = XGraphics.FromPdfPage(page);
-                
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
                 // Cria a fonte
                 if (modelo.Estilo == "Regular")
-                { 
-                  if (modelo.Alinhamento == "Left")
-                        { 
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Regular);
-
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopLeft);
-                        }
-                        
-                   if (modelo.Alinhamento == "Center")
-                        {
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Regular);
-
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopCenter); 
-                        }
+                {
+                    XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Regular);
                 }
 
                 if (modelo.Estilo == "Bold")
                 {
-                    if (modelo.Alinhamento == "Left")
-                    {
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Bold);
-
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopLeft);
-                    }
-
-                    if (modelo.Alinhamento == "Center")
-                    {
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Bold);
-
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopCenter);
-                    }
+                    XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Bold);
                 }
 
                 if (modelo.Estilo == "BoldItalic")
                 {
-                    if (modelo.Alinhamento == "Left")
-                    {
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.BoldItalic);
-
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopLeft);
-                    }
-
-                    if (modelo.Alinhamento == "Center")
-                    {
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.BoldItalic);
-
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopCenter);
-                    }
+                    XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.BoldItalic);
                 }
 
                 if (modelo.Estilo == "Italic")
                 {
-                    if (modelo.Alinhamento == "Left")
-                    {
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Italic);
-
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopLeft);
-                    }
-
-                    if (modelo.Alinhamento == "Center")
-                    {
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Italic);
-
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopCenter);
-                    }
+                    XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Italic);
                 }
 
                 if (modelo.Estilo == "Strikeout")
                 {
-                    if (modelo.Alinhamento == "Left")
-                    {
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Strikeout);
-
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopLeft);
-                    }
-
-                    if (modelo.Alinhamento == "Center")
-                    {
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Strikeout);
-
-                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
-                        new XRect(0, 0, page.Width, page.Height),
-                        XStringFormats.TopCenter);
-                    }
+                    XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Strikeout);
                 }
 
                 if (modelo.Estilo == "Underline")
                 {
+                    XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Underline);
+
                     if (modelo.Alinhamento == "Left")
                     {
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Underline);
-
                         gfx.DrawString(modelo.Texto, font, XBrushes.Black,
                         new XRect(0, 0, page.Width, page.Height),
                         XStringFormats.TopLeft);
                     }
-
                     if (modelo.Alinhamento == "Center")
                     {
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Underline);
-
                         gfx.DrawString(modelo.Texto, font, XBrushes.Black,
                         new XRect(0, 0, page.Width, page.Height),
                         XStringFormats.TopCenter);
                     }
-                }
-                
-             //salvar documento
-             outputDocument.Save(caminhoDestino);
-             modelo.Resultado = true;
+                    if (modelo.Alinhamento == "Right")
+                    {
+                        gfx.DrawString(modelo.Texto, font, XBrushes.Black,
+                        new XRect(0, 0, page.Width, page.Height),
+                        XStringFormats.TopRight);
+                    }
 
+                    //salvar documento
+                    outputDocument.Save(caminhoDestino);
+                    modelo.Resultado = true;
+                }
             }
+
+
             //Verifica as Excepções apanhadas
             catch (ExceptionDadosInvalidos erro)
             {
