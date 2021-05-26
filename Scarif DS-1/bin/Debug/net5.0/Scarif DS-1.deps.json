@@ -39,11 +39,11 @@
         "runtime": {
           "lib/net20/PdfSharp.Charting.dll": {
             "assemblyVersion": "1.50.5147.0",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "1.50.5147.0"
           },
           "lib/net20/PdfSharp.dll": {
             "assemblyVersion": "1.50.5147.0",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "1.50.5147.0"
           }
         },
         "resources": {
