@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj": {}
+    "C:\\Users\\João\\Source\\Repos\\scarif-ds-1.3\\Scarif DS-1\\Scarif DS-1.csproj": {}
   },
   "projects": {
-    "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj": {
+    "C:\\Users\\João\\Source\\Repos\\scarif-ds-1.3\\Scarif DS-1\\Scarif DS-1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj",
+        "projectUniqueName": "C:\\Users\\João\\Source\\Repos\\scarif-ds-1.3\\Scarif DS-1\\Scarif DS-1.csproj",
         "projectName": "Scarif DS-1",
-        "projectPath": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj",
-        "packagesPath": "/home/paulojmnicolau/.nuget/packages/",
-        "outputPath": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/obj/",
+        "projectPath": "C:\\Users\\João\\Source\\Repos\\scarif-ds-1.3\\Scarif DS-1\\Scarif DS-1.csproj",
+        "packagesPath": "C:\\Users\\João\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\João\\Source\\Repos\\scarif-ds-1.3\\Scarif DS-1\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/paulojmnicolau/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\João\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -62,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -382,6 +382,7 @@ namespace Scarif_DS_1.ui
             string fonte;
             int tamanho;
             string estilo;
+            string alinhamento;
             bool continuar = true;
             do
             {
@@ -405,6 +406,10 @@ namespace Scarif_DS_1.ui
                 Console.WriteLine("Insira o estilo: Regular/Bold/BoldItalic/Italic/Strikeout/Underline");
                 estilo = Console.ReadLine();
 
+                //Solicitar Alinhamento
+                Console.WriteLine("Insira o estilo: Left/Center");
+                alinhamento = Console.ReadLine();
+
                 try
                 {
                     //Submete os dados no controlador
@@ -413,6 +418,7 @@ namespace Scarif_DS_1.ui
                     ((IView)this).Controlador.SubmeterDados(fonte, TipoDados.Fonte);
                     ((IView)this).Controlador.SubmeterDados(tamanho, TipoDados.Tamanho);
                     ((IView)this).Controlador.SubmeterDados(estilo, TipoDados.Estilo);
+                    ((IView)this).Controlador.SubmeterDados(alinhamento, TipoDados.Alinhamento);
                     //Processa os dados no Modelo verificando se ocorrem erros
                     ProcessarDados(OpcoesExecucao.Criar);
                 }

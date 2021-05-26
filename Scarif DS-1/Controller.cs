@@ -104,7 +104,10 @@ namespace Scarif_DS_1
                         break;
                     case TipoDados.Tamanho:        
                         modelo.Tamanho = valor; 
-                        break;   
+                        break;
+                    case TipoDados.Alinhamento:
+                        modelo.Tamanho = valor;
+                        break;
                 }
             }
             catch (ExceptionFileNotFound erro)

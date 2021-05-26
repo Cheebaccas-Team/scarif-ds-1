@@ -13,6 +13,7 @@ namespace Scarif_DS_1.modulos
         PosicaoAdicionar,
         Fonte,
         Tamanho,
-        Estilo
+        Estilo,
+        Alinhamento
     }
 }

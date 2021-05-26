@@ -16,6 +16,7 @@ namespace Scarif_DS_1
         private string texto;
         private string senha;
         private string fonte;
+        private string alinhamento;
         private int tamanho;
         private string estilo;
         private bool resultado;
@@ -36,6 +37,7 @@ namespace Scarif_DS_1
             fonte = null;
             tamanho = 0;
             estilo = null;
+            alinhamento = null;
             fileDestino2 = null;
             page = 0;
             addPosition = 0;
@@ -122,13 +124,19 @@ namespace Scarif_DS_1
             get => fonte;
             set => fonte = value;
         }
+        //Propriedades (getter e setter) da alinhamento
+        public string Alinhamento
+        {
+            get => alinhamento;
+            set => alinhamento = value;
+        }
         //Propriedades (getter e setter) da tamanho
         public int Tamanho
         {
             get => tamanho;
             set => tamanho = value;
 
-        }        //Propriedades (getter e setter) da marca de água
+        }        //Propriedades (getter e setter) da estilo
         public string Estilo
         {
             get => estilo;

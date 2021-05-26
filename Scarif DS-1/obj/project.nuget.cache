@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "/kPnZWByzhjK8EndOxLE7Nh4fnywfixrRHeTw+WgZC0AxXDxfhkM13F9npd4q1TOmEn+W15oWsdmgc6OwNvozw==",
+  "dgSpecHash": "m8H+IR3sTMGxazxmZJ6KpGWeC8E9sSyEVj95zd7TrT6IWNuuJBUi7hAW/Zp/OmqF3JVR0DC9JvUvcKPeRltIJQ==",
   "success": true,
-  "projectFilePath": "/home/paulojmnicolau/RiderProjects/scarif-ds-1/Scarif DS-1/Scarif DS-1.csproj",
+  "projectFilePath": "C:\\Users\\João\\Source\\Repos\\scarif-ds-1.3\\Scarif DS-1\\Scarif DS-1.csproj",
   "expectedPackageFiles": [
-    "/home/paulojmnicolau/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
-    "/home/paulojmnicolau/.nuget/packages/microsoft.win32.systemevents/5.0.0/microsoft.win32.systemevents.5.0.0.nupkg.sha512",
-    "/home/paulojmnicolau/.nuget/packages/pdfsharp/1.50.5147/pdfsharp.1.50.5147.nupkg.sha512",
-    "/home/paulojmnicolau/.nuget/packages/system.drawing.common/5.0.2/system.drawing.common.5.0.2.nupkg.sha512"
+    "C:\\Users\\João\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\João\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\João\\.nuget\\packages\\pdfsharp\\1.50.5147\\pdfsharp.1.50.5147.nupkg.sha512",
+    "C:\\Users\\João\\.nuget\\packages\\system.drawing.common\\5.0.2\\system.drawing.common.5.0.2.nupkg.sha512"
   ],
   "logs": [
     {
