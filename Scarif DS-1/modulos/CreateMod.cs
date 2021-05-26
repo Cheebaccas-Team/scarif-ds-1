@@ -338,7 +338,7 @@ namespace Scarif_DS_1.modulos
                 
                 // Cria a fonte
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Regular;
+                XFont font = new XFont(modelo.Fonte, modelo.Tamanho, XFontStyle.Regular);
 
                 //Escreve o texto
                 gfx.DrawString(modelo.Texto, font, XBrushes.Black,

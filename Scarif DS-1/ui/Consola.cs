@@ -388,22 +388,22 @@ namespace Scarif_DS_1.ui
                 //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
-                caminhoDestino = this.caminhoOrigem(); ;
+                caminhoDestino = caminhoOrigem();
                 //Solicitar Texto
-                    Console.WriteLine("Insira o texto a incluir no novo documento");
-                    texto = Console.ReadLine();
+                Console.WriteLine("Insira o texto a incluir no novo documento");
+                texto = Console.ReadLine();
 
                 //Solicitar Fonte
-                    Console.WriteLine("Insira a fonte pretendida");
-                    fonte = Console.ReadLine();
+                Console.WriteLine("Insira a fonte pretendida");
+                fonte = Console.ReadLine();
 
                 //Solicitar Tamanho
-                    Console.WriteLine("Insira o tamanho");
-                    tamanho = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Insira o tamanho");
+                tamanho = Convert.ToInt32(Console.ReadLine());
 
                 //Solicitar Estilo
-                    Console.WriteLine("Insira o estilo: Regular/Bold/BoldItalic/Italic/Strikeout/Underline");
-                    estilo = Console.ReadLine();
+                Console.WriteLine("Insira o estilo: Regular/Bold/BoldItalic/Italic/Strikeout/Underline");
+                estilo = Console.ReadLine();
 
                 try
                 {
