@@ -36,8 +36,8 @@ namespace Scarif_DS_1.ui
         //Disponibilizar as opções do menu principal
         public void DisponibilizarOpcoes()
         {
-            Console.Clear();
             int opcao;
+            Console.Clear();
             do
             {
                 Console.WriteLine("Qual a tarefa que pretende executar?");
