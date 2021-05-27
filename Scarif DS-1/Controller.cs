@@ -18,6 +18,7 @@ namespace Scarif_DS_1
         private IModel _modelo;
         private IView _ui;
         private bool _executar;
+        private OpcoesExecucao _opcao;
 
         public delegate void EfetuarProcessamento();
         
@@ -34,12 +35,13 @@ namespace Scarif_DS_1
             Executar = true;
             while(Executar){
                 _ui.DisponibilizarOpcoes();
+                _ui.ProcessarDados(Opcao);
             }
             _ui.EncerrarPrograma();
         }
 
         //Função que permite atualizar os dados do modelo
-        public void SubmeterDados(IDados dados)
+        public void SubmeterDados(IDados dados, OpcoesExecucao operacao)
         {
             try
             {
@@ -84,6 +86,7 @@ namespace Scarif_DS_1
                     _modelo = new WaterMarkMod((WaterMarkDados) dados);
                 }
                 _ui.Modelo = _modelo;
+                Opcao = operacao;
             }
             catch (ExceptionFileNotFound erro)
             {
@@ -156,6 +159,12 @@ namespace Scarif_DS_1
         {
             get => _executar;
             set => _executar = value;
+        }
+
+        public OpcoesExecucao Opcao
+        {
+            get => _opcao;
+            set => _opcao = value;
         }
     }
 }

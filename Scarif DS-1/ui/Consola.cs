@@ -36,6 +36,7 @@ namespace Scarif_DS_1.ui
         //Disponibilizar as opções do menu principal
         public void DisponibilizarOpcoes()
         {
+            Console.Clear();
             int opcao;
             do
             {
@@ -199,10 +200,7 @@ namespace Scarif_DS_1.ui
         private void MenuContar()
         {
             string caminhoOrigem;
-            bool continuar = true;
-            do
-            {
-                //Limpa o terminal
+            //Limpa o terminal
                 Console.Clear();
                 try
                 {
@@ -210,9 +208,7 @@ namespace Scarif_DS_1.ui
                     caminhoOrigem = this.caminhoOrigem();
                     IDados dados = new CountDados(caminhoOrigem);
                     //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(dados);
-                    //Processa os dados no Modelo verificando se ocorrem erros
-                    ProcessarDados(OpcoesExecucao.ContarPaginas);
+                    ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.ContarPaginas);
                 }
                 catch (ExceptionDadosInvalidos erro)
                 {
@@ -226,14 +222,6 @@ namespace Scarif_DS_1.ui
                 {
                     Console.WriteLine("Erro: {0}", erro.Message);
                 }
-
-                //valida se é para continuar na mesma tarefa
-                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
-                string opcao = Console.ReadLine();
-                if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
-                    continuar = false;
-            } while (continuar);
-            Console.Clear();
         }
 
         //Executa função de Remover página
@@ -242,10 +230,7 @@ namespace Scarif_DS_1.ui
             string caminhoOrigem;
             string caminhoDestino;
             int pagina;
-            bool continuar = true;
-            do
-            {
-                //Limpa o terminal
+            //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
@@ -256,9 +241,7 @@ namespace Scarif_DS_1.ui
                 try
                 {
                     RemoveDados dados = new RemoveDados(caminhoOrigem, caminhoDestino, pagina);
-                    ((IView) this).Controlador.SubmeterDados(dados);
-                    //Processa os dados no Modelo verificando se ocorrem erros
-                    ProcessarDados(OpcoesExecucao.RemoverPagina);
+                    ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.RemoverPagina);
                 }
                 catch (ExceptionDadosInvalidos erro)
                 {
@@ -271,14 +254,6 @@ namespace Scarif_DS_1.ui
                 {
                     Console.WriteLine("Erro: {0}", erro.Message);
                 }
-
-                //valida se é para continuar na mesma tarefa
-                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
-                string opcao = Console.ReadLine();
-                if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
-                    continuar = false;
-            } while (continuar);
-            Console.Clear();
         }
 
         //Executa função de Marca Água
@@ -287,10 +262,7 @@ namespace Scarif_DS_1.ui
             string caminhoOrigem;
             string caminhoDestino;
             string marcaAgua;
-            bool continuar = true;
-            do
-            {
-                //Limpa o terminal
+            //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
@@ -302,9 +274,7 @@ namespace Scarif_DS_1.ui
                 {
                     WaterMarkDados dados = new WaterMarkDados(caminhoOrigem, caminhoDestino, marcaAgua);
                     //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(dados);
-                    //Processa os dados no Modelo verificando se ocorrem erros
-                    ProcessarDados(OpcoesExecucao.AdicionarMarca);
+                    ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.AdicionarMarca);
                 }
                 catch (ExceptionDadosInvalidos erro)
                 {
@@ -317,14 +287,6 @@ namespace Scarif_DS_1.ui
                 {
                     Console.WriteLine("Erro: {0}", erro.Message);
                 }
-
-                //valida se é para continuar na mesma tarefa
-                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
-                string opcao = Console.ReadLine();
-                if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
-                    continuar = false;
-            } while (continuar);
-            Console.Clear();
         }
 
         private void MenuAdicionarEncriptar()
@@ -333,10 +295,7 @@ namespace Scarif_DS_1.ui
             string caminhoDestino;
             string senha;
             string confirmacao;
-            bool continuar = true;
-            do
-            {
-                //Limpa o terminal
+            //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
@@ -356,9 +315,7 @@ namespace Scarif_DS_1.ui
                 {
                     EncriptDados dados = new EncriptDados(caminhoOrigem, caminhoDestino, senha, TipoDados.Protect);
                     //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(dados);
-                    //Processa os dados no Modelo verificando se ocorrem erros
-                    ProcessarDados(OpcoesExecucao.Encriptar);
+                    ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.Encriptar);
                 }
                 catch (ExceptionDadosInvalidos erro)
                 {
@@ -371,15 +328,6 @@ namespace Scarif_DS_1.ui
                 {
                     Console.WriteLine("Erro: {0}", erro.Message);
                 }
-
-                //valida se é para continuar na mesma tarefa
-                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
-                string opcao = Console.ReadLine();
-                if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
-                    continuar = false;
-            } while (continuar);
-
-            Console.Clear();
         }
         private void MenuCriar()
         {
@@ -389,10 +337,7 @@ namespace Scarif_DS_1.ui
             int tamanho;
             string estilo;
             string alinhamento;
-            bool continuar = true;
-            do
-            {
-                //Limpa o terminal
+            //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoDestino = caminhoOrigem();
@@ -415,9 +360,7 @@ namespace Scarif_DS_1.ui
                 {
                     CreateDados dados = new CreateDados(caminhoDestino, texto, estilo, alinhamento, fonte, tamanho);
                     //Submete os dados no controlador
-                    ((IView)this).Controlador.SubmeterDados(dados);
-                    //Processa os dados no Modelo verificando se ocorrem erros
-                    ProcessarDados(OpcoesExecucao.Criar);
+                    ((IView)this).Controlador.SubmeterDados(dados, OpcoesExecucao.Criar);
                 }
                 catch (ExceptionDadosInvalidos erro)
                 {
@@ -427,14 +370,6 @@ namespace Scarif_DS_1.ui
                 {
                     Console.WriteLine("Erro: {0}", erro.Message);
                 }
-                //valida se é para continuar na mesma tarefa
-                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
-                string opcao = Console.ReadLine();
-                if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
-                    continuar = false;
-            } while (continuar);
-
-            Console.Clear();
         }
 
         private void MenuRemoverEncriptacao()
@@ -442,10 +377,7 @@ namespace Scarif_DS_1.ui
             string caminhoOrigem;
             string caminhoDestino;
             string senha;
-            bool continuar = true;
-            do
-            {
-                //Limpa o terminal
+            //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
@@ -457,9 +389,7 @@ namespace Scarif_DS_1.ui
                 {
                     EncriptDados dados = new EncriptDados(caminhoOrigem, caminhoDestino, senha, TipoDados.Unprotect);
                     //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(dados);
-                    //Processa os dados no Modelo verificando se ocorrem erros
-                    ProcessarDados(OpcoesExecucao.Decriptar);
+                    ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.Decriptar);
                 }
                 catch (ExceptionDadosInvalidos erro)
                 {
@@ -472,14 +402,7 @@ namespace Scarif_DS_1.ui
                 {
                     Console.WriteLine("Erro: {0}", erro.Message);
                 }
-
-                //valida se é para continuar na mesma tarefa
-                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
-                string opcao = Console.ReadLine();
-                if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
-                    continuar = false;
-            } while (continuar);
-            Console.Clear();
+                
         }
 
         private void MenuUnir(OpcoesExecucao op)
@@ -487,10 +410,7 @@ namespace Scarif_DS_1.ui
             string caminhoOrigem;
             string caminhoOrigem2;
             string caminhoDestino;
-            bool continuar = true;
-            do
-            {
-                //Limpa o terminal
+            //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
@@ -508,14 +428,12 @@ namespace Scarif_DS_1.ui
                         case OpcoesExecucao.Unir:
                             dados = new UnionDados(caminhoOrigem, caminhoOrigem2, caminhoDestino,
                                 TipoDados.Alternate);
-                            ((IView) this).Controlador.SubmeterDados(dados);
-                            ProcessarDados(OpcoesExecucao.Unir);
+                            ((IView) this).Controlador.SubmeterDados(dados, op);
                             break;
                         case OpcoesExecucao.Concatenar:
                             dados = new UnionDados(caminhoOrigem, caminhoOrigem2, caminhoDestino,
                                 TipoDados.Concat);
-                            ((IView) this).Controlador.SubmeterDados(dados);
-                            ProcessarDados(OpcoesExecucao.Concatenar);
+                            ((IView) this).Controlador.SubmeterDados(dados, op);
                             break;
                     }
                 }
@@ -530,15 +448,7 @@ namespace Scarif_DS_1.ui
                 {
                     Console.WriteLine("Erro: {0}", erro.Message);
                 }
-
-                //valida se é para continuar na mesma tarefa
-                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
-                string opcao = Console.ReadLine();
-                if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
-                    continuar = false;
-            } while (continuar);
-
-            Console.Clear();
+                
         }
 
         private void MenuSeparar()
@@ -547,10 +457,7 @@ namespace Scarif_DS_1.ui
             string caminhoDestino;
             string caminhoDestino2;
             int pagina;
-            bool continuar = true;
-            do
-            {
-                //Limpa o terminal
+            //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
@@ -563,9 +470,7 @@ namespace Scarif_DS_1.ui
                 {
                     SplitDados dados = new SplitDados(caminhoOrigem, caminhoDestino, caminhoDestino2, pagina);
                     //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(dados);
-                    //Processa os dados no Modelo verificando se ocorrem erros
-                    ProcessarDados(OpcoesExecucao.SepararFicheiro);
+                    ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.SepararFicheiro);
                 }
                 catch (ExceptionDadosInvalidos erro)
                 {
@@ -578,15 +483,6 @@ namespace Scarif_DS_1.ui
                 {
                     Console.WriteLine("Erro: {0}", erro.Message);
                 }
-
-                //valida se é para continuar na mesma tarefa
-                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
-                string opcao = Console.ReadLine();
-                if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
-                    continuar = false;
-            } while (continuar);
-
-            Console.Clear();
         }
 
         private void MenuAdicionar()
@@ -596,10 +492,7 @@ namespace Scarif_DS_1.ui
             string caminhoDestino;
             int pagina;
             int posicao;
-            bool continuar = true;
-            do
-            {
-                //Limpa o terminal
+            //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
@@ -615,9 +508,7 @@ namespace Scarif_DS_1.ui
                 {
                     AddPageDados dados =
                         new AddPageDados(caminhoOrigem, caminhoOrigem2, caminhoDestino, pagina, posicao);
-                    ((IView)this).Controlador.SubmeterDados(dados);
-                    //Processa os dados no Modelo verificando se ocorrem erros
-                    ProcessarDados(OpcoesExecucao.AdicionarPagina);
+                    ((IView)this).Controlador.SubmeterDados(dados, OpcoesExecucao.AdicionarPagina);
                 }
                 catch (ExceptionDadosInvalidos erro)
                 {
@@ -631,14 +522,6 @@ namespace Scarif_DS_1.ui
                 {
                     Console.WriteLine("Erro: {0}", erro.Message);
                 }
-
-                //valida se é para continuar na mesma tarefa
-                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
-                string opcao = Console.ReadLine();
-                if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
-                    continuar = false;
-            } while (continuar);
-            Console.Clear();
         }
 
         public void ProcessarDados(OpcoesExecucao op)
@@ -775,7 +658,13 @@ namespace Scarif_DS_1.ui
 
                         break;
                 }
-
+                //valida se é para continuar
+                string opcao;
+                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
+                opcao = Console.ReadLine();
+                if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
+                    ((IView) this).Controlador.Executar = false;
+                Console.Clear();
             }
             catch (ExceptionDadosInvalidos erro)
             {
