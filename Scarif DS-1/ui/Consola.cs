@@ -101,7 +101,11 @@ namespace Scarif_DS_1.ui
                     Console.WriteLine("Escolha 0 para voltar!");
                     opcao = Int32.Parse(Console.ReadLine());
                     if (opcao < 0 || opcao > 6)
+                    {
                         Console.WriteLine("Opção Inválida! Escolha novamente.");
+                        Console.WriteLine("Clique em qualquer tecla para continua!");
+                        Console.ReadLine();
+                    }
                 } while (opcao < 0 || opcao > 6);
 
                 switch (opcao)
@@ -149,7 +153,11 @@ namespace Scarif_DS_1.ui
                     Console.WriteLine("Escolha 0 para voltar!");
                     opcao = Int32.Parse(Console.ReadLine());
                     if (opcao < 0 || opcao > 1)
+                    {
                         Console.WriteLine("Opção Inválida! Escolha novamente.");
+                        Console.WriteLine("Clique em qualquer tecla para continua!");
+                        Console.ReadLine();
+                    }
                 } while (opcao < 0 || opcao > 1);
                 switch (opcao)
                 {
@@ -182,7 +190,11 @@ namespace Scarif_DS_1.ui
                     Console.WriteLine("Escolha 0 para voltar!");
                     opcao = Int32.Parse(Console.ReadLine());
                     if (opcao < 0 || opcao > 2)
+                    {
                         Console.WriteLine("Opção Inválida! Escolha novamente.");
+                        Console.WriteLine("Clique em qualquer tecla para continua!");
+                        Console.ReadLine();
+                    }
                 } while (opcao < 0 || opcao > 2);
                 switch (opcao)
                 {
@@ -218,7 +230,11 @@ namespace Scarif_DS_1.ui
                     Console.WriteLine("Escolha 0 para voltar!");
                     opcao = Int32.Parse(Console.ReadLine());
                     if (opcao < 0 || opcao > 1)
+                    {
                         Console.WriteLine("Opção Inválida! Escolha novamente.");
+                        Console.WriteLine("Clique em qualquer tecla para continua!");
+                        Console.ReadLine();
+                    }
                 } while (opcao < 0 || opcao > 1);
 
                 switch (opcao)
