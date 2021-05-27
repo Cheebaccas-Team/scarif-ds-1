@@ -36,163 +36,206 @@ namespace Scarif_DS_1.ui
         //Disponibilizar as opções do menu principal
         public void DisponibilizarOpcoes()
         {
-            int opcao;
-            Console.Clear();
-            do
+            try
             {
-                Console.WriteLine("Qual a tarefa que pretende executar?");
-                Console.WriteLine("1 - Editar Ficheiros");
-                Console.WriteLine("2 - Criar Ficheiro");
-                Console.WriteLine("3 - Proteção Ficheiros");
-                Console.WriteLine("4 - Outras Funções");
-                Console.WriteLine("Escolha 0 para sair!");
-                Console.Write("Opção: ");
-                
+                int opcao;
+                Console.Clear();
+                do
+                {
+                    Console.WriteLine("Qual a tarefa que pretende executar?");
+                    Console.WriteLine("1 - Editar Ficheiros");
+                    Console.WriteLine("2 - Criar Ficheiro");
+                    Console.WriteLine("3 - Proteção Ficheiros");
+                    Console.WriteLine("4 - Outras Funções");
+                    Console.WriteLine("Escolha 0 para sair!");
+                    Console.Write("Opção: ");
+
                     opcao = Int32.Parse(Console.ReadLine());
-                if (opcao < 0 || opcao > 4)
-                    Console.WriteLine("Opção Inválida! Escolha novamente.");
-            } while (opcao < 0 || opcao > 4);
-            switch (opcao)
+                    if (opcao < 0 || opcao > 4)
+                        Console.WriteLine("Opção Inválida! Escolha novamente.");
+                } while (opcao < 0 || opcao > 4);
+
+                switch (opcao)
+                {
+                    case (int) OpcoesMenuPrincipal.Editar:
+                        OpcaoEdit();
+                        break;
+                    case (int) OpcoesMenuPrincipal.Criar:
+                        OpcaoCriar();
+                        break;
+                    case (int) OpcoesMenuPrincipal.Proteger:
+                        OpcaoProteger();
+                        break;
+                    case (int) OpcoesMenuPrincipal.Outra:
+                        OpcaoOutra();
+                        break;
+                    case (int) OpcoesMenuPrincipal.Sair:
+                        ((IView) this).Controlador.Executar = false;
+                        break;
+                }
+            }
+            catch (FormatException erro)
             {
-                case (int) OpcoesMenuPrincipal.Editar:
-                    OpcaoEdit();
-                    break;
-                case (int) OpcoesMenuPrincipal.Criar:
-                    OpcaoCriar();
-                    break;
-                case (int) OpcoesMenuPrincipal.Proteger:
-                    OpcaoProteger();
-                    break;
-                case (int) OpcoesMenuPrincipal.Outra:
-                    OpcaoOutra();
-                    break;
-                case (int) OpcoesMenuPrincipal.Sair:
-                    ((IView) this).Controlador.Executar = false;
-                    break;
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
             }
         }
 
         //Disponibilizar as opções do Menu de Edição
         private void OpcaoEdit()
         {
-            int opcao;
-            do
+            try
             {
-                Console.Clear();
-                Console.WriteLine("Escolha uma opção:");
-                Console.WriteLine("1 - Adicionar Página");
-                Console.WriteLine("2 - Remover Página");
-                Console.WriteLine("3 - Unir Ficheiros - Concatenar");
-                Console.WriteLine("4 - Unir Ficheiros - Alternado");
-                Console.WriteLine("5 - Separar Ficheiros");
-                Console.WriteLine("6 - Marca de Água");
-                Console.WriteLine("Escolha 0 para voltar!");
-                opcao = Int32.Parse(Console.ReadLine());
-                if (opcao < 0 || opcao > 6)
-                    Console.WriteLine("Opção Inválida! Escolha novamente.");
-            } while (opcao < 0 || opcao > 6);
-
-            switch (opcao)
-            {
-                case (int) OpcoesMenuEdit.Adicionar:
-                    MenuAdicionar();
-                    break;
-                case (int) OpcoesMenuEdit.Remover:
-                    MenuRemover();
-                    break;
-                case (int) OpcoesMenuEdit.Alternar:
-                    MenuUnir(OpcoesExecucao.Unir);
-                    break;
-                case (int) OpcoesMenuEdit.Concatenar:
-                    MenuUnir(OpcoesExecucao.Concatenar);
-                    break;
-                case (int) OpcoesMenuEdit.Separar:
-                    MenuSeparar();
-                    break;
-                case (int) OpcoesMenuEdit.MarcaAgua:
-                    MenuMarcaAgua();
-                    break;
-                case (int) OpcoesMenuEdit.Sair:
+                int opcao;
+                do
+                {
                     Console.Clear();
-                    break;
+                    Console.WriteLine("Escolha uma opção:");
+                    Console.WriteLine("1 - Adicionar Página");
+                    Console.WriteLine("2 - Remover Página");
+                    Console.WriteLine("3 - Unir Ficheiros - Concatenar");
+                    Console.WriteLine("4 - Unir Ficheiros - Alternado");
+                    Console.WriteLine("5 - Separar Ficheiros");
+                    Console.WriteLine("6 - Marca de Água");
+                    Console.WriteLine("Escolha 0 para voltar!");
+                    opcao = Int32.Parse(Console.ReadLine());
+                    if (opcao < 0 || opcao > 6)
+                        Console.WriteLine("Opção Inválida! Escolha novamente.");
+                } while (opcao < 0 || opcao > 6);
+
+                switch (opcao)
+                {
+                    case (int) OpcoesMenuEdit.Adicionar:
+                        MenuAdicionar();
+                        break;
+                    case (int) OpcoesMenuEdit.Remover:
+                        MenuRemover();
+                        break;
+                    case (int) OpcoesMenuEdit.Alternar:
+                        MenuUnir(OpcoesExecucao.Unir);
+                        break;
+                    case (int) OpcoesMenuEdit.Concatenar:
+                        MenuUnir(OpcoesExecucao.Concatenar);
+                        break;
+                    case (int) OpcoesMenuEdit.Separar:
+                        MenuSeparar();
+                        break;
+                    case (int) OpcoesMenuEdit.MarcaAgua:
+                        MenuMarcaAgua();
+                        break;
+                    case (int) OpcoesMenuEdit.Sair:
+                        Console.Clear();
+                        break;
+                }
+            }
+            catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
             }
         }
 
         private void OpcaoCriar()
         {
-            int opcao;
-            do
-            {
-                Console.Clear();
-                Console.WriteLine("Escolha uma opção:");
-                Console.WriteLine("1 - Criar Ficheiro");
-                Console.WriteLine("Escolha 0 para voltar!");
-                opcao = Int32.Parse(Console.ReadLine());
-                if (opcao < 0 || opcao > 1)
-                    Console.WriteLine("Opção Inválida! Escolha novamente.");
-            } while (opcao < 0 || opcao > 1);
-            switch (opcao)
-            {
-                case (int) OpcoesMenuCriar.Criar:
-                    MenuCriar();
-                    break;
-                case (int) OpcoesMenuCriar.Sair:
+            try{
+                int opcao;
+                do
+                {
                     Console.Clear();
-                    break;
+                    Console.WriteLine("Escolha uma opção:");
+                    Console.WriteLine("1 - Criar Ficheiro");
+                    Console.WriteLine("Escolha 0 para voltar!");
+                    opcao = Int32.Parse(Console.ReadLine());
+                    if (opcao < 0 || opcao > 1)
+                        Console.WriteLine("Opção Inválida! Escolha novamente.");
+                } while (opcao < 0 || opcao > 1);
+                switch (opcao)
+                {
+                    case (int) OpcoesMenuCriar.Criar:
+                        MenuCriar();
+                        break;
+                    case (int) OpcoesMenuCriar.Sair:
+                        Console.Clear();
+                        break;
+                }
+            }
+            catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
             }
         }
 
         private void OpcaoProteger()
         {
-            int opcao;
-            do
-            {
-                Console.Clear();
-                Console.WriteLine("Escolha uma opção:");
-                Console.WriteLine("1 - Adicionar Encriptação");
-                Console.WriteLine("2 - Remover Encriptação");
-                Console.WriteLine("Escolha 0 para voltar!");
-                opcao = Int32.Parse(Console.ReadLine());
-                if (opcao < 0 || opcao > 2)
-                    Console.WriteLine("Opção Inválida! Escolha novamente.");
-            } while (opcao < 0 || opcao > 2);
-            switch (opcao)
-            {
-                case (int) OpcoesMenuEncriptar.Adicionar:
-                    MenuAdicionarEncriptar();
-                    break;
-                case (int) OpcoesMenuEncriptar.Remover:
-                    MenuRemoverEncriptacao();
-                    break;
-                case (int) OpcoesMenuEncriptar.Sair:
+            try{
+                int opcao;
+                do
+                {
                     Console.Clear();
-                    break;
+                    Console.WriteLine("Escolha uma opção:");
+                    Console.WriteLine("1 - Adicionar Encriptação");
+                    Console.WriteLine("2 - Remover Encriptação");
+                    Console.WriteLine("Escolha 0 para voltar!");
+                    opcao = Int32.Parse(Console.ReadLine());
+                    if (opcao < 0 || opcao > 2)
+                        Console.WriteLine("Opção Inválida! Escolha novamente.");
+                } while (opcao < 0 || opcao > 2);
+                switch (opcao)
+                {
+                    case (int) OpcoesMenuEncriptar.Adicionar:
+                        MenuAdicionarEncriptar();
+                        break;
+                    case (int) OpcoesMenuEncriptar.Remover:
+                        MenuRemoverEncriptacao();
+                        break;
+                    case (int) OpcoesMenuEncriptar.Sair:
+                        Console.Clear();
+                        break;
+                }
+            }
+            catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
             }
         }
 
         //Disponibiliza as opções do Menu de Outras Tarefas
         private void OpcaoOutra()
         {
-            int opcao;
-            do
-            {
-                Console.Clear();
-                Console.WriteLine("Escolha uma opção:");
-                Console.WriteLine("1 - Contar Páginas");
-                Console.WriteLine("Escolha 0 para voltar!");
-                opcao = Int32.Parse(Console.ReadLine());
-                if (opcao < 0 || opcao > 1)
-                    Console.WriteLine("Opção Inválida! Escolha novamente.");
-            } while (opcao < 0 || opcao > 1);
-
-            switch (opcao)
-            {
-                case (int) OpcoesMenuOutra.Contar:
-                    MenuContar();
-                    break;
-                case (int) OpcoesMenuOutra.Sair:
+            try{
+                int opcao;
+                do
+                {
                     Console.Clear();
-                    break;
+                    Console.WriteLine("Escolha uma opção:");
+                    Console.WriteLine("1 - Contar Páginas");
+                    Console.WriteLine("Escolha 0 para voltar!");
+                    opcao = Int32.Parse(Console.ReadLine());
+                    if (opcao < 0 || opcao > 1)
+                        Console.WriteLine("Opção Inválida! Escolha novamente.");
+                } while (opcao < 0 || opcao > 1);
+
+                switch (opcao)
+                {
+                    case (int) OpcoesMenuOutra.Contar:
+                        MenuContar();
+                        break;
+                    case (int) OpcoesMenuOutra.Sair:
+                        Console.Clear();
+                        break;
+                }
+            }
+            catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
             }
         }
 
@@ -201,27 +244,38 @@ namespace Scarif_DS_1.ui
         {
             string caminhoOrigem;
             //Limpa o terminal
-                Console.Clear();
-                try
-                {
-                    //Solicita os dados ao utilizador
-                    caminhoOrigem = this.caminhoOrigem();
-                    IDados dados = new CountDados(caminhoOrigem);
-                    //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.ContarPaginas);
-                }
-                catch (ExceptionDadosInvalidos erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                }
-                catch (ExceptionFileNotFound erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                }
-                catch (DllNotFoundException erro)
-                {
-                    Console.WriteLine("Erro: {0}", erro.Message);
-                }
+            Console.Clear();
+            try
+            {
+                //Solicita os dados ao utilizador
+                caminhoOrigem = this.caminhoOrigem();
+                IDados dados = new CountDados(caminhoOrigem);
+                //Submete os dados no controlador
+                ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.ContarPaginas);
+            }
+            catch (ExceptionDadosInvalidos erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
+            catch (ExceptionFileNotFound erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
+            catch (DllNotFoundException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
         }
 
         //Executa função de Remover página
@@ -230,7 +284,9 @@ namespace Scarif_DS_1.ui
             string caminhoOrigem;
             string caminhoDestino;
             int pagina;
-            //Limpa o terminal
+            try
+            {
+                //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
@@ -238,22 +294,31 @@ namespace Scarif_DS_1.ui
                 Console.WriteLine("Indique o número da página a remover");
                 pagina = Convert.ToInt32(Console.ReadLine());
                 //Submete os dados no controlador
-                try
-                {
-                    RemoveDados dados = new RemoveDados(caminhoOrigem, caminhoDestino, pagina);
-                    ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.RemoverPagina);
-                }
-                catch (ExceptionDadosInvalidos erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                }
-                catch (ExceptionFileNotFound erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                }catch (DllNotFoundException erro)
-                {
-                    Console.WriteLine("Erro: {0}", erro.Message);
-                }
+                RemoveDados dados = new RemoveDados(caminhoOrigem, caminhoDestino, pagina);
+                ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.RemoverPagina);
+            }
+            catch (ExceptionDadosInvalidos erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
+            catch (ExceptionFileNotFound erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (DllNotFoundException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
         }
 
         //Executa função de Marca Água
@@ -262,7 +327,8 @@ namespace Scarif_DS_1.ui
             string caminhoOrigem;
             string caminhoDestino;
             string marcaAgua;
-            //Limpa o terminal
+            try{
+                //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
@@ -270,23 +336,32 @@ namespace Scarif_DS_1.ui
                 caminhoDestino = this.caminhoDestino(caminhoOrigem);
                 Console.WriteLine("Indique o texto a colocar como Marca de Água");
                 marcaAgua = Console.ReadLine();
-                try
-                {
-                    WaterMarkDados dados = new WaterMarkDados(caminhoOrigem, caminhoDestino, marcaAgua);
-                    //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.AdicionarMarca);
-                }
-                catch (ExceptionDadosInvalidos erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                }
-                catch (ExceptionFileNotFound erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                }catch (DllNotFoundException erro)
-                {
-                    Console.WriteLine("Erro: {0}", erro.Message);
-                }
+                WaterMarkDados dados = new WaterMarkDados(caminhoOrigem, caminhoDestino, marcaAgua);
+                //Submete os dados no controlador
+                ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.AdicionarMarca);
+            }
+            catch (ExceptionDadosInvalidos erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
+            catch (ExceptionFileNotFound erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (DllNotFoundException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
         }
 
         private void MenuAdicionarEncriptar()
@@ -295,7 +370,8 @@ namespace Scarif_DS_1.ui
             string caminhoDestino;
             string senha;
             string confirmacao;
-            //Limpa o terminal
+            try{
+                //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
@@ -310,24 +386,32 @@ namespace Scarif_DS_1.ui
                     if (senha != null && !senha.Equals(confirmacao))
                         Console.WriteLine("Senha não é igual");
                 } while (senha != null && !senha.Equals(confirmacao));
-
-                try
-                {
-                    EncriptDados dados = new EncriptDados(caminhoOrigem, caminhoDestino, senha, TipoDados.Protect);
-                    //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.Encriptar);
-                }
-                catch (ExceptionDadosInvalidos erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                }
-                catch (ExceptionFileNotFound erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                }catch (DllNotFoundException erro)
-                {
-                    Console.WriteLine("Erro: {0}", erro.Message);
-                }
+                EncriptDados dados = new EncriptDados(caminhoOrigem, caminhoDestino, senha, TipoDados.Protect);
+                //Submete os dados no controlador
+                ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.Encriptar);
+            }
+            catch (ExceptionDadosInvalidos erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
+            catch (ExceptionFileNotFound erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (DllNotFoundException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
         }
         private void MenuCriar()
         {
@@ -337,7 +421,8 @@ namespace Scarif_DS_1.ui
             int tamanho;
             string estilo;
             string alinhamento;
-            //Limpa o terminal
+            try{
+                //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoDestino = caminhoOrigem();
@@ -356,20 +441,27 @@ namespace Scarif_DS_1.ui
                 //Solicitar Alinhamento
                 Console.WriteLine("Insira o alinhamento: Left/Center/Right");
                 alinhamento = Console.ReadLine();
-                try
-                {
-                    CreateDados dados = new CreateDados(caminhoDestino, texto, estilo, alinhamento, fonte, tamanho);
-                    //Submete os dados no controlador
-                    ((IView)this).Controlador.SubmeterDados(dados, OpcoesExecucao.Criar);
-                }
-                catch (ExceptionDadosInvalidos erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                }
-                catch (DllNotFoundException erro)
-                {
-                    Console.WriteLine("Erro: {0}", erro.Message);
-                }
+                CreateDados dados = new CreateDados(caminhoDestino, texto, estilo, alinhamento, fonte, tamanho);
+                //Submete os dados no controlador
+                ((IView)this).Controlador.SubmeterDados(dados, OpcoesExecucao.Criar);
+            }
+            catch (ExceptionDadosInvalidos erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
+            catch (DllNotFoundException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
         }
 
         private void MenuRemoverEncriptacao()
@@ -377,7 +469,8 @@ namespace Scarif_DS_1.ui
             string caminhoOrigem;
             string caminhoDestino;
             string senha;
-            //Limpa o terminal
+            try{
+                //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
@@ -385,23 +478,32 @@ namespace Scarif_DS_1.ui
                 //Solicitar Senha
                 Console.WriteLine("Qual a senha do ficheiro?");
                 senha = Console.ReadLine();
-                try
-                {
-                    EncriptDados dados = new EncriptDados(caminhoOrigem, caminhoDestino, senha, TipoDados.Unprotect);
-                    //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.Decriptar);
-                }
-                catch (ExceptionDadosInvalidos erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                }
-                catch (ExceptionFileNotFound erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                }catch (DllNotFoundException erro)
-                {
-                    Console.WriteLine("Erro: {0}", erro.Message);
-                }
+                EncriptDados dados = new EncriptDados(caminhoOrigem, caminhoDestino, senha, TipoDados.Unprotect);
+                //Submete os dados no controlador
+                ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.Decriptar);
+            }
+            catch (ExceptionDadosInvalidos erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
+            catch (ExceptionFileNotFound erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (DllNotFoundException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
                 
         }
 
@@ -410,44 +512,54 @@ namespace Scarif_DS_1.ui
             string caminhoOrigem;
             string caminhoOrigem2;
             string caminhoDestino;
-            //Limpa o terminal
+            try{
+                //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
                 Console.WriteLine("Dados do 2º ficheiro:");
                 caminhoOrigem2 = this.caminhoOrigem();
                 caminhoDestino = this.caminhoDestino(caminhoOrigem);
-                try
+
+                //Submete os dados no controlador
+                UnionDados dados;
+                //Processa os dados no Modelo verificando se ocorrem erros
+                switch (op)
                 {
-                    
-                    //Submete os dados no controlador
-                    UnionDados dados;
-                    //Processa os dados no Modelo verificando se ocorrem erros
-                    switch (op)
-                    {
-                        case OpcoesExecucao.Unir:
-                            dados = new UnionDados(caminhoOrigem, caminhoOrigem2, caminhoDestino,
-                                TipoDados.Alternate);
-                            ((IView) this).Controlador.SubmeterDados(dados, op);
-                            break;
-                        case OpcoesExecucao.Concatenar:
-                            dados = new UnionDados(caminhoOrigem, caminhoOrigem2, caminhoDestino,
-                                TipoDados.Concat);
-                            ((IView) this).Controlador.SubmeterDados(dados, op);
-                            break;
-                    }
+                    case OpcoesExecucao.Unir:
+                        dados = new UnionDados(caminhoOrigem, caminhoOrigem2, caminhoDestino,
+                            TipoDados.Alternate);
+                        ((IView) this).Controlador.SubmeterDados(dados, op);
+                        break;
+                    case OpcoesExecucao.Concatenar:
+                        dados = new UnionDados(caminhoOrigem, caminhoOrigem2, caminhoDestino,
+                            TipoDados.Concat);
+                        ((IView) this).Controlador.SubmeterDados(dados, op);
+                        break;
                 }
-                catch (ExceptionDadosInvalidos erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                }
-                catch (ExceptionFileNotFound erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                }catch (DllNotFoundException erro)
-                {
-                    Console.WriteLine("Erro: {0}", erro.Message);
-                }
+            }
+            catch (ExceptionDadosInvalidos erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
+            catch (ExceptionFileNotFound erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (DllNotFoundException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
                 
         }
 
@@ -457,7 +569,8 @@ namespace Scarif_DS_1.ui
             string caminhoDestino;
             string caminhoDestino2;
             int pagina;
-            //Limpa o terminal
+            try{
+                //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
@@ -466,23 +579,32 @@ namespace Scarif_DS_1.ui
                 caminhoDestino2 = this.caminhoOrigem();
                 Console.WriteLine("Página onde realizar a separação?");
                 pagina = Int32.Parse(Console.ReadLine());
-                try
-                {
-                    SplitDados dados = new SplitDados(caminhoOrigem, caminhoDestino, caminhoDestino2, pagina);
-                    //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.SepararFicheiro);
-                }
-                catch (ExceptionDadosInvalidos erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                }
-                catch (ExceptionFileNotFound erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                }catch (DllNotFoundException erro)
-                {
-                    Console.WriteLine("Erro: {0}", erro.Message);
-                }
+                SplitDados dados = new SplitDados(caminhoOrigem, caminhoDestino, caminhoDestino2, pagina);
+                //Submete os dados no controlador
+                ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.SepararFicheiro);
+            }
+            catch (ExceptionDadosInvalidos erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
+            catch (ExceptionFileNotFound erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (DllNotFoundException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
         }
 
         private void MenuAdicionar()
@@ -492,7 +614,8 @@ namespace Scarif_DS_1.ui
             string caminhoDestino;
             int pagina;
             int posicao;
-            //Limpa o terminal
+            try{
+                //Limpa o terminal
                 Console.Clear();
                 //Solicita os dados ao utilizador
                 caminhoOrigem = this.caminhoOrigem();
@@ -504,24 +627,33 @@ namespace Scarif_DS_1.ui
                 Console.WriteLine("Indique a posição para adicionar a página no primeiro ficheiro");
                 posicao = Convert.ToInt32(Console.ReadLine());
                 //Submete os dados no controlador
-                try
-                {
-                    AddPageDados dados =
-                        new AddPageDados(caminhoOrigem, caminhoOrigem2, caminhoDestino, pagina, posicao);
-                    ((IView)this).Controlador.SubmeterDados(dados, OpcoesExecucao.AdicionarPagina);
-                }
-                catch (ExceptionDadosInvalidos erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                }
-                catch (ExceptionFileNotFound erro)
-                {
-                    Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                }
-                catch (DllNotFoundException erro)
-                {
-                    Console.WriteLine("Erro: {0}", erro.Message);
-                }
+                AddPageDados dados =
+                    new AddPageDados(caminhoOrigem, caminhoOrigem2, caminhoDestino, pagina, posicao);
+                ((IView)this).Controlador.SubmeterDados(dados, OpcoesExecucao.AdicionarPagina);
+            }
+            catch (ExceptionDadosInvalidos erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
+            catch (ExceptionFileNotFound erro)
+            {
+                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
+            catch (DllNotFoundException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
         }
 
         public void ProcessarDados(OpcoesExecucao op)
@@ -669,13 +801,25 @@ namespace Scarif_DS_1.ui
             catch (ExceptionDadosInvalidos erro)
             {
                 Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
             }
             catch (ExceptionFileNotFound erro)
             {
                 Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
             }catch (DllNotFoundException erro)
             {
                 Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
+            }
+            catch (FormatException erro)
+            {
+                Console.WriteLine("Erro: {0}", erro.Message);
+                Console.WriteLine("Clique em qualquer tecla para continua!");
+                Console.ReadLine();
             }
         }
 

@@ -11,6 +11,7 @@ namespace Scarif_DS_1.modulos
         Concatenar=6,
         Unir=7,
         SepararFicheiro=8,
-        Criar = 9
+        Criar = 9,
+        Vazio = -1
     }
 }

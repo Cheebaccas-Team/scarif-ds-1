@@ -27,6 +27,7 @@ namespace Scarif_DS_1
         {
             _modelo = null;
             _ui = new Consola(_modelo, this);
+            Opcao = OpcoesExecucao.Vazio;
         }
 
         public void IniciarPrograma()
@@ -35,7 +36,8 @@ namespace Scarif_DS_1
             Executar = true;
             while(Executar){
                 _ui.DisponibilizarOpcoes();
-                _ui.ProcessarDados(Opcao);
+                if(Opcao!= OpcoesExecucao.Vazio)
+                    _ui.ProcessarDados(Opcao);
             }
             _ui.EncerrarPrograma();
         }
