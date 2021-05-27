@@ -1,13 +1,21 @@
 using System;
 using Scarif_DS_1.exceptions;
 using Scarif_DS_1.modulos;
+using Scarif_DS_1.modulos.AddPage;
+using Scarif_DS_1.modulos.Count;
+using Scarif_DS_1.modulos.Create;
+using Scarif_DS_1.modulos.Encript;
+using Scarif_DS_1.modulos.RemovePage;
+using Scarif_DS_1.modulos.Split;
+using Scarif_DS_1.modulos.Union;
+using Scarif_DS_1.modulos.WaterMark;
 
 namespace Scarif_DS_1.ui
 {
     public class Consola : IView
     {
         //Construtor da Interface de Terminal
-        internal Consola(Model modelo, Controller controlo)
+        internal Consola(IModel modelo, Controller controlo)
         {
             ((IView) this).Controlador = controlo;
             ((IView) this).Modelo = modelo;
@@ -17,7 +25,7 @@ namespace Scarif_DS_1.ui
         Controller IView.Controlador { get; set; }
 
         //Propriedades (getter e setter) do Modelo
-        Model IView.Modelo { get; set; }
+        IModel IView.Modelo { get; set; }
 
         //Ativar a Interface
         public void AtivarInterface()
@@ -200,8 +208,9 @@ namespace Scarif_DS_1.ui
                 {
                     //Solicita os dados ao utilizador
                     caminhoOrigem = this.caminhoOrigem();
+                    IDados dados = new CountDados(caminhoOrigem);
                     //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(caminhoOrigem, TipoDados.CaminhoOrigem);
+                    ((IView) this).Controlador.SubmeterDados(dados);
                     //Processa os dados no Modelo verificando se ocorrem erros
                     ProcessarDados(OpcoesExecucao.ContarPaginas);
                 }
@@ -246,9 +255,8 @@ namespace Scarif_DS_1.ui
                 //Submete os dados no controlador
                 try
                 {
-                    ((IView) this).Controlador.SubmeterDados(caminhoOrigem, TipoDados.CaminhoOrigem);
-                    ((IView) this).Controlador.SubmeterDados(caminhoDestino, TipoDados.CaminhoDestino);
-                    ((IView) this).Controlador.SubmeterDados(pagina, TipoDados.Pagina);
+                    RemoveDados dados = new RemoveDados(caminhoOrigem, caminhoDestino, pagina);
+                    ((IView) this).Controlador.SubmeterDados(dados);
                     //Processa os dados no Modelo verificando se ocorrem erros
                     ProcessarDados(OpcoesExecucao.RemoverPagina);
                 }
@@ -292,10 +300,9 @@ namespace Scarif_DS_1.ui
                 marcaAgua = Console.ReadLine();
                 try
                 {
+                    WaterMarkDados dados = new WaterMarkDados(caminhoOrigem, caminhoDestino, marcaAgua);
                     //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(caminhoOrigem, TipoDados.CaminhoOrigem);
-                    ((IView) this).Controlador.SubmeterDados(caminhoDestino, TipoDados.CaminhoDestino);
-                    ((IView) this).Controlador.SubmeterDados(marcaAgua, TipoDados.Texto);
+                    ((IView) this).Controlador.SubmeterDados(dados);
                     //Processa os dados no Modelo verificando se ocorrem erros
                     ProcessarDados(OpcoesExecucao.AdicionarMarca);
                 }
@@ -347,10 +354,9 @@ namespace Scarif_DS_1.ui
 
                 try
                 {
+                    EncriptDados dados = new EncriptDados(caminhoOrigem, caminhoDestino, senha, TipoDados.Protect);
                     //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(caminhoOrigem, TipoDados.CaminhoOrigem);
-                    ((IView) this).Controlador.SubmeterDados(caminhoDestino, TipoDados.CaminhoDestino);
-                    ((IView) this).Controlador.SubmeterDados(senha, TipoDados.Senha);
+                    ((IView) this).Controlador.SubmeterDados(dados);
                     //Processa os dados no Modelo verificando se ocorrem erros
                     ProcessarDados(OpcoesExecucao.Encriptar);
                 }
@@ -393,32 +399,23 @@ namespace Scarif_DS_1.ui
                 //Solicitar Texto
                 Console.WriteLine("Insira o texto a incluir no novo documento");
                 texto = Console.ReadLine();
-
                 //Solicitar Fonte
                 Console.WriteLine("Insira a fonte pretendida");
                 fonte = Console.ReadLine();
-
                 //Solicitar Tamanho
                 Console.WriteLine("Insira o tamanho");
                 tamanho = Convert.ToInt32(Console.ReadLine());
-
                 //Solicitar Estilo
                 Console.WriteLine("Insira o estilo: Regular/Bold/BoldItalic/Italic/Strikeout/Underline");
                 estilo = Console.ReadLine();
-
                 //Solicitar Alinhamento
                 Console.WriteLine("Insira o alinhamento: Left/Center/Right");
                 alinhamento = Console.ReadLine();
-
                 try
                 {
+                    CreateDados dados = new CreateDados(caminhoDestino, texto, estilo, alinhamento, fonte, tamanho);
                     //Submete os dados no controlador
-                    ((IView)this).Controlador.SubmeterDados(caminhoDestino, TipoDados.CaminhoDestino);
-                    ((IView)this).Controlador.SubmeterDados(texto, TipoDados.Texto);
-                    ((IView)this).Controlador.SubmeterDados(fonte, TipoDados.Fonte);
-                    ((IView)this).Controlador.SubmeterDados(tamanho, TipoDados.Tamanho);
-                    ((IView)this).Controlador.SubmeterDados(estilo, TipoDados.Estilo);
-                    ((IView)this).Controlador.SubmeterDados(alinhamento, TipoDados.Alinhamento);
+                    ((IView)this).Controlador.SubmeterDados(dados);
                     //Processa os dados no Modelo verificando se ocorrem erros
                     ProcessarDados(OpcoesExecucao.Criar);
                 }
@@ -430,7 +427,6 @@ namespace Scarif_DS_1.ui
                 {
                     Console.WriteLine("Erro: {0}", erro.Message);
                 }
-
                 //valida se é para continuar na mesma tarefa
                 Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
                 string opcao = Console.ReadLine();
@@ -459,10 +455,9 @@ namespace Scarif_DS_1.ui
                 senha = Console.ReadLine();
                 try
                 {
+                    EncriptDados dados = new EncriptDados(caminhoOrigem, caminhoDestino, senha, TipoDados.Unprotect);
                     //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(caminhoOrigem, TipoDados.CaminhoOrigem);
-                    ((IView) this).Controlador.SubmeterDados(caminhoDestino, TipoDados.CaminhoDestino);
-                    ((IView) this).Controlador.SubmeterDados(senha, TipoDados.Senha);
+                    ((IView) this).Controlador.SubmeterDados(dados);
                     //Processa os dados no Modelo verificando se ocorrem erros
                     ProcessarDados(OpcoesExecucao.Decriptar);
                 }
@@ -504,17 +499,22 @@ namespace Scarif_DS_1.ui
                 caminhoDestino = this.caminhoDestino(caminhoOrigem);
                 try
                 {
+                    
                     //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(caminhoOrigem, TipoDados.CaminhoOrigem);
-                    ((IView) this).Controlador.SubmeterDados(caminhoDestino, TipoDados.CaminhoDestino);
-                    ((IView) this).Controlador.SubmeterDados(caminhoOrigem2, TipoDados.CaminhoOrigem2);
+                    UnionDados dados;
                     //Processa os dados no Modelo verificando se ocorrem erros
                     switch (op)
                     {
                         case OpcoesExecucao.Unir:
+                            dados = new UnionDados(caminhoOrigem, caminhoOrigem2, caminhoDestino,
+                                TipoDados.Alternate);
+                            ((IView) this).Controlador.SubmeterDados(dados);
                             ProcessarDados(OpcoesExecucao.Unir);
                             break;
                         case OpcoesExecucao.Concatenar:
+                            dados = new UnionDados(caminhoOrigem, caminhoOrigem2, caminhoDestino,
+                                TipoDados.Concat);
+                            ((IView) this).Controlador.SubmeterDados(dados);
                             ProcessarDados(OpcoesExecucao.Concatenar);
                             break;
                     }
@@ -561,11 +561,9 @@ namespace Scarif_DS_1.ui
                 pagina = Int32.Parse(Console.ReadLine());
                 try
                 {
+                    SplitDados dados = new SplitDados(caminhoOrigem, caminhoDestino, caminhoDestino2, pagina);
                     //Submete os dados no controlador
-                    ((IView) this).Controlador.SubmeterDados(caminhoOrigem, TipoDados.CaminhoOrigem);
-                    ((IView) this).Controlador.SubmeterDados(caminhoDestino, TipoDados.CaminhoDestino);
-                    ((IView) this).Controlador.SubmeterDados(caminhoDestino2, TipoDados.CaminhoDestino2);
-                    ((IView) this).Controlador.SubmeterDados(pagina, TipoDados.Pagina);
+                    ((IView) this).Controlador.SubmeterDados(dados);
                     //Processa os dados no Modelo verificando se ocorrem erros
                     ProcessarDados(OpcoesExecucao.SepararFicheiro);
                 }
@@ -615,11 +613,9 @@ namespace Scarif_DS_1.ui
                 //Submete os dados no controlador
                 try
                 {
-                    ((IView)this).Controlador.SubmeterDados(caminhoOrigem, TipoDados.CaminhoOrigem);
-                    ((IView)this).Controlador.SubmeterDados(caminhoOrigem2, TipoDados.CaminhoOrigem2);
-                    ((IView)this).Controlador.SubmeterDados(caminhoDestino, TipoDados.CaminhoDestino);
-                    ((IView)this).Controlador.SubmeterDados(pagina, TipoDados.Pagina);
-                    ((IView)this).Controlador.SubmeterDados(posicao, TipoDados.PosicaoAdicionar);
+                    AddPageDados dados =
+                        new AddPageDados(caminhoOrigem, caminhoOrigem2, caminhoDestino, pagina, posicao);
+                    ((IView)this).Controlador.SubmeterDados(dados);
                     //Processa os dados no Modelo verificando se ocorrem erros
                     ProcessarDados(OpcoesExecucao.AdicionarPagina);
                 }
@@ -655,7 +651,10 @@ namespace Scarif_DS_1.ui
                         ((IView)this).Controlador.ProcessarDados(op);
                         if (((IView)this).Modelo.Resultado)
                         {
-                            Console.WriteLine("Foi adicionada a página {0} do ficheiro {1}, na posição {2} do ficheiro {3}.", ((IView)this).Modelo.Page, ((IView)this).Modelo.FileOrigem2, ((IView)this).Modelo.AddPosition, ((IView)this).Modelo.FileDestino);
+                            Console.WriteLine(
+                                "Foi adicionada a página {0} do ficheiro {1}, na posição {2} do ficheiro {3}.",
+                                ((IView) this).Modelo.Page, ((IView) this).Modelo.FileOrigem2,
+                                ((IView) this).Modelo.AddPosition, ((IView) this).Modelo.FileDestino);
                         }
                         else
                         {
@@ -740,7 +739,7 @@ namespace Scarif_DS_1.ui
                         if (((IView)this).Modelo.Resultado)
                         {
                             Console.WriteLine("O ficheiro {0} possui {1} páginas.", ((IView)this).Modelo.FileOrigem,
-                                ((IView)this).Modelo.NumPages);
+                                ((IView) this).Modelo.NumPages);
                         }
                         else
                         {

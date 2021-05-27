@@ -2,6 +2,17 @@ namespace Scarif_DS_1.modulos
 {
     public enum TipoDados
     {
+        Count,
+        AddPage,
+        RemovePage,
+        Split,
+        WaterMark,
+        Concat,
+        Alternate,
+        Create,
+        Protect,
+        Unprotect
+        /*
         CaminhoOrigem,
         CaminhoOrigem2,
         CaminhoDestino,
@@ -15,5 +26,6 @@ namespace Scarif_DS_1.modulos
         Tamanho,
         Estilo,
         Alinhamento
+        */
     }
 }

@@ -8,7 +8,7 @@ namespace Scarif_DS_1
     {
         public Controller Controlador { get; set;}
 
-        public Model Modelo { get; set; }
+        public IModel Modelo { get; set; }
 
         public  void AtivarInterface();
         

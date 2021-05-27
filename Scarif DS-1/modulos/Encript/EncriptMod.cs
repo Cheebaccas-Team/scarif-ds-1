@@ -7,38 +7,100 @@ using PdfSharp.Pdf.IO;
 using PdfSharp.Pdf.Security;
 using Scarif_DS_1.exceptions;
 
-namespace Scarif_DS_1.modulos
+namespace Scarif_DS_1.modulos.Encript
 {
-    public class EncriptMod
+    public class EncriptMod : IModel
     {
-        public static void EncriptarMod(Model modelo)
+        private string _pathOrigem;
+        private string _fileOrigem;
+        private string _pathDestino;
+        private string _fileDestino;
+        private string _senha;
+        private bool _resultado;
+
+        internal EncriptMod(EncriptDados dados)
+        {
+            PathOrigem = dados.PathOrigem;
+            FileOrigem = dados.FileOrigem;
+            PathDestino = dados.PathDestino;
+            FileDestino = dados.FileDestino;
+            Senha = dados.Senha;
+            Resultado = false;
+        }
+        public string PathOrigem
+        {
+            get => _pathOrigem;
+            set => _pathOrigem = value;
+        }
+
+        public string FileOrigem
+        {
+            get => _fileOrigem;
+            set => _fileOrigem = value;
+        }
+
+        public string PathOrigem2 { get; set; }
+        public string FileOrigem2 { get; set; }
+
+        public string PathDestino
+        {
+            get => _pathDestino;
+            set => _pathDestino = value;
+        }
+
+        public string FileDestino
+        {
+            get => _fileDestino;
+            set => _fileDestino = value;
+        }
+
+        public string PathDestino2 { get; set; }
+        public string FileDestino2 { get; set; }
+        public int NumPages { get; set; }
+        public int Page { get; set; }
+        public string Texto { get; set; }
+        public int AddPosition { get; set; }
+
+        public string Senha
+        {
+            get => _senha;
+            set => _senha = value;
+        }
+
+        public bool Resultado
+        {
+            get => _resultado;
+            set => _resultado = value;
+        }
+
+        public void EncriptarMod()
         {
             try
             {
                 //Validar os dados no model
-                if (modelo.PathOrigem == null || modelo.FileOrigem == null)
+                if (PathOrigem == null || FileOrigem == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
-                    if(modelo.PathOrigem == null)
+                    if(PathOrigem == null)
                         erros.Add("Caminho de Origem");
-                    if(modelo.FileOrigem == null)
+                    if(FileOrigem == null)
                         erros.Add("Ficheiro de Origem");
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
                 }
                 //Validar os dados no model
-                if (modelo.PathDestino == null || modelo.FileDestino == null)
+                if (PathDestino == null || FileDestino == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
-                    if(modelo.PathDestino == null)
+                    if(PathDestino == null)
                         erros.Add("Caminho de Destino");
-                    if(modelo.FileDestino == null)
+                    if(FileDestino == null)
                         erros.Add("Ficheiro de Destino");
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
                 }
                 //Validar os dados no model
-                if (modelo.Senha == null)
+                if (Senha == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
@@ -46,21 +108,21 @@ namespace Scarif_DS_1.modulos
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
                 }
                 //Cria o caminho para o endereço de origem
-                string caminho = Path.Combine(modelo.PathOrigem, modelo.FileOrigem);
+                string caminho = Path.Combine(PathOrigem, FileOrigem);
                 //Valida se o caminho é válido
                 if (!File.Exists(caminho))
                 {
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!",caminho);
                 }
                 //Cria o caminho para o endereço
-                string caminhoDestino = Path.Combine(modelo.PathDestino, modelo.FileDestino);
+                string caminhoDestino = Path.Combine(PathDestino, FileDestino);
                 //Abrir o ficheiro
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 PdfDocument ficheiro = PdfReader.Open(caminho, PdfDocumentOpenMode.Modify);
                 //Criar os privilegios do ficheiro
                 PdfSecuritySettings privilegios = ficheiro.SecuritySettings;
                 //Define os privilégios do ficheiro
-                privilegios.UserPassword  = modelo.Senha;
+                privilegios.UserPassword  = Senha;
                 privilegios.OwnerPassword = "";
                 privilegios.PermitAccessibilityExtractContent = false;
                 privilegios.PermitAnnotations = false;
@@ -72,7 +134,7 @@ namespace Scarif_DS_1.modulos
                 privilegios.PermitPrint = false;
                 //Salva o ficheiro no destino
                 ficheiro.Save(caminhoDestino); 
-                modelo.Resultado = true;
+                Resultado = true;
             }
             //Verifica as Excepções apanhadas
             catch (ExceptionDadosInvalidos erro)
@@ -88,34 +150,34 @@ namespace Scarif_DS_1.modulos
             }
         }
         
-        public static void DecriptarMod(Model modelo)
+        public void DecriptarMod()
         {
             try
             {
                 //Validar os dados no model
-                if (modelo.PathOrigem == null || modelo.FileOrigem == null)
+                if (PathOrigem == null || FileOrigem == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
-                    if(modelo.PathOrigem == null)
+                    if(PathOrigem == null)
                         erros.Add("Caminho de Origem");
-                    if(modelo.FileOrigem == null)
+                    if(FileOrigem == null)
                         erros.Add("Ficheiro de Origem");
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
                 }
                 //Validar os dados no model
-                if (modelo.PathDestino == null || modelo.FileDestino == null)
+                if (PathDestino == null || FileDestino == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
-                    if(modelo.PathDestino == null)
+                    if(PathDestino == null)
                         erros.Add("Caminho de Destino");
-                    if(modelo.FileDestino == null)
+                    if(FileDestino == null)
                         erros.Add("Ficheiro de Destino");
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
                 }
                 //Validar os dados no model
-                if (modelo.Senha == null)
+                if (Senha == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
@@ -123,30 +185,30 @@ namespace Scarif_DS_1.modulos
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
                 }
                 //Cria o caminho para o endereço de origem
-                string caminho = Path.Combine(modelo.PathOrigem, modelo.FileOrigem);
+                string caminho = Path.Combine(PathOrigem, FileOrigem);
                 //Valida se o caminho é válido
                 if (!File.Exists(caminho))
                 {
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!",caminho);
                 }
                 //Cria o caminho para o endereço
-                string caminhoDestino = Path.Combine(modelo.PathDestino, modelo.FileDestino);
+                string caminhoDestino = Path.Combine(PathDestino, FileDestino);
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 PdfDocument ficheiro;
                 try
                 {
-                    ficheiro = PdfReader.Open(caminho, modelo.Senha);
+                    ficheiro = PdfReader.Open(caminho, Senha);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     List<string> erros = new List<string>();
                     erros.Add("Senha não Corresponde!");
                     throw new ExceptionDadosInvalidos("Ficheiro não está disponivel!", erros);
                 }
-                ficheiro = PdfReader.Open(caminho, modelo.Senha, PdfDocumentOpenMode.Modify);
+                ficheiro = PdfReader.Open(caminho, Senha, PdfDocumentOpenMode.Modify);
                 PdfDocumentSecurityLevel level = ficheiro.SecuritySettings.DocumentSecurityLevel;
                 ficheiro.Save(caminhoDestino);
-                modelo.Resultado = true;
+                Resultado = true;
             }
             //Verifica as Excepções apanhadas
             catch (ExceptionDadosInvalidos erro)

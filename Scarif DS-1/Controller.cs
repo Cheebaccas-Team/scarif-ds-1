@@ -1,161 +1,144 @@
 using System;
-using System.IO;
 using Scarif_DS_1.exceptions;
 using Scarif_DS_1.modulos;
+using Scarif_DS_1.modulos.AddPage;
+using Scarif_DS_1.modulos.Count;
+using Scarif_DS_1.modulos.Create;
+using Scarif_DS_1.modulos.Encript;
+using Scarif_DS_1.modulos.RemovePage;
+using Scarif_DS_1.modulos.Split;
+using Scarif_DS_1.modulos.Union;
+using Scarif_DS_1.modulos.WaterMark;
 using Scarif_DS_1.ui;
 
 namespace Scarif_DS_1
 {
     public class Controller
     {
-        private Model modelo;
-        private IView ui;
-        private bool executar;
-        private string conteudo;
-        private int valor;
+        private IModel _modelo;
+        private IView _ui;
+        private bool _executar;
 
+        public delegate void EfetuarProcessamento();
+        
         //Construtor do Controlador
         internal Controller()
         {
-            modelo = new Model();
-            ui = new Consola(modelo, this);
+            _modelo = null;
+            _ui = new Consola(_modelo, this);
         }
 
         public void IniciarPrograma()
         {
-            ui.AtivarInterface();
+            _ui.AtivarInterface();
             Executar = true;
             while(Executar){
-                ui.DisponibilizarOpcoes();
+                _ui.DisponibilizarOpcoes();
             }
-            ui.EncerrarPrograma();
+            _ui.EncerrarPrograma();
         }
 
         //Função que permite atualizar os dados do modelo
-        public void SubmeterDados(string texto, TipoDados tipo)
+        public void SubmeterDados(IDados dados)
         {
-            Conteudo = texto;
-            ValidarDados(tipo);
-        }
-        
-        public void SubmeterDados(int pagina, TipoDados tipo)
-        {
-            Valor = pagina;
-            ValidarDados(tipo);
-        }
-
-        private void ValidarDados(TipoDados tipo)
-        {
-            int separar;
             try
             {
-                switch (tipo)
+                if (dados.Tipo == TipoDados.Count)
                 {
-                    case TipoDados.CaminhoOrigem:
-                        //Prepara os dados para fornecer ao Modelo                                                  
-                        separar = Conteudo.LastIndexOf("/", StringComparison.Ordinal);                                               
-                        modelo.PathOrigem = Conteudo.Substring(0, separar+1);                                  
-                        modelo.FileOrigem = Conteudo.Substring(separar + 1);                                   
-                        if (!File.Exists(Conteudo))                                                            
-                        {                                                                                           
-                            throw new ExceptionFileNotFound("Ficheiro não encontrado!" , Conteudo);            
-                        }                                                                                           
-                        break;
-                    case TipoDados.CaminhoOrigem2:
-                        //Prepara os dados para fornecer ao Modelo                                                   
-                        separar = Conteudo.LastIndexOf("/", StringComparison.Ordinal);                                               
-                        modelo.PathOrigem2 = Conteudo.Substring(0, separar+1);                                 
-                        modelo.FileOrigem2 = Conteudo.Substring(separar + 1);                                  
-                        if (!File.Exists(Conteudo))                                                             
-                        {                                                                                            
-                            throw new ExceptionFileNotFound("Ficheiro não encontrado!" , Conteudo);             
-                        }                                                                                            
-                        break;
-                    case TipoDados.CaminhoDestino:
-                        //Prepara os dados para fornecer ao Modelo                  
-                        separar = Conteudo.LastIndexOf("/", StringComparison.Ordinal);               
-                        modelo.PathDestino = Conteudo.Substring(0, separar+1);
-                        modelo.FileDestino = Conteudo.Substring(separar + 1); 
-                        break;
-                    case TipoDados.CaminhoDestino2:
-                        //Prepara os dados para fornecer ao Modelo                     
-                        separar = Conteudo.LastIndexOf("/", StringComparison.Ordinal);                 
-                        modelo.PathDestino2 = Conteudo.Substring(0, separar+1); 
-                        modelo.FileDestino2 = Conteudo.Substring(separar + 1);  
-                        break;
-                    case TipoDados.Pagina:
-                        modelo.Page = Valor;
-                        break;
-                    case TipoDados.PosicaoAdicionar:
-                        modelo.AddPosition = Valor;
-                        break;
-                    case TipoDados.Senha:
-                        modelo.Senha = Conteudo;
-                        break;
-                    case TipoDados.Texto:
-                    case TipoDados.MarcaAgua:        
-                        modelo.Texto = Conteudo; 
-                        break;      
-                    case TipoDados.Estilo:
-                        modelo.Estilo = conteudo;
-                        break;
-                    case TipoDados.Fonte:
-                        modelo.Fonte = conteudo;
-                        break;
-                    case TipoDados.Tamanho:        
-                        modelo.Tamanho = valor; 
-                        break;
-                    case TipoDados.Alinhamento:
-                        modelo.Alinhamento = conteudo  ;
-                        break;
+                    _modelo = new CountMod((CountDados) dados);
                 }
+                else if (dados.Tipo == TipoDados.Alternate)
+                {
+                    _modelo = new Union((UnionDados) dados);
+                }
+                else if (dados.Tipo == TipoDados.Concat)
+                {
+                    _modelo = new Union((UnionDados) dados);
+                }
+                else if (dados.Tipo == TipoDados.Create)
+                {
+                    _modelo = new CreateMod((CreateDados) dados);
+                }
+                else if (dados.Tipo == TipoDados.Protect)
+                {
+                    _modelo = new EncriptMod((EncriptDados) dados);
+                }
+                else if (dados.Tipo == TipoDados.Split)
+                {
+                    _modelo = new SplitMod((SplitDados) dados);
+                }
+                else if (dados.Tipo == TipoDados.Unprotect)
+                {
+                    _modelo = new EncriptMod((EncriptDados) dados);
+                }
+                else if (dados.Tipo == TipoDados.AddPage)
+                {
+                    _modelo = new AddPageMod((AddPageDados) dados);
+                }
+                else if (dados.Tipo == TipoDados.RemovePage)
+                {
+                    _modelo = new RemoveMod((RemoveDados) dados);
+                }
+                else if (dados.Tipo == TipoDados.WaterMark)
+                {
+                    _modelo = new WaterMarkMod((WaterMarkDados) dados);
+                }
+                _ui.Modelo = _modelo;
             }
             catch (ExceptionFileNotFound erro)
             {
                 throw new ExceptionFileNotFound(erro);
             }
+            catch (ExceptionDadosInvalidos erro)
+            {
+                throw new ExceptionDadosInvalidos(erro);
+            }
+            catch (DllNotFoundException erro)
+            {
+                throw new DllNotFoundException(erro.Message);
+            }
         }
-
-
+        
         //Função que executa a funcionalidade
         public void ProcessarDados(OpcoesExecucao op)
         {
+            EfetuarProcessamento efetuarProcesso = null;
             try
             {
                 switch (op)
                 {
                     case OpcoesExecucao.ContarPaginas:
-                        modelo.EfetuarProcesso = CountMod.ContarPaginas;
+                        efetuarProcesso= ((CountMod)_modelo).ContarPaginas;
                         break;
                     case OpcoesExecucao.RemoverPagina:
-                        modelo.EfetuarProcesso = EditMod.RemovePage;
+                        efetuarProcesso= ((RemoveMod) _modelo).RemovePage;
                         break;
                     case OpcoesExecucao.AdicionarMarca:
-                        modelo.EfetuarProcesso = EditMod.WatermarkFile;
+                        efetuarProcesso = ((WaterMarkMod) _modelo).WatermarkFile;
                         break;
                     case OpcoesExecucao.AdicionarPagina:
-                        modelo.EfetuarProcesso = EditMod.AddPage;
+                        efetuarProcesso = ((AddPageMod) _modelo).AddPage;
                         break;
                     case OpcoesExecucao.Encriptar:
-                        modelo.EfetuarProcesso = EncriptMod.EncriptarMod;
+                        efetuarProcesso = ((EncriptMod) _modelo).EncriptarMod;
                         break;
                     case OpcoesExecucao.Decriptar:
-                        modelo.EfetuarProcesso = EncriptMod.DecriptarMod;
+                        efetuarProcesso = ((EncriptMod) _modelo).DecriptarMod;
                         break;
                     case OpcoesExecucao.Concatenar:
-                        modelo.EfetuarProcesso = CreateMod.Concatenar;
+                        efetuarProcesso = ((Union) _modelo).Concatenar;
                         break;
                     case OpcoesExecucao.Unir:
-                        modelo.EfetuarProcesso = CreateMod.Alternar;
+                        efetuarProcesso = ((Union) _modelo).Alternar;
                         break;
                     case OpcoesExecucao.Criar:
-                        modelo.EfetuarProcesso = CreateMod.Criar;
+                        efetuarProcesso = ((CreateMod) _modelo).Criar;
                         break;
                     case OpcoesExecucao.SepararFicheiro:
-                        modelo.EfetuarProcesso = CreateMod.SplitDocument;
+                        efetuarProcesso = ((SplitMod) _modelo).SplitDocument;
                         break;
                 }
-                modelo.EfetuarProcesso(modelo);
+                efetuarProcesso.Invoke();
             }
             catch (ExceptionDadosInvalidos erro)
             {
@@ -171,20 +154,8 @@ namespace Scarif_DS_1
         }
         public bool Executar
         {
-            get => executar;
-            set => executar = value;
-        }
-
-        public int Valor
-        {
-            get => valor;
-            set => valor = value;
-        }
-
-        public string Conteudo
-        {
-            get => conteudo;
-            set => conteudo = value;
+            get => _executar;
+            set => _executar = value;
         }
     }
 }
