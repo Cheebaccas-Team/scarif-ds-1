@@ -21,6 +21,7 @@ namespace Scarif_DS_1
         private OpcoesExecucao _opcao;
 
         public delegate void EfetuarProcessamento();
+        public event EfetuarProcessamento efetuarProcesso;
         
         //Construtor do Controlador
         internal Controller()
@@ -34,7 +35,9 @@ namespace Scarif_DS_1
         {
             _ui.AtivarInterface();
             Executar = true;
-            while(Executar){
+            while(Executar)
+            {
+                Opcao = OpcoesExecucao.Vazio;
                 _ui.DisponibilizarOpcoes();
                 if(Opcao!= OpcoesExecucao.Vazio)
                     _ui.ProcessarDados(Opcao);
@@ -107,7 +110,7 @@ namespace Scarif_DS_1
         //Função que executa a funcionalidade
         public void ProcessarDados(OpcoesExecucao op)
         {
-            EfetuarProcessamento efetuarProcesso = null;
+            
             try
             {
                 switch (op)
