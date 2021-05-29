@@ -18,6 +18,8 @@ namespace Scarif_DS_1.modulos.Create
         private string _estilo;
         private int _tamanho;
         private bool _resultado;
+        private string _mensagem;
+        private string _erro;
 
         internal CreateMod(CreateDados dados)
         {
@@ -29,6 +31,8 @@ namespace Scarif_DS_1.modulos.Create
             Estilo = dados.Estilo;
             Tamanho = dados.Tamanho;
             Resultado = false;
+            _erro = null;
+            _mensagem = null;
         }
         
         public void Criar()
@@ -44,6 +48,8 @@ namespace Scarif_DS_1.modulos.Create
                         erros.Add("Caminho de Destino");
                     if (FileDestino == null)
                         erros.Add("Ficheiro de Destino");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -54,6 +60,8 @@ namespace Scarif_DS_1.modulos.Create
                     List<string> erros = new List<string>();
                     if (Texto == null)
                         erros.Add("Texto Inválido");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -64,6 +72,8 @@ namespace Scarif_DS_1.modulos.Create
                     List<string> erros = new List<string>();
                     if (Fonte == null)
                         erros.Add("Fonte Inválida");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -74,6 +84,8 @@ namespace Scarif_DS_1.modulos.Create
                     List<string> erros = new List<string>();
                     if (Alinhamento == null || (Alinhamento != "Left" && Alinhamento != "Center" && Alinhamento != "Right")) 
                         erros.Add("Alinhamento Inválido");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -84,6 +96,8 @@ namespace Scarif_DS_1.modulos.Create
                     List<string> erros = new List<string>();
                     if (Tamanho == 0) 
                         erros.Add("Tamanho Inválido");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -95,6 +109,8 @@ namespace Scarif_DS_1.modulos.Create
                     if (Estilo == null || (Estilo != "Regular" && Estilo != "Bold" && Estilo != "BoldItalic"
                                            && Estilo != "Italic" && Estilo != "Strikeout" && Estilo != "Underline")) 
                         erros.Add("Estilo Inválido");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -163,6 +179,7 @@ namespace Scarif_DS_1.modulos.Create
             }
             catch (DllNotFoundException erro)
             {
+                Mensagem = erro.Message;
                 throw new DllNotFoundException(erro.Message);
             }
         }
@@ -226,6 +243,18 @@ namespace Scarif_DS_1.modulos.Create
         {
             get => _resultado;
             set => _resultado = value;
+        }
+        
+        public string Mensagem
+        {
+            get=> _mensagem; 
+            set => _mensagem = value;
+        }
+
+        public string Erros
+        {
+            get => _erro;
+            set=> _erro = value;
         }
     }
 }

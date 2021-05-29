@@ -17,6 +17,8 @@ namespace Scarif_DS_1.modulos.Encript
         private string _fileDestino;
         private string _senha;
         private bool _resultado;
+        private string _mensagem;
+        private string _erro;
 
         internal EncriptMod(EncriptDados dados)
         {
@@ -26,6 +28,8 @@ namespace Scarif_DS_1.modulos.Encript
             FileDestino = dados.FileDestino;
             Senha = dados.Senha;
             Resultado = false;
+            _erro = null;
+            _mensagem = null;
         }
         public string PathOrigem
         {
@@ -86,6 +90,8 @@ namespace Scarif_DS_1.modulos.Encript
                         erros.Add("Caminho de Origem");
                     if(FileOrigem == null)
                         erros.Add("Ficheiro de Origem");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
                 }
                 //Validar os dados no model
@@ -97,6 +103,8 @@ namespace Scarif_DS_1.modulos.Encript
                         erros.Add("Caminho de Destino");
                     if(FileDestino == null)
                         erros.Add("Ficheiro de Destino");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
                 }
                 //Validar os dados no model
@@ -105,6 +113,8 @@ namespace Scarif_DS_1.modulos.Encript
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
                     erros.Add("Senha não encontrada!");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
                 }
                 //Cria o caminho para o endereço de origem
@@ -112,6 +122,8 @@ namespace Scarif_DS_1.modulos.Encript
                 //Valida se o caminho é válido
                 if (!File.Exists(caminho))
                 {
+                    Mensagem = "Ficheiro não encontrado!";
+                    Erros = caminho;
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!",caminho);
                 }
                 //Cria o caminho para o endereço
@@ -146,6 +158,7 @@ namespace Scarif_DS_1.modulos.Encript
                 throw new ExceptionFileNotFound(erro);
             }catch (DllNotFoundException erro)
             {
+                Mensagem = erro.Message;
                 throw new DllNotFoundException(erro.Message);
             }
         }
@@ -163,6 +176,8 @@ namespace Scarif_DS_1.modulos.Encript
                         erros.Add("Caminho de Origem");
                     if(FileOrigem == null)
                         erros.Add("Ficheiro de Origem");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
                 }
                 //Validar os dados no model
@@ -174,6 +189,8 @@ namespace Scarif_DS_1.modulos.Encript
                         erros.Add("Caminho de Destino");
                     if(FileDestino == null)
                         erros.Add("Ficheiro de Destino");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
                 }
                 //Validar os dados no model
@@ -182,6 +199,8 @@ namespace Scarif_DS_1.modulos.Encript
                     //Cria uma lista com os erros encontrados nos dados
                     List<string> erros = new List<string>();
                     erros.Add("Senha não encontrada!");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa",erros);
                 }
                 //Cria o caminho para o endereço de origem
@@ -189,6 +208,8 @@ namespace Scarif_DS_1.modulos.Encript
                 //Valida se o caminho é válido
                 if (!File.Exists(caminho))
                 {
+                    Mensagem = "Ficheiro não encontrado!";
+                    Erros = caminho;
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!",caminho);
                 }
                 //Cria o caminho para o endereço
@@ -203,6 +224,8 @@ namespace Scarif_DS_1.modulos.Encript
                 {
                     List<string> erros = new List<string>();
                     erros.Add("Senha não Corresponde!");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Ficheiro não está disponivel!", erros);
                 }
                 ficheiro = PdfReader.Open(caminho, Senha, PdfDocumentOpenMode.Modify);
@@ -220,9 +243,22 @@ namespace Scarif_DS_1.modulos.Encript
                 throw new ExceptionFileNotFound(erro);
             }catch (DllNotFoundException erro)
             {
+                Mensagem = erro.Message;
                 throw new DllNotFoundException(erro.Message);
             }
         }
         
+        
+        public string Mensagem
+        {
+            get=> _mensagem; 
+            set => _mensagem = value;
+        }
+
+        public string Erros
+        {
+            get => _erro;
+            set=> _erro = value;
+        }
     }
 }

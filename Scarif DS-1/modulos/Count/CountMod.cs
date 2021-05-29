@@ -13,6 +13,8 @@ namespace Scarif_DS_1.modulos.Count
         private string _fileOrigem;
         private int _numPages;
         private bool _resultado;
+        private string _mensagem;
+        private string _erro;
 
         internal CountMod(CountDados dados)
         {
@@ -20,6 +22,8 @@ namespace Scarif_DS_1.modulos.Count
             FileOrigem = dados.FileOrigem;
             NumPages = 0;
             Resultado = false;
+            _erro = null;
+            _mensagem = null;
         }
         public void ContarPaginas()
         {
@@ -34,6 +38,8 @@ namespace Scarif_DS_1.modulos.Count
                         erros.Add("Caminho de Origem");
                     if (FileOrigem == null)
                         erros.Add("Ficheiro de Origem");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -42,6 +48,8 @@ namespace Scarif_DS_1.modulos.Count
                 //Valida se o caminho é válido
                 if (!File.Exists(caminho))
                 {
+                    Mensagem = "Ficheiro não encontrado!";
+                    Erros = caminho;
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminho);
                 }
 
@@ -64,6 +72,7 @@ namespace Scarif_DS_1.modulos.Count
             }
             catch (DllNotFoundException erro)
             {
+                Mensagem = erro.Message;
                 throw new DllNotFoundException(erro.Message);
             }
         }
@@ -81,6 +90,17 @@ namespace Scarif_DS_1.modulos.Count
         public string Texto { get; set; }
         public int AddPosition { get; set; }
         public bool Resultado { get => _resultado; set => _resultado = value; }
-        
+
+        public string Mensagem
+        {
+            get=> _mensagem; 
+            set => _mensagem = value;
+        }
+
+        public string Erros
+        {
+            get => _erro;
+            set=> _erro = value;
+        }
     }
 }

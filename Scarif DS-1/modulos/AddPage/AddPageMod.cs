@@ -19,6 +19,8 @@ namespace Scarif_DS_1.modulos.AddPage
         private int _page;
         private int _addPosition;
         private bool _resultado;
+        private string _mensagem;
+        private string _erro;
 
         internal AddPageMod(AddPageDados dados)
         {
@@ -31,6 +33,8 @@ namespace Scarif_DS_1.modulos.AddPage
             Page = dados.Page;
             AddPosition = dados.PageAdd;
             Resultado = false;
+            _erro = null;
+            _mensagem = null;
         }
         
         public void AddPage() 
@@ -54,6 +58,8 @@ namespace Scarif_DS_1.modulos.AddPage
                         erros.Add("Caminho de Destino");
                     if (FileDestino == null)
                         erros.Add("Ficheiro de Destino");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -65,10 +71,14 @@ namespace Scarif_DS_1.modulos.AddPage
                 //Valida se o caminho é válido
                 if (!File.Exists(caminhoOrigem))
                 {
+                    Mensagem = "Ficheiro não encontrado!";
+                    Erros = caminhoOrigem;
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminhoOrigem);
                 }
                 if (!File.Exists(caminhoOrigem2))
                 {
+                    Mensagem = "Ficheiro não encontrado!";
+                    Erros = caminhoOrigem2;
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminhoOrigem2);
                 }
 
@@ -81,12 +91,16 @@ namespace Scarif_DS_1.modulos.AddPage
                 {
                     List<string> erros = new List<string>();
                     erros.Add("Número Página");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Número da página a adicionar é inválida.", erros);
                 }
                 else if (AddPosition <= 0 || AddPosition > inputDocument.PageCount + 1) //posição a colocar é inválida
                 {
                     List<string> erros = new List<string>();
                     erros.Add("Posição Página");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Posição da página a adicionar é inválida.", erros);
                 }
                 else
@@ -114,6 +128,7 @@ namespace Scarif_DS_1.modulos.AddPage
             }
             catch (DllNotFoundException erro)
             {
+                Mensagem = erro.Message;
                 throw new DllNotFoundException(erro.Message);
             }
         }
@@ -176,6 +191,18 @@ namespace Scarif_DS_1.modulos.AddPage
         {
             get => _resultado;
             set => _resultado = value;
+        }
+        
+        public string Mensagem
+        {
+            get=> _mensagem; 
+            set => _mensagem = value;
+        }
+
+        public string Erros
+        {
+            get => _erro;
+            set=> _erro = value;
         }
     }
 }

@@ -16,6 +16,8 @@ namespace Scarif_DS_1.modulos.RemovePage
         private string _pathDestino;
         private string _pathOrigem;
         private bool _resultado;
+        private string _mensagem;
+        private string _erro;
 
         internal RemoveMod(RemoveDados dados)
         {
@@ -25,6 +27,8 @@ namespace Scarif_DS_1.modulos.RemovePage
             FileDestino = dados.FileDestino;
             Page = dados.Page;
             Resultado = false;
+            _erro = null;
+            _mensagem = null;
         }
 
         public int AddPosition { get; set; }
@@ -86,6 +90,8 @@ namespace Scarif_DS_1.modulos.RemovePage
                             erros.Add("Caminho de Destino");
                         if (FileDestino == null)
                             erros.Add("Ficheiro de Destino");
+                        Erros =erros.ToString();
+                        Mensagem = "Faltam Dados para concluir a tarefa";
                         throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                     }
 
@@ -96,10 +102,10 @@ namespace Scarif_DS_1.modulos.RemovePage
                     //Valida se o caminho é válido
                     if (!File.Exists(caminhoOrigem))
                     {
+                        Mensagem = "Ficheiro não encontrado!";
+                        Erros = caminhoOrigem;
                         throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminhoOrigem);
                     }
-
-                    
                     Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                     // Abrir ficheiro
                     PdfDocument inputDocument = PdfReader.Open(caminhoOrigem, PdfDocumentOpenMode.Import);
@@ -108,6 +114,8 @@ namespace Scarif_DS_1.modulos.RemovePage
                     {
                         List<string> erros = new List<string>();
                         erros.Add("Número Página");
+                        Erros =erros.ToString();
+                        Mensagem = "Faltam Dados para concluir a tarefa";
                         throw new ExceptionDadosInvalidos("Número da página a remover é inválido.",erros);
                     }
                     else
@@ -145,8 +153,21 @@ namespace Scarif_DS_1.modulos.RemovePage
                 throw new ExceptionFileNotFound(erro);
             }catch (DllNotFoundException erro)
             {
+                Mensagem = erro.Message;
                 throw new DllNotFoundException(erro.Message);
             }
+        }
+        
+        public string Mensagem
+        {
+            get=> _mensagem; 
+            set => _mensagem = value;
+        }
+
+        public string Erros
+        {
+            get => _erro;
+            set=> _erro = value;
         }
     }
 }

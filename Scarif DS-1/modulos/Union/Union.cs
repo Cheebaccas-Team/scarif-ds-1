@@ -17,6 +17,8 @@ namespace Scarif_DS_1.modulos.Union
         private string _pathDestino;
         private string _fileDestino;
         private bool _resultado;
+        private string _mensagem;
+        private string _erro;
 
         internal Union(UnionDados dados)
         {
@@ -27,6 +29,8 @@ namespace Scarif_DS_1.modulos.Union
             PathDestino = dados.PathDestino;
             FileDestino = dados.FileDestino;
             _resultado = false;
+            _erro = null;
+            _mensagem = null;
         }
 
         public int AddPosition { get; set; }
@@ -91,6 +95,8 @@ namespace Scarif_DS_1.modulos.Union
                         erros.Add("Caminho de Origem");
                     if (FileOrigem == null)
                         erros.Add("Ficheiro de Origem");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -102,6 +108,8 @@ namespace Scarif_DS_1.modulos.Union
                         erros.Add("Caminho de Origem");
                     if (FileOrigem2 == null)
                         erros.Add("Ficheiro de Origem");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -114,6 +122,8 @@ namespace Scarif_DS_1.modulos.Union
                         erros.Add("Caminho de Destino");
                     if (FileDestino == null)
                         erros.Add("Ficheiro de Destino");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -122,14 +132,18 @@ namespace Scarif_DS_1.modulos.Union
                 //Valida se o caminho é válido
                 if (!File.Exists(caminho))
                 {
+                    Mensagem = "Ficheiro não encontrado!";
+                    Erros = caminho;
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminho);
                 }
 
                 //Cria o caminho para o endereço de origem
                 string caminho2 = Path.Combine(PathOrigem2, FileOrigem2);
                 //Valida se o caminho é válido
-                if (!File.Exists(caminho))
+                if (!File.Exists(caminho2))
                 {
+                    Mensagem = "Ficheiro não encontrado!";
+                    Erros = caminho2;
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminho);
                 }
 
@@ -171,6 +185,7 @@ namespace Scarif_DS_1.modulos.Union
             }
             catch (DllNotFoundException erro)
             {
+                Mensagem = erro.Message;
                 throw new DllNotFoundException(erro.Message);
             }
         }
@@ -188,6 +203,8 @@ namespace Scarif_DS_1.modulos.Union
                         erros.Add("Caminho de Origem");
                     if (FileOrigem == null)
                         erros.Add("Ficheiro de Origem");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -199,6 +216,8 @@ namespace Scarif_DS_1.modulos.Union
                         erros.Add("Caminho de Origem");
                     if (FileOrigem2 == null)
                         erros.Add("Ficheiro de Origem");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -211,6 +230,8 @@ namespace Scarif_DS_1.modulos.Union
                         erros.Add("Caminho de Destino");
                     if (FileDestino == null)
                         erros.Add("Ficheiro de Destino");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -219,14 +240,18 @@ namespace Scarif_DS_1.modulos.Union
                 //Valida se o caminho é válido
                 if (!File.Exists(caminho))
                 {
+                    Mensagem = "Ficheiro não encontrado!";
+                    Erros = caminho;
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminho);
                 }
 
                 //Cria o caminho para o endereço de origem
                 string caminho2 = Path.Combine(PathOrigem2, FileOrigem2);
                 //Valida se o caminho é válido
-                if (!File.Exists(caminho))
+                if (!File.Exists(caminho2))
                 {
+                    Mensagem = "Ficheiro não encontrado!";
+                    Erros = caminho2;
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminho);
                 }
 
@@ -274,8 +299,21 @@ namespace Scarif_DS_1.modulos.Union
             }
             catch (DllNotFoundException erro)
             {
+                Mensagem = erro.Message;
                 throw new DllNotFoundException(erro.Message);
             }
+        }
+        
+        public string Mensagem
+        {
+            get=> _mensagem; 
+            set => _mensagem = value;
+        }
+
+        public string Erros
+        {
+            get => _erro;
+            set=> _erro = value;
         }
     }
 }

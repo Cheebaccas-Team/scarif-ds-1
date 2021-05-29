@@ -17,6 +17,8 @@ namespace Scarif_DS_1.modulos.WaterMark
         private string _fileDestino;
         private string _texto;
         private bool _resultado;
+        private string _mensagem;
+        private string _erro;
 
         public string PathOrigem
         {
@@ -65,6 +67,8 @@ namespace Scarif_DS_1.modulos.WaterMark
             PathDestino = dados.PathDestino;
             FileDestino = dados.FileDestino;
             Texto = dados.Texto;
+            _erro = null;
+            _mensagem = null;
         }
         
         public void WatermarkFile() { 
@@ -85,6 +89,8 @@ namespace Scarif_DS_1.modulos.WaterMark
                         erros.Add("Caminho de Destino");
                     if (FileDestino == null)
                         erros.Add("Ficheiro de Destino");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
         
@@ -95,6 +101,8 @@ namespace Scarif_DS_1.modulos.WaterMark
                 //Valida se o caminho é válido
                 if (!File.Exists(caminhoOrigem))
                 {
+                    Mensagem = "Ficheiro não encontrado!";
+                    Erros = caminhoOrigem;
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminhoOrigem);
                 }
         
@@ -141,9 +149,22 @@ namespace Scarif_DS_1.modulos.WaterMark
                 throw new ExceptionFileNotFound(erro);
             }catch (DllNotFoundException erro)
             {
+                Mensagem = erro.Message;
                 throw new DllNotFoundException(erro.Message);
             }
         }
         public bool Resultado { get => _resultado; set => _resultado = value; }
+        
+        public string Mensagem
+        {
+            get=> _mensagem; 
+            set => _mensagem = value;
+        }
+
+        public string Erros
+        {
+            get => _erro;
+            set=> _erro = value;
+        }
     }
 }

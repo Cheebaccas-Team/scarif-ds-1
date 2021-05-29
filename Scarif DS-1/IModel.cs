@@ -15,6 +15,10 @@ namespace Scarif_DS_1
         public string Texto { get; set; }
         public int AddPosition { get; set; }
         public bool Resultado{ get; set;}
+        
+        public string Mensagem { get; set; }
+        
+        public string Erros { get; set; }
 
     }
 }

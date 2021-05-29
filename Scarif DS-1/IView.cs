@@ -1,5 +1,7 @@
 
+using Scarif_DS_1.exceptions;
 using Scarif_DS_1.modulos;
+using Scarif_DS_1.ui;
 
 namespace Scarif_DS_1
 {
@@ -14,8 +16,12 @@ namespace Scarif_DS_1
         
         public  void DisponibilizarOpcoes();
 
-        public  void ProcessarDados(OpcoesExecucao op);
-
         public void EncerrarPrograma();
+
+        public void ExibeErro();
+
+        public void ExibeResultado(OpcoesExecucao op);
+
+        public void Continuar();
     }
 }

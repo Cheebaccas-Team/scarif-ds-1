@@ -268,24 +268,6 @@ namespace Scarif_DS_1.ui
                 IDados dados = new CountDados(caminhoOrigem);
                 //Submete os dados no controlador
                 ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.ContarPaginas);
-            }
-            catch (ExceptionDadosInvalidos erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-            catch (ExceptionFileNotFound erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-            catch (DllNotFoundException erro)
-            {
-                Console.WriteLine("Erro: {0}", erro.Message);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
             }catch (FormatException erro)
             {
                 Console.WriteLine("Erro: {0}", erro.Message);
@@ -312,23 +294,6 @@ namespace Scarif_DS_1.ui
                 //Submete os dados no controlador
                 RemoveDados dados = new RemoveDados(caminhoOrigem, caminhoDestino, pagina);
                 ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.RemoverPagina);
-            }
-            catch (ExceptionDadosInvalidos erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-            catch (ExceptionFileNotFound erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }catch (DllNotFoundException erro)
-            {
-                Console.WriteLine("Erro: {0}", erro.Message);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
             }catch (FormatException erro)
             {
                 Console.WriteLine("Erro: {0}", erro.Message);
@@ -355,23 +320,6 @@ namespace Scarif_DS_1.ui
                 WaterMarkDados dados = new WaterMarkDados(caminhoOrigem, caminhoDestino, marcaAgua);
                 //Submete os dados no controlador
                 ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.AdicionarMarca);
-            }
-            catch (ExceptionDadosInvalidos erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-            catch (ExceptionFileNotFound erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }catch (DllNotFoundException erro)
-            {
-                Console.WriteLine("Erro: {0}", erro.Message);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
             }catch (FormatException erro)
             {
                 Console.WriteLine("Erro: {0}", erro.Message);
@@ -405,23 +353,6 @@ namespace Scarif_DS_1.ui
                 EncriptDados dados = new EncriptDados(caminhoOrigem, caminhoDestino, senha, TipoDados.Protect);
                 //Submete os dados no controlador
                 ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.Encriptar);
-            }
-            catch (ExceptionDadosInvalidos erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-            catch (ExceptionFileNotFound erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }catch (DllNotFoundException erro)
-            {
-                Console.WriteLine("Erro: {0}", erro.Message);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
             }catch (FormatException erro)
             {
                 Console.WriteLine("Erro: {0}", erro.Message);
@@ -460,18 +391,6 @@ namespace Scarif_DS_1.ui
                 CreateDados dados = new CreateDados(caminhoDestino, texto, estilo, alinhamento, fonte, tamanho);
                 //Submete os dados no controlador
                 ((IView)this).Controlador.SubmeterDados(dados, OpcoesExecucao.Criar);
-            }
-            catch (ExceptionDadosInvalidos erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-            catch (DllNotFoundException erro)
-            {
-                Console.WriteLine("Erro: {0}", erro.Message);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
             }catch (FormatException erro)
             {
                 Console.WriteLine("Erro: {0}", erro.Message);
@@ -497,23 +416,6 @@ namespace Scarif_DS_1.ui
                 EncriptDados dados = new EncriptDados(caminhoOrigem, caminhoDestino, senha, TipoDados.Unprotect);
                 //Submete os dados no controlador
                 ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.Decriptar);
-            }
-            catch (ExceptionDadosInvalidos erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-            catch (ExceptionFileNotFound erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }catch (DllNotFoundException erro)
-            {
-                Console.WriteLine("Erro: {0}", erro.Message);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
             }catch (FormatException erro)
             {
                 Console.WriteLine("Erro: {0}", erro.Message);
@@ -553,23 +455,6 @@ namespace Scarif_DS_1.ui
                         ((IView) this).Controlador.SubmeterDados(dados, op);
                         break;
                 }
-            }
-            catch (ExceptionDadosInvalidos erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-            catch (ExceptionFileNotFound erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }catch (DllNotFoundException erro)
-            {
-                Console.WriteLine("Erro: {0}", erro.Message);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
             }catch (FormatException erro)
             {
                 Console.WriteLine("Erro: {0}", erro.Message);
@@ -598,23 +483,6 @@ namespace Scarif_DS_1.ui
                 SplitDados dados = new SplitDados(caminhoOrigem, caminhoDestino, caminhoDestino2, pagina);
                 //Submete os dados no controlador
                 ((IView) this).Controlador.SubmeterDados(dados, OpcoesExecucao.SepararFicheiro);
-            }
-            catch (ExceptionDadosInvalidos erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-            catch (ExceptionFileNotFound erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }catch (DllNotFoundException erro)
-            {
-                Console.WriteLine("Erro: {0}", erro.Message);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
             }catch (FormatException erro)
             {
                 Console.WriteLine("Erro: {0}", erro.Message);
@@ -646,24 +514,6 @@ namespace Scarif_DS_1.ui
                 AddPageDados dados =
                     new AddPageDados(caminhoOrigem, caminhoOrigem2, caminhoDestino, pagina, posicao);
                 ((IView)this).Controlador.SubmeterDados(dados, OpcoesExecucao.AdicionarPagina);
-            }
-            catch (ExceptionDadosInvalidos erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-            catch (ExceptionFileNotFound erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-            catch (DllNotFoundException erro)
-            {
-                Console.WriteLine("Erro: {0}", erro.Message);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
             }catch (FormatException erro)
             {
                 Console.WriteLine("Erro: {0}", erro.Message);
@@ -671,174 +521,6 @@ namespace Scarif_DS_1.ui
                 Console.ReadLine();
             }
         }
-
-        public void ProcessarDados(OpcoesExecucao op)
-        {
-            try
-            {
-                switch (op)
-                {
-                    case OpcoesExecucao.AdicionarPagina:
-                        ((IView)this).Controlador.ProcessarDados(op);
-                        if (((IView)this).Modelo.Resultado)
-                        {
-                            Console.WriteLine(
-                                "Foi adicionada a página {0} do ficheiro {1}, na posição {2} do ficheiro {3}.",
-                                ((IView) this).Modelo.Page, ((IView) this).Modelo.FileOrigem2,
-                                ((IView) this).Modelo.AddPosition, ((IView) this).Modelo.FileDestino);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Não foi possível adicionar a página ao ficheiro {0}", ((IView)this).Modelo.FileDestino);
-                        }
-
-                        break;
-                    case OpcoesExecucao.RemoverPagina:
-                        ((IView)this).Controlador.ProcessarDados(op);
-                        if (((IView)this).Modelo.Resultado)
-                        {
-                            Console.WriteLine("Foi removida a página {0} do ficheiro {1}.", ((IView)this).Modelo.Page, ((IView)this).Modelo.FileDestino);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Não foi possível remover a página do ficheiro {0}", ((IView)this).Modelo.FileDestino);
-                        }
-
-                        break;
-                    case OpcoesExecucao.AdicionarMarca:
-                        ((IView)this).Controlador.ProcessarDados(op);
-                        if (((IView)this).Modelo.Resultado)
-                        {
-                            Console.WriteLine("Foi adicionada a seguinte marca de água {0} no ficheiro {1}", ((IView)this).Modelo.Texto, ((IView)this).Modelo.FileDestino);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Não Foi possível adicionar a marca de água no ficheiro {0}", ((IView)this).Modelo.FileDestino);
-                        }
-
-                        break;
-                    case OpcoesExecucao.Unir:
-                        ((IView)this).Controlador.ProcessarDados(op);
-                        if (((IView)this).Modelo.Resultado)
-                        {
-                            Console.WriteLine("Ficheiro {0} e {1} foram unidos de forma alternada.", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Não foi possível unir ficheiros {0} e {1}", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
-                        }
-
-                        break;
-                    case OpcoesExecucao.Concatenar:
-                        ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Concatenar);
-                        if (((IView)this).Modelo.Resultado)
-                        {
-                            Console.WriteLine("Ficheiro {0} e {1} foram concatenados.", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Não foi possível unir ficheiros {0} e {1}", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
-                        }
-
-                        break;
-                    case OpcoesExecucao.Encriptar:
-                        ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Encriptar);
-                        if (((IView)this).Modelo.Resultado)
-                        {
-                            Console.WriteLine("O ficheiro {0} foi encriptado", ((IView)this).Modelo.FileDestino);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Não foi possível encriptar o ficheiro{0}", ((IView)this).Modelo.FileOrigem);
-                        }
-
-                        break;
-                    case OpcoesExecucao.Decriptar:
-                        ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Decriptar);
-                        if (((IView)this).Modelo.Resultado)
-                        {
-                            Console.WriteLine("Foi removida a encriptação no ficheiro {0}", ((IView)this).Modelo.FileDestino);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Não foi possível remover encriptação! Senha não é válida.");
-                        }
-
-                        break;
-                    case OpcoesExecucao.ContarPaginas:
-                        ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.ContarPaginas);
-                        if (((IView)this).Modelo.Resultado)
-                        {
-                            Console.WriteLine("O ficheiro {0} possui {1} páginas.", ((IView)this).Modelo.FileOrigem,
-                                ((IView) this).Modelo.NumPages);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Não foi possível contar as páginas do ficheiro {0}", ((IView)this).Modelo.FileOrigem);
-                        }
-
-                        break;
-                    case OpcoesExecucao.SepararFicheiro:
-                        ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.SepararFicheiro);
-                        if (((IView)this).Modelo.Resultado)
-                        {
-                            Console.WriteLine(
-                                "O ficheiro {0} foi dividido na página {1} criando os ficheiros {2} e {3}",
-                                ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.Page,
-                                ((IView)this).Modelo.FileDestino, ((IView)this).Modelo.FileDestino2);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Não foi possível separar o ficheiro {0}", ((IView)this).Modelo.FileOrigem);
-                        }
-                        break;
-
-                    case OpcoesExecucao.Criar:
-                        ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Criar);
-                        if (((IView)this).Modelo.Resultado)
-                        {
-                            Console.WriteLine("Foi adicionada a seguinte texto: {0} \r\nno ficheiro {1}", ((IView)this).Modelo.Texto, ((IView)this).Modelo.FileDestino);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Não Foi possível adicionar o texto no2 ficheiro {0}", ((IView)this).Modelo.FileDestino);
-                        }
-
-                        break;
-                }
-                //valida se é para continuar
-                string opcao;
-                Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
-                opcao = Console.ReadLine();
-                if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
-                    ((IView) this).Controlador.Executar = false;
-                Console.Clear();
-            }
-            catch (ExceptionDadosInvalidos erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.ListaErros());
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-            catch (ExceptionFileNotFound erro)
-            {
-                Console.WriteLine("Erro: {0} [{1}]", erro.Message, erro.Ficheiro);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }catch (DllNotFoundException erro)
-            {
-                Console.WriteLine("Erro: {0}", erro.Message);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-            catch (FormatException erro)
-            {
-                Console.WriteLine("Erro: {0}", erro.Message);
-                Console.WriteLine("Clique em qualquer tecla para continua!");
-                Console.ReadLine();
-            }
-        }
-
 
         //Função que implementa pedido de caminho de destino
         private string caminhoDestino(string caminho)
@@ -879,6 +561,160 @@ namespace Scarif_DS_1.ui
         public void EncerrarPrograma()
         {
             Console.WriteLine("Adeus");
+        }
+
+        public void ExibeErro()
+        {
+            Console.Write("Erro: {0} ", ((IView) this).Modelo.Mensagem);
+            if (((IView) this).Modelo.Erros != null)
+            {
+                Console.WriteLine("[{0}]", ((IView) this).Modelo.Erros);
+            }
+        }
+
+        public void ExibeResultado(OpcoesExecucao op)
+        {
+            switch (op)
+            {
+                case OpcoesExecucao.AdicionarPagina:
+                    ((IView)this).Controlador.ProcessarDados(op);
+                    if (((IView)this).Modelo.Resultado)
+                    {
+                        Console.WriteLine(
+                            "Foi adicionada a página {0} do ficheiro {1}, na posição {2} do ficheiro {3}.",
+                            ((IView) this).Modelo.Page, ((IView) this).Modelo.FileOrigem2,
+                            ((IView) this).Modelo.AddPosition, ((IView) this).Modelo.FileDestino);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Não foi possível adicionar a página ao ficheiro {0}", ((IView)this).Modelo.FileDestino);
+                    }
+
+                    break;
+                case OpcoesExecucao.RemoverPagina:
+                    ((IView)this).Controlador.ProcessarDados(op);
+                    if (((IView)this).Modelo.Resultado)
+                    {
+                        Console.WriteLine("Foi removida a página {0} do ficheiro {1}.", ((IView)this).Modelo.Page, ((IView)this).Modelo.FileDestino);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Não foi possível remover a página do ficheiro {0}", ((IView)this).Modelo.FileDestino);
+                    }
+
+                    break;
+                case OpcoesExecucao.AdicionarMarca:
+                    ((IView)this).Controlador.ProcessarDados(op);
+                    if (((IView)this).Modelo.Resultado)
+                    {
+                        Console.WriteLine("Foi adicionada a seguinte marca de água {0} no ficheiro {1}", ((IView)this).Modelo.Texto, ((IView)this).Modelo.FileDestino);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Não Foi possível adicionar a marca de água no ficheiro {0}", ((IView)this).Modelo.FileDestino);
+                    }
+
+                    break;
+                case OpcoesExecucao.Unir:
+                    ((IView)this).Controlador.ProcessarDados(op);
+                    if (((IView)this).Modelo.Resultado)
+                    {
+                        Console.WriteLine("Ficheiro {0} e {1} foram unidos de forma alternada.", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Não foi possível unir ficheiros {0} e {1}", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
+                    }
+
+                    break;
+                case OpcoesExecucao.Concatenar:
+                    ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Concatenar);
+                    if (((IView)this).Modelo.Resultado)
+                    {
+                        Console.WriteLine("Ficheiro {0} e {1} foram concatenados.", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Não foi possível unir ficheiros {0} e {1}", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
+                    }
+
+                    break;
+                case OpcoesExecucao.Encriptar:
+                    ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Encriptar);
+                    if (((IView)this).Modelo.Resultado)
+                    {
+                        Console.WriteLine("O ficheiro {0} foi encriptado", ((IView)this).Modelo.FileDestino);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Não foi possível encriptar o ficheiro{0}", ((IView)this).Modelo.FileOrigem);
+                    }
+
+                    break;
+                case OpcoesExecucao.Decriptar:
+                    ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Decriptar);
+                    if (((IView)this).Modelo.Resultado)
+                    {
+                        Console.WriteLine("Foi removida a encriptação no ficheiro {0}", ((IView)this).Modelo.FileDestino);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Não foi possível remover encriptação! Senha não é válida.");
+                    }
+
+                    break;
+                case OpcoesExecucao.ContarPaginas:
+                    ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.ContarPaginas);
+                    if (((IView)this).Modelo.Resultado)
+                    {
+                        Console.WriteLine("O ficheiro {0} possui {1} páginas.", ((IView)this).Modelo.FileOrigem,
+                            ((IView) this).Modelo.NumPages);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Não foi possível contar as páginas do ficheiro {0}", ((IView)this).Modelo.FileOrigem);
+                    }
+
+                    break;
+                case OpcoesExecucao.SepararFicheiro:
+                    ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.SepararFicheiro);
+                    if (((IView)this).Modelo.Resultado)
+                    {
+                        Console.WriteLine(
+                            "O ficheiro {0} foi dividido na página {1} criando os ficheiros {2} e {3}",
+                            ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.Page,
+                            ((IView)this).Modelo.FileDestino, ((IView)this).Modelo.FileDestino2);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Não foi possível separar o ficheiro {0}", ((IView)this).Modelo.FileOrigem);
+                    }
+                    break;
+
+                case OpcoesExecucao.Criar:
+                    ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Criar);
+                    if (((IView)this).Modelo.Resultado)
+                    {
+                        Console.WriteLine("Foi adicionada a seguinte texto: {0} \r\nno ficheiro {1}", ((IView)this).Modelo.Texto, ((IView)this).Modelo.FileDestino);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Não Foi possível adicionar o texto no2 ficheiro {0}", ((IView)this).Modelo.FileDestino);
+                    }
+
+                    break;
+            }
+        }
+
+        public void Continuar()
+        {
+            //valida se é para continuar
+            string opcao;
+            Console.WriteLine("Pretende Continuar? [(S)im] [(N)ão]");
+            opcao = Console.ReadLine();
+            if (opcao != null && opcao.ToUpper() != "S" && opcao.ToUpper() != "SIM")
+                ((IView) this).Controlador.Executar = false;
+            Console.Clear();
         }
     }
 }

@@ -7,5 +7,6 @@ namespace Scarif_DS_1.modulos
         public string PathDestino { get; set; }
         public string FileDestino { get; set; }
         public TipoDados Tipo { get; set; }
+        
     }
 }

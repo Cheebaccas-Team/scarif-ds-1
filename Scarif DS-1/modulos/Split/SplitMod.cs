@@ -18,7 +18,9 @@ namespace Scarif_DS_1.modulos.Split
         private string _fileDestino2;
         private int _page;
         private bool _resultado;
-
+        private string _mensagem;
+        private string _erro;
+        
         internal SplitMod(SplitDados dados)
         {
             PathOrigem = dados.PathOrigem;
@@ -29,6 +31,8 @@ namespace Scarif_DS_1.modulos.Split
             FileDestino2 = dados.FileDestino2;
             Page = dados.Page;
             Resultado = false;
+            _erro = null;
+            _mensagem = null;
         }
         public string PathOrigem
         {
@@ -108,6 +112,8 @@ namespace Scarif_DS_1.modulos.Split
                         erros.Add("Segundo Caminho de Destino");
                     if (FileDestino2 == null)
                         erros.Add("Segundo Ficheiro de Destino");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
@@ -119,6 +125,8 @@ namespace Scarif_DS_1.modulos.Split
                 //Valida se o caminho é válido
                 if (!File.Exists(caminhoOrigem))
                 {
+                    Mensagem = "Ficheiro não encontrado!";
+                    Erros = caminhoOrigem;
                     throw new ExceptionFileNotFound("Ficheiro não encontrado!", caminhoOrigem);
                 }
 
@@ -132,6 +140,8 @@ namespace Scarif_DS_1.modulos.Split
                 {
                     List<string> erros = new List<string>();
                     erros.Add("Número Página");
+                    Erros =erros.ToString();
+                    Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Número da página a remover é inválido.", erros);
                 }
 
@@ -178,10 +188,22 @@ namespace Scarif_DS_1.modulos.Split
             }
             catch (DllNotFoundException erro)
             {
+                Mensagem = erro.Message;
                 throw new DllNotFoundException(erro.Message);
 
             }
         }
 
+        public string Mensagem
+        {
+            get=> _mensagem; 
+            set => _mensagem = value;
+        }
+
+        public string Erros
+        {
+            get => _erro;
+            set=> _erro = value;
+        }
     }
 }
