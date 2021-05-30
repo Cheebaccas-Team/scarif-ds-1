@@ -577,7 +577,6 @@ namespace Scarif_DS_1.ui
             switch (op)
             {
                 case OpcoesExecucao.AdicionarPagina:
-                    ((IView)this).Controlador.ProcessarDados(op);
                     if (((IView)this).Modelo.Resultado)
                     {
                         Console.WriteLine(
@@ -592,7 +591,6 @@ namespace Scarif_DS_1.ui
 
                     break;
                 case OpcoesExecucao.RemoverPagina:
-                    ((IView)this).Controlador.ProcessarDados(op);
                     if (((IView)this).Modelo.Resultado)
                     {
                         Console.WriteLine("Foi removida a página {0} do ficheiro {1}.", ((IView)this).Modelo.Page, ((IView)this).Modelo.FileDestino);
@@ -604,7 +602,6 @@ namespace Scarif_DS_1.ui
 
                     break;
                 case OpcoesExecucao.AdicionarMarca:
-                    ((IView)this).Controlador.ProcessarDados(op);
                     if (((IView)this).Modelo.Resultado)
                     {
                         Console.WriteLine("Foi adicionada a seguinte marca de água {0} no ficheiro {1}", ((IView)this).Modelo.Texto, ((IView)this).Modelo.FileDestino);
@@ -616,7 +613,6 @@ namespace Scarif_DS_1.ui
 
                     break;
                 case OpcoesExecucao.Unir:
-                    ((IView)this).Controlador.ProcessarDados(op);
                     if (((IView)this).Modelo.Resultado)
                     {
                         Console.WriteLine("Ficheiro {0} e {1} foram unidos de forma alternada.", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
@@ -628,7 +624,6 @@ namespace Scarif_DS_1.ui
 
                     break;
                 case OpcoesExecucao.Concatenar:
-                    ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Concatenar);
                     if (((IView)this).Modelo.Resultado)
                     {
                         Console.WriteLine("Ficheiro {0} e {1} foram concatenados.", ((IView)this).Modelo.FileOrigem, ((IView)this).Modelo.FileOrigem2);
@@ -640,7 +635,6 @@ namespace Scarif_DS_1.ui
 
                     break;
                 case OpcoesExecucao.Encriptar:
-                    ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Encriptar);
                     if (((IView)this).Modelo.Resultado)
                     {
                         Console.WriteLine("O ficheiro {0} foi encriptado", ((IView)this).Modelo.FileDestino);
@@ -652,7 +646,6 @@ namespace Scarif_DS_1.ui
 
                     break;
                 case OpcoesExecucao.Decriptar:
-                    ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Decriptar);
                     if (((IView)this).Modelo.Resultado)
                     {
                         Console.WriteLine("Foi removida a encriptação no ficheiro {0}", ((IView)this).Modelo.FileDestino);
@@ -664,7 +657,6 @@ namespace Scarif_DS_1.ui
 
                     break;
                 case OpcoesExecucao.ContarPaginas:
-                    ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.ContarPaginas);
                     if (((IView)this).Modelo.Resultado)
                     {
                         Console.WriteLine("O ficheiro {0} possui {1} páginas.", ((IView)this).Modelo.FileOrigem,
@@ -677,7 +669,6 @@ namespace Scarif_DS_1.ui
 
                     break;
                 case OpcoesExecucao.SepararFicheiro:
-                    ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.SepararFicheiro);
                     if (((IView)this).Modelo.Resultado)
                     {
                         Console.WriteLine(
@@ -692,7 +683,6 @@ namespace Scarif_DS_1.ui
                     break;
 
                 case OpcoesExecucao.Criar:
-                    ((IView)this).Controlador.ProcessarDados(OpcoesExecucao.Criar);
                     if (((IView)this).Modelo.Resultado)
                     {
                         Console.WriteLine("Foi adicionada a seguinte texto: {0} \r\nno ficheiro {1}", ((IView)this).Modelo.Texto, ((IView)this).Modelo.FileDestino);

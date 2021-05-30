@@ -44,7 +44,7 @@ namespace Scarif_DS_1
                 {
                     try
                     {
-                        ProcessarDados(Opcao);_ui.ExibeResultado(Opcao);
+                        ProcessarDados(Opcao);
                         _ui.ExibeResultado(Opcao);
                     }
                     catch (Exception op)
