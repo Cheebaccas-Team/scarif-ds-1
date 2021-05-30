@@ -1,5 +1,6 @@
 namespace Scarif_DS_1.modulos
 {
+    //Tipos de Dados existentes
     public enum TipoDados
     {
         Count,

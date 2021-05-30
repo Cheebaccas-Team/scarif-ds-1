@@ -1,5 +1,6 @@
 namespace Scarif_DS_1.modulos
 {
+    //Tipos de Funcionalidades
     public enum OpcoesExecucao
     {
         ContarPaginas=0,

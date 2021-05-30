@@ -15,7 +15,8 @@ namespace Scarif_DS_1.modulos.Count
         private bool _resultado;
         private string _mensagem;
         private string _erro;
-
+        
+        //Construtor da Classe
         internal CountMod(CountDados dados)
         {
             PathOrigem = dados.PathOrigem;
@@ -25,6 +26,8 @@ namespace Scarif_DS_1.modulos.Count
             _erro = null;
             _mensagem = null;
         }
+        
+        //Função que executa funcionalidade
         public void ContarPaginas()
         {
             try
@@ -77,26 +80,53 @@ namespace Scarif_DS_1.modulos.Count
             }
         }
 
+        //Propriedades do atributo
         public string PathOrigem { get => _pathorigem; set => _pathorigem = value; }
+        
+        //Propriedades do atributo
         public string FileOrigem { get => _fileOrigem; set=> _fileOrigem = value; }
+        
+        //Propriedades do atributo
         public string PathOrigem2 { get; set; }
+        
+        //Propriedades do atributo
         public string FileOrigem2 { get; set; }
+        
+        //Propriedades do atributo
         public string PathDestino { get; set; }
+        
+        //Propriedades do atributo
         public string FileDestino { get; set; }
+        
+        //Propriedades do atributo
         public string PathDestino2 { get; set; }
+        
+        //Propriedades do atributo
         public string FileDestino2 { get; set; }
+        
+        //Propriedades do atributo
         public int NumPages { get => _numPages; set => _numPages = value; }
+        
+        //Propriedades do atributo
         public int Page { get; set; }
+        
+        //Propriedades do atributo
         public string Texto { get; set; }
+        
+        //Propriedades do atributo
         public int AddPosition { get; set; }
+        
+        //Propriedades do atributo
         public bool Resultado { get => _resultado; set => _resultado = value; }
 
+        //Propriedades do atributo
         public string Mensagem
         {
             get=> _mensagem; 
             set => _mensagem = value;
         }
-
+        
+        //Propriedades do atributo
         public string Erros
         {
             get => _erro;

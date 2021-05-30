@@ -1,5 +1,6 @@
 namespace Scarif_DS_1.modulos
 {
+    //Interface dos tipos de dados
     public interface IDados
     {
         public string PathOrigem { get; set; }

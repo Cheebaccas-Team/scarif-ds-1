@@ -2,6 +2,7 @@ using System;
 
 namespace Scarif_DS_1.modulos.Split
 {
+    //Classe do tipo de dados Separar
     public class SplitDados : IDados
     {
         private string _pathOrigem;
@@ -13,6 +14,7 @@ namespace Scarif_DS_1.modulos.Split
         private int _page;
         private TipoDados _tipo;
 
+        //Construtor da Classe
         internal SplitDados(string caminhoOrigem, string caminhoDestino, string caminhoDestino2, int page)
         {
             int separar = caminhoOrigem.LastIndexOf("/", StringComparison.Ordinal);                                               
@@ -28,48 +30,56 @@ namespace Scarif_DS_1.modulos.Split
             Tipo = TipoDados.Split;
         }
 
+        //Propriedade do atributo
         public string PathOrigem
         {
             get => _pathOrigem;
             set => _pathOrigem = value;
         }
 
+        //Propriedade do atributo
         public string FileOrigem
         {
             get => _fileOrigem;
             set => _fileOrigem = value;
         }
 
+        //Propriedade do atributo
         public string PathDestino
         {
             get => _pathDestino;
             set => _pathDestino = value;
         }
 
+        //Propriedade do atributo
         public string FileDestino
         {
             get => _fileDestino;
             set => _fileDestino = value;
         }
 
+        //Propriedade do atributo
         public string PathDestino2
         {
             get => _pathDestino2;
             set => _pathDestino2 = value;
         }
 
+        //Propriedade do atributo
         public string FileDestino2
         {
             get => _fileDestino2;
             set => _fileDestino2 = value;
         }
 
+        //Propriedade do atributo
         public int Page
         {
             get => _page;
             set => _page = value;
         }
 
+        //Propriedade do atributo
         public TipoDados Tipo
         {
             get => _tipo;

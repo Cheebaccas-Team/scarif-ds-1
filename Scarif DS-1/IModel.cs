@@ -1,5 +1,6 @@
 namespace Scarif_DS_1
 {
+    //Interface do Model
     public interface IModel
     {
         public string PathOrigem { get; set; }
