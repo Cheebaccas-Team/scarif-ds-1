@@ -9,6 +9,7 @@ using Scarif_DS_1.exceptions;
 
 namespace Scarif_DS_1.modulos.WaterMark
 {
+    //Classer da funcionalidade Marca de Agua
     public class WaterMarkMod : IModel
     {
         private string _pathOrigem;
@@ -20,46 +21,63 @@ namespace Scarif_DS_1.modulos.WaterMark
         private string _mensagem;
         private string _erro;
 
+        //Propriedade do atributo
         public string PathOrigem
         {
             get => _pathOrigem;
             set => _pathOrigem = value;
         }
 
+        //Propriedade do atributo
         public string FileOrigem
         {
             get => _fileOrigem;
             set => _fileOrigem = value;
         }
 
+        //Propriedade do atributo
         public string PathOrigem2 { get; set; }
+        
+        //Propriedade do atributo
         public string FileOrigem2 { get; set; }
 
+        //Propriedade do atributo
         public string PathDestino
         {
             get => _pathDestino;
             set => _pathDestino = value;
         }
 
+        //Propriedade do atributo
         public string FileDestino
         {
             get => _fileDestino;
             set => _fileDestino = value;
         }
 
+        //Propriedade do atributo
         public string PathDestino2 { get; set; }
+        
+        //Propriedade do atributo
         public string FileDestino2 { get; set; }
+        
+        //Propriedade do atributo
         public int NumPages { get; set; }
+        
+        //Propriedade do atributo
         public int Page { get; set; }
 
+        //Propriedade do atributo
         public string Texto
         {
             get => _texto;
             set => _texto = value;
         }
 
+        //Propriedade do atributo
         public int AddPosition { get; set; }
 
+        //Construtor da Classe
         internal WaterMarkMod(WaterMarkDados dados)
         {
             PathOrigem = dados.PathOrigem;
@@ -71,6 +89,7 @@ namespace Scarif_DS_1.modulos.WaterMark
             _mensagem = null;
         }
         
+        //Função que executa a funcionalidade 
         public void WatermarkFile() { 
             try
             { 
@@ -109,28 +128,23 @@ namespace Scarif_DS_1.modulos.WaterMark
                 //Necessário definir enconding
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 XFont font = new XFont("Arial", 24);
-                // Abrir ficheiro
+                //Abrir ficheiro
                 PdfDocument inputDocument = PdfReader.Open(caminhoOrigem, PdfDocumentOpenMode.Modify);
-                //For each Page in document
+                //Percorre documento original
                 for (int idx = 0; idx < inputDocument.PageCount; idx++)
                 {
                     PdfPage page = inputDocument.Pages[idx];
-                    // Draw a watermark as a text string.
-                    // Get an XGraphics object for drawing beneath the existing content.
+                    //Cria as propriedades da marca de agua
                     var gfx = XGraphics.FromPdfPage(page, XGraphicsPdfPageOptions.Prepend);
-                    // Get the size (in points) of the text.
                     var size = gfx.MeasureString(Texto, font);
-                    // Define a rotation transformation at the center of the page.
                     gfx.TranslateTransform(page.Width / 2, page.Height / 2);
                     gfx.RotateTransform(-Math.Atan(page.Height / page.Width) * 180 / Math.PI);
                     gfx.TranslateTransform(-page.Width / 2, -page.Height / 2);
-                    // Create a string format.
                     var format = new XStringFormat();
                     format.Alignment = XStringAlignment.Near;
                     format.LineAlignment = XLineAlignment.Near;
-                    // Create a dimmed red brush.
                     XBrush brush = new XSolidBrush(XColor.FromArgb(128, 255, 0, 0));
-                    // Draw the string
+                    //Adiciona a marca de água
                     gfx.DrawString(Texto, font, brush,
                         new XPoint((page.Width - size.Width) / 2, (page.Height - size.Height) / 2),
                         format);
@@ -153,14 +167,18 @@ namespace Scarif_DS_1.modulos.WaterMark
                 throw new DllNotFoundException(erro.Message);
             }
         }
+        
+        //Propriedade do atributo
         public bool Resultado { get => _resultado; set => _resultado = value; }
         
+        //Propriedade do atributo
         public string Mensagem
         {
             get=> _mensagem; 
             set => _mensagem = value;
         }
 
+        //Propriedade do atributo
         public string Erros
         {
             get => _erro;

@@ -13,6 +13,7 @@ using Scarif_DS_1.ui;
 
 namespace Scarif_DS_1
 {
+    //Classe do controller da aplicação
     public class Controller
     {
         private IModel _modelo;
@@ -20,8 +21,8 @@ namespace Scarif_DS_1
         private bool _executar;
         private OpcoesExecucao _opcao;
 
+        //Delegado e evento utilizado na execução das funcionalidades
         public delegate void EfetuarProcessamento();
-
         public event EfetuarProcessamento efetuarProcesso;
         
         //Construtor do Controlador
@@ -32,6 +33,7 @@ namespace Scarif_DS_1
             Opcao = OpcoesExecucao.Vazio;
         }
 
+        //Executa o fluxo do programa
         public void IniciarPrograma()
         {
             _ui.AtivarInterface();
@@ -57,7 +59,7 @@ namespace Scarif_DS_1
             _ui.EncerrarPrograma();
         }
 
-        //Função que permite atualizar os dados do modelo
+        //Função que permite receber os dados e criar o modelo
         public void SubmeterDados(IDados dados, OpcoesExecucao operacao)
         {
             try
@@ -171,12 +173,15 @@ namespace Scarif_DS_1
                 throw new DllNotFoundException(erro.Message);
             }
         }
+        
+        //Propriedade do atributo
         public bool Executar
         {
             get => _executar;
             set => _executar = value;
         }
 
+        //Propriedade do atributo
         public OpcoesExecucao Opcao
         {
             get => _opcao;

@@ -8,6 +8,7 @@ using Scarif_DS_1.exceptions;
 
 namespace Scarif_DS_1.modulos.Union
 {
+    //Classe da funcionalidade de União de ficheiros
     public class Union : IModel
     {
         private string _pathOrigem;
@@ -20,6 +21,7 @@ namespace Scarif_DS_1.modulos.Union
         private string _mensagem;
         private string _erro;
 
+        //Construtor da classe
         internal Union(UnionDados dados)
         {
             PathOrigem = dados.PathOrigem;
@@ -33,55 +35,74 @@ namespace Scarif_DS_1.modulos.Union
             _mensagem = null;
         }
 
+        //Propriedade do atributo
         public int AddPosition { get; set; }
 
+        //Propriedade do atributo
         public bool Resultado
         {
             get => _resultado;
             set => _resultado = value;
         }
+        
+        //Propriedade do atributo
         public string PathOrigem
         {
             get => _pathOrigem;
             set => _pathOrigem = value;
         }
 
+        //Propriedade do atributo
         public string FileOrigem
         {
             get => _fileOrigem;
             set => _fileOrigem = value;
         }
 
+        //Propriedade do atributo
         public string PathOrigem2
         {
             get => _pathOrigem2;
             set => _pathOrigem2 = value;
         }
 
+        //Propriedade do atributo
         public string FileOrigem2
         {
             get => _fileOrigem2;
             set => _fileOrigem2 = value;
         }
 
+        //Propriedade do atributo
         public string PathDestino
         {
             get => _pathDestino;
             set => _pathDestino = value;
         }
 
+        //Propriedade do atributo
         public string FileDestino
         {
             get => _fileDestino;
             set => _fileDestino = value;
         }
 
+        //Propriedade do atributo
         public string PathDestino2 { get; set; }
+        
+        //Propriedade do atributo
         public string FileDestino2 { get; set; }
+        
+        //Propriedade do atributo
         public int NumPages { get; set; }
+        
+        //Propriedade do atributo
         public int Page { get; set; }
+        
+        //Propriedade do atributo
         public string Texto { get; set; }
 
+        //Função que executa funcionalidade de união alternada
         public void Alternar()
         {
             try
@@ -100,6 +121,7 @@ namespace Scarif_DS_1.modulos.Union
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
+                //Validar os dados do model
                 if (PathOrigem2 == null || FileOrigem2 == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
@@ -158,6 +180,7 @@ namespace Scarif_DS_1.modulos.Union
                 PdfDocument outputDocument = new PdfDocument();
                 outputDocument.PageLayout = PdfPageLayout.TwoColumnLeft;
                 int count = Math.Max(ficheiro1.PageCount, ficheiro2.PageCount);
+                //Percorre o documento original e copia a página  para o novo documento
                 for (int idx = 0; idx < count; idx++)
                 {
                     // Obter pagina do ficheiro 1
@@ -169,7 +192,6 @@ namespace Scarif_DS_1.modulos.Union
                     page1 = outputDocument.AddPage(page1);
                     page2 = outputDocument.AddPage(page2);
                 }
-
                 //salvar documento
                 outputDocument.Save(caminhoDestino);
                 Resultado = true;
@@ -190,6 +212,7 @@ namespace Scarif_DS_1.modulos.Union
             }
         }
 
+        //Função que executa funcionalidade de união seguida
         public void Concatenar()
         {
             try
@@ -208,6 +231,7 @@ namespace Scarif_DS_1.modulos.Union
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
 
+                //Validar os dados no model
                 if (PathOrigem2 == null || FileOrigem2 == null)
                 {
                     //Cria uma lista com os erros encontrados nos dados
@@ -304,12 +328,14 @@ namespace Scarif_DS_1.modulos.Union
             }
         }
         
+        //Propriedade do atributo
         public string Mensagem
         {
             get=> _mensagem; 
             set => _mensagem = value;
         }
 
+        //Propriedade do atributo
         public string Erros
         {
             get => _erro;

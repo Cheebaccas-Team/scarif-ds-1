@@ -8,6 +8,7 @@ using Scarif_DS_1.exceptions;
 
 namespace Scarif_DS_1.modulos.Split
 {
+    //Classe da funcionalidade separar ficheiros
     public class SplitMod : IModel
     {
         private string _pathOrigem;
@@ -21,6 +22,7 @@ namespace Scarif_DS_1.modulos.Split
         private string _mensagem;
         private string _erro;
         
+        //Construtor da classe
         internal SplitMod(SplitDados dados)
         {
             PathOrigem = dados.PathOrigem;
@@ -34,62 +36,79 @@ namespace Scarif_DS_1.modulos.Split
             _erro = null;
             _mensagem = null;
         }
+        
+        //Propriedade do atributo
         public string PathOrigem
         {
             get => _pathOrigem;
             set => _pathOrigem = value;
         }
 
+        //Propriedade do atributo
         public string FileOrigem
         {
             get => _fileOrigem;
             set => _fileOrigem = value;
         }
 
+        //Propriedade do atributo
         public string PathOrigem2 { get; set; }
+        
+        //Propriedade do atributo
         public string FileOrigem2 { get; set; }
 
+        //Propriedade do atributo
         public string PathDestino
         {
             get => _pathDestino;
             set => _pathDestino = value;
         }
 
+        //Propriedade do atributo
         public string FileDestino
         {
             get => _fileDestino;
             set => _fileDestino = value;
         }
 
+        //Propriedade do atributo
         public string PathDestino2
         {
             get => _pathDestino2;
             set => _pathDestino2 = value;
         }
 
+        //Propriedade do atributo
         public string FileDestino2
         {
             get => _fileDestino2;
             set => _fileDestino2 = value;
         }
 
+        //Propriedade do atributo
         public int NumPages { get; set; }
 
+        //Propriedade do atributo
         public int Page
         {
             get => _page;
             set => _page = value;
         }
 
+        //Propriedade do atributo
         public string Texto { get; set; }
+        
+        //Propriedade do atributo
         public int AddPosition { get; set; }
 
+        //Propriedade do atributo
         public bool Resultado
         {
             get => _resultado;
             set => _resultado = value;
         }
 
+        //Função que executa a funcionalidade
         public void SplitDocument()
         {
             try
@@ -133,9 +152,8 @@ namespace Scarif_DS_1.modulos.Split
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 // Abrir ficheiro
                 PdfDocument inputDocument = PdfReader.Open(caminhoOrigem, PdfDocumentOpenMode.Import);
-
                 string name = Path.GetFileNameWithoutExtension(caminhoDestino);
-
+                //Verifica se página existe
                 if (Page > inputDocument.PageCount || Page <= 0)
                 {
                     List<string> erros = new List<string>();
@@ -155,6 +173,7 @@ namespace Scarif_DS_1.modulos.Split
                 outputDocument2.Version = inputDocument.Version;
                 outputDocument2.Info.Creator = inputDocument.Info.Creator;
 
+                //Percorre ficheiro original e copia páginas para o documento correspondente
                 for (int idx = 0; idx < inputDocument.PageCount; idx++)
                 {
                     //cria o primeiro documento com as páginas maiores ou iguais à selecionada
@@ -167,14 +186,11 @@ namespace Scarif_DS_1.modulos.Split
                     {
                         outputDocument2.AddPage(inputDocument.Pages[idx]);
                     }
-
                 }
-
                 //guarda documentos
                 outputDocument1.Save(Path.Combine(caminhoDestino));
                 outputDocument2.Save(Path.Combine(caminhoDestino2));
                 Resultado = true;
-
             }
             //Verifica as Excepções apanhadas
             catch (ExceptionDadosInvalidos erro)
@@ -194,12 +210,14 @@ namespace Scarif_DS_1.modulos.Split
             }
         }
 
+        //Propriedade do atributo
         public string Mensagem
         {
             get=> _mensagem; 
             set => _mensagem = value;
         }
 
+        //Propriedade do atributo
         public string Erros
         {
             get => _erro;

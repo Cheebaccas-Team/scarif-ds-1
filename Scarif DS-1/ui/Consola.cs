@@ -12,6 +12,7 @@ using Scarif_DS_1.modulos.WaterMark;
 
 namespace Scarif_DS_1.ui
 {
+    //Classe da Interface Texto da aplicação
     public class Consola : IView
     {
         //Construtor da Interface de Terminal
@@ -141,6 +142,7 @@ namespace Scarif_DS_1.ui
             }
         }
 
+        //Disponibilizar as opções do Menu Criar
         private void OpcaoCriar()
         {
             try{
@@ -176,6 +178,8 @@ namespace Scarif_DS_1.ui
                 Console.ReadLine();
             }
         }
+        
+        //Disponibilizar as opções do Menu Proteger
 
         private void OpcaoProteger()
         {
@@ -255,7 +259,7 @@ namespace Scarif_DS_1.ui
             }
         }
 
-        //Executa função de Contar páginas
+        //Solicita dados de Contar páginas
         private void MenuContar()
         {
             string caminhoOrigem;
@@ -276,7 +280,7 @@ namespace Scarif_DS_1.ui
             }
         }
 
-        //Executa função de Remover página
+        //Solicita dados de Remover página
         private void MenuRemover()
         {
             string caminhoOrigem;
@@ -302,7 +306,7 @@ namespace Scarif_DS_1.ui
             }
         }
 
-        //Executa função de Marca Água
+        //Solicita dados de Marca Água
         private void MenuMarcaAgua()
         {
             string caminhoOrigem;
@@ -328,6 +332,7 @@ namespace Scarif_DS_1.ui
             }
         }
 
+        //Solicita dados de Adicionar Encriptação
         private void MenuAdicionarEncriptar()
         {
             string caminhoOrigem;
@@ -360,6 +365,8 @@ namespace Scarif_DS_1.ui
                 Console.ReadLine();
             }
         }
+        
+        //Solicita dados de Criar Página
         private void MenuCriar()
         {
             string caminhoDestino;
@@ -399,6 +406,7 @@ namespace Scarif_DS_1.ui
             }
         }
 
+        //Solicita dados de Remover Encriptação
         private void MenuRemoverEncriptacao()
         {
             string caminhoOrigem;
@@ -425,6 +433,7 @@ namespace Scarif_DS_1.ui
                 
         }
 
+        //Solicita dados de Unir 
         private void MenuUnir(OpcoesExecucao op)
         {
             string caminhoOrigem;
@@ -441,7 +450,7 @@ namespace Scarif_DS_1.ui
 
                 //Submete os dados no controlador
                 UnionDados dados;
-                //Processa os dados no Modelo verificando se ocorrem erros
+                //Verifica qual o tipo de união
                 switch (op)
                 {
                     case OpcoesExecucao.Unir:
@@ -464,6 +473,7 @@ namespace Scarif_DS_1.ui
                 
         }
 
+        //Solicita dados de Separar Ficheiro
         private void MenuSeparar()
         {
             string caminhoOrigem;
@@ -490,7 +500,8 @@ namespace Scarif_DS_1.ui
                 Console.ReadLine();
             }
         }
-
+        
+        //Solicita dadosde Adicionar Página
         private void MenuAdicionar()
         {
             string caminhoOrigem;
@@ -557,12 +568,13 @@ namespace Scarif_DS_1.ui
             return Console.ReadLine();
         }
 
-
+        //Função que executa o encerramento do programa
         public void EncerrarPrograma()
         {
             Console.WriteLine("Adeus");
         }
 
+        //Função que mostra os erros ao utilizador
         public void ExibeErro()
         {
             Console.Write("Erro: {0} ", ((IView) this).Modelo.Mensagem);
@@ -572,8 +584,10 @@ namespace Scarif_DS_1.ui
             }
         }
 
+        //Função que mostra os resultados do sucesso da operação
         public void ExibeResultado(OpcoesExecucao op)
         {
+            //Verifica qual o tipo de operação executada
             switch (op)
             {
                 case OpcoesExecucao.AdicionarPagina:
@@ -696,6 +710,7 @@ namespace Scarif_DS_1.ui
             }
         }
 
+        //Função que questiona o utilizador se pretende continuar
         public void Continuar()
         {
             //valida se é para continuar

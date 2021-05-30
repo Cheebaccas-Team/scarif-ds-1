@@ -9,6 +9,7 @@ using Scarif_DS_1.exceptions;
 
 namespace Scarif_DS_1.modulos.Encript
 {
+    //Classe da funcionalidade Encriptar/Decriptar
     public class EncriptMod : IModel
     {
         private string _pathOrigem;
@@ -20,6 +21,7 @@ namespace Scarif_DS_1.modulos.Encript
         private string _mensagem;
         private string _erro;
 
+        //Construtor da Classe
         internal EncriptMod(EncriptDados dados)
         {
             PathOrigem = dados.PathOrigem;
@@ -31,52 +33,74 @@ namespace Scarif_DS_1.modulos.Encript
             _erro = null;
             _mensagem = null;
         }
+        
+        //Propriedade do atributo
         public string PathOrigem
         {
             get => _pathOrigem;
             set => _pathOrigem = value;
         }
 
+        //Propriedade do atributo
         public string FileOrigem
         {
             get => _fileOrigem;
             set => _fileOrigem = value;
         }
 
+        //Propriedade do atributo
         public string PathOrigem2 { get; set; }
+        
+        //Propriedade do atributo
         public string FileOrigem2 { get; set; }
 
+        //Propriedade do atributo
         public string PathDestino
         {
             get => _pathDestino;
             set => _pathDestino = value;
         }
 
+        //Propriedade do atributo
         public string FileDestino
         {
             get => _fileDestino;
             set => _fileDestino = value;
         }
 
+        //Propriedade do atributo
         public string PathDestino2 { get; set; }
+        
+        //Propriedade do atributo
         public string FileDestino2 { get; set; }
+        
+        //Propriedade do atributo
         public int NumPages { get; set; }
+        
+        //Propriedade do atributo
         public int Page { get; set; }
+        
+        //Propriedade do atributo
         public string Texto { get; set; }
+        
+        //Propriedade do atributo
         public int AddPosition { get; set; }
 
+        //Propriedade do atributo
         public string Senha
         {
             get => _senha;
             set => _senha = value;
         }
 
+        //Propriedade do atributo
         public bool Resultado
         {
             get => _resultado;
             set => _resultado = value;
         }
 
+        //Função que executa funcionalidade de encriptar
         public void EncriptarMod()
         {
             try
@@ -163,6 +187,7 @@ namespace Scarif_DS_1.modulos.Encript
             }
         }
         
+        //Função que executa funcionalidade de remover encriptação
         public void DecriptarMod()
         {
             try
@@ -215,6 +240,7 @@ namespace Scarif_DS_1.modulos.Encript
                 //Cria o caminho para o endereço
                 string caminhoDestino = Path.Combine(PathDestino, FileDestino);
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                //Verifica se ficheiro possui a senha indicada
                 PdfDocument ficheiro;
                 try
                 {
@@ -228,6 +254,7 @@ namespace Scarif_DS_1.modulos.Encript
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Ficheiro não está disponivel!", erros);
                 }
+                //Modifica o ficheiro removendo a senha
                 ficheiro = PdfReader.Open(caminho, Senha, PdfDocumentOpenMode.Modify);
                 PdfDocumentSecurityLevel level = ficheiro.SecuritySettings.DocumentSecurityLevel;
                 ficheiro.Save(caminhoDestino);
@@ -248,13 +275,14 @@ namespace Scarif_DS_1.modulos.Encript
             }
         }
         
-        
+        //Propriedade do atributo
         public string Mensagem
         {
             get=> _mensagem; 
             set => _mensagem = value;
         }
 
+        //Propriedade do atributo
         public string Erros
         {
             get => _erro;

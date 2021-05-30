@@ -8,6 +8,7 @@ using Scarif_DS_1.exceptions;
 
 namespace Scarif_DS_1.modulos.Create
 {
+    //Classe da Funcionalidade criar
     public class CreateMod : IModel
     {
         private string _pathDestino;
@@ -21,6 +22,7 @@ namespace Scarif_DS_1.modulos.Create
         private string _mensagem;
         private string _erro;
 
+        //Construtor da Classe
         internal CreateMod(CreateDados dados)
         {
             PathDestino = dados.PathDestino;
@@ -35,6 +37,7 @@ namespace Scarif_DS_1.modulos.Create
             _mensagem = null;
         }
         
+        //Função que executa funcionalidade
         public void Criar()
         {
             try
@@ -184,73 +187,97 @@ namespace Scarif_DS_1.modulos.Create
             }
         }
 
+        //Propriedade do atributo
         public string FileOrigem2 { get; set; }
 
+        //Propriedade do atributo
         public string PathDestino
         {
             get => _pathDestino;
             set => _pathDestino = value;
         }
 
+        //Propriedade do atributo
         public string FileDestino
         {
             get => _fileDestino;
             set => _fileDestino = value;
         }
 
+        //Propriedade do atributo
         public string PathDestino2 { get; set; }
+        
+        //Propriedade do atributo
         public string FileDestino2 { get; set; }
+        
+        //Propriedade do atributo
         public int NumPages { get; set; }
+        
+        //Propriedade do atributo
         public int Page { get; set; }
 
+        //Propriedade do atributo
         public string Texto
         {
             get => _texto;
             set => _texto = value;
         }
 
+        //Propriedade do atributo
         public int AddPosition { get; set; }
 
+        //Propriedade do atributo
         public string Fonte
         {
             get => _fonte;
             set => _fonte = value;
         }
 
+        //Propriedade do atributo
         public string Alinhamento
         {
             get => _alinhamento;
             set => _alinhamento = value;
         }
 
+        //Propriedade do atributo
         public string Estilo
         {
             get => _estilo;
             set => _estilo = value;
         }
 
+        //Propriedade do atributo
         public int Tamanho
         {
             get => _tamanho;
             set => _tamanho = value;
         }
-
+        
+        //Propriedade do atributo
         public string PathOrigem { get; set; }
+        
+        //Propriedade do atributo
         public string FileOrigem { get; set; }
+        
+        //Propriedade do atributo
         public string PathOrigem2 { get; set; }
 
+        //Propriedade do atributo
         public bool Resultado
         {
             get => _resultado;
             set => _resultado = value;
         }
         
+        //Propriedade do atributo
         public string Mensagem
         {
             get=> _mensagem; 
             set => _mensagem = value;
         }
 
+        //Propriedade do atributo
         public string Erros
         {
             get => _erro;
