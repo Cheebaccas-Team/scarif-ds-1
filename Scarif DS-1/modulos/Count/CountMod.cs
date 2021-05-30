@@ -38,7 +38,7 @@ namespace Scarif_DS_1.modulos.Count
                         erros.Add("Caminho de Origem");
                     if (FileOrigem == null)
                         erros.Add("Ficheiro de Origem");
-                    Erros =erros.ToString();
+                    Erros = string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }

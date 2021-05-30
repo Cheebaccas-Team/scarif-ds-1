@@ -89,7 +89,7 @@ namespace Scarif_DS_1.modulos.WaterMark
                         erros.Add("Caminho de Destino");
                     if (FileDestino == null)
                         erros.Add("Ficheiro de Destino");
-                    Erros =erros.ToString();
+                    Erros =string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }

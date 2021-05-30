@@ -58,7 +58,7 @@ namespace Scarif_DS_1.modulos.AddPage
                         erros.Add("Caminho de Destino");
                     if (FileDestino == null)
                         erros.Add("Ficheiro de Destino");
-                    Erros =erros.ToString();
+                    Erros =string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
@@ -91,7 +91,7 @@ namespace Scarif_DS_1.modulos.AddPage
                 {
                     List<string> erros = new List<string>();
                     erros.Add("Número Página");
-                    Erros =erros.ToString();
+                    Erros =string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Número da página a adicionar é inválida.", erros);
                 }
@@ -99,7 +99,7 @@ namespace Scarif_DS_1.modulos.AddPage
                 {
                     List<string> erros = new List<string>();
                     erros.Add("Posição Página");
-                    Erros =erros.ToString();
+                    Erros =string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Posição da página a adicionar é inválida.", erros);
                 }

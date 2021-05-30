@@ -112,7 +112,7 @@ namespace Scarif_DS_1.modulos.Split
                         erros.Add("Segundo Caminho de Destino");
                     if (FileDestino2 == null)
                         erros.Add("Segundo Ficheiro de Destino");
-                    Erros =erros.ToString();
+                    Erros = string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
@@ -140,7 +140,7 @@ namespace Scarif_DS_1.modulos.Split
                 {
                     List<string> erros = new List<string>();
                     erros.Add("Número Página");
-                    Erros =erros.ToString();
+                    Erros = string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Número da página a remover é inválido.", erros);
                 }

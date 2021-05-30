@@ -95,7 +95,7 @@ namespace Scarif_DS_1.modulos.Union
                         erros.Add("Caminho de Origem");
                     if (FileOrigem == null)
                         erros.Add("Ficheiro de Origem");
-                    Erros =erros.ToString();
+                    Erros =string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
@@ -108,7 +108,7 @@ namespace Scarif_DS_1.modulos.Union
                         erros.Add("Caminho de Origem");
                     if (FileOrigem2 == null)
                         erros.Add("Ficheiro de Origem");
-                    Erros =erros.ToString();
+                    Erros =string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
@@ -122,7 +122,7 @@ namespace Scarif_DS_1.modulos.Union
                         erros.Add("Caminho de Destino");
                     if (FileDestino == null)
                         erros.Add("Ficheiro de Destino");
-                    Erros =erros.ToString();
+                    Erros =string.Join(", ", erros);;
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
@@ -203,7 +203,7 @@ namespace Scarif_DS_1.modulos.Union
                         erros.Add("Caminho de Origem");
                     if (FileOrigem == null)
                         erros.Add("Ficheiro de Origem");
-                    Erros =erros.ToString();
+                    Erros =string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
@@ -216,7 +216,7 @@ namespace Scarif_DS_1.modulos.Union
                         erros.Add("Caminho de Origem");
                     if (FileOrigem2 == null)
                         erros.Add("Ficheiro de Origem");
-                    Erros =erros.ToString();
+                    Erros =string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
@@ -230,7 +230,7 @@ namespace Scarif_DS_1.modulos.Union
                         erros.Add("Caminho de Destino");
                     if (FileDestino == null)
                         erros.Add("Ficheiro de Destino");
-                    Erros =erros.ToString();
+                    Erros =string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }

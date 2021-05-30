@@ -48,7 +48,7 @@ namespace Scarif_DS_1.modulos.Create
                         erros.Add("Caminho de Destino");
                     if (FileDestino == null)
                         erros.Add("Ficheiro de Destino");
-                    Erros =erros.ToString();
+                    Erros = string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
@@ -60,7 +60,7 @@ namespace Scarif_DS_1.modulos.Create
                     List<string> erros = new List<string>();
                     if (Texto == null)
                         erros.Add("Texto Inválido");
-                    Erros =erros.ToString();
+                    Erros = string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
@@ -72,7 +72,7 @@ namespace Scarif_DS_1.modulos.Create
                     List<string> erros = new List<string>();
                     if (Fonte == null)
                         erros.Add("Fonte Inválida");
-                    Erros =erros.ToString();
+                    Erros = string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
@@ -84,7 +84,7 @@ namespace Scarif_DS_1.modulos.Create
                     List<string> erros = new List<string>();
                     if (Alinhamento == null || (Alinhamento != "Left" && Alinhamento != "Center" && Alinhamento != "Right")) 
                         erros.Add("Alinhamento Inválido");
-                    Erros =erros.ToString();
+                    Erros = string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
@@ -96,7 +96,7 @@ namespace Scarif_DS_1.modulos.Create
                     List<string> erros = new List<string>();
                     if (Tamanho == 0) 
                         erros.Add("Tamanho Inválido");
-                    Erros =erros.ToString();
+                    Erros = string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
@@ -109,7 +109,7 @@ namespace Scarif_DS_1.modulos.Create
                     if (Estilo == null || (Estilo != "Regular" && Estilo != "Bold" && Estilo != "BoldItalic"
                                            && Estilo != "Italic" && Estilo != "Strikeout" && Estilo != "Underline")) 
                         erros.Add("Estilo Inválido");
-                    Erros =erros.ToString();
+                    Erros = string.Join(", ", erros);
                     Mensagem = "Faltam Dados para concluir a tarefa";
                     throw new ExceptionDadosInvalidos("Faltam Dados para concluir a tarefa", erros);
                 }
