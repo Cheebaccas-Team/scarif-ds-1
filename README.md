@@ -20,3 +20,11 @@ Com o nosso projeto será possível realizar as seguintes funcionalidades:
   * Dividir um ficheiro PDF existente em dois ficheiros; [implementado]
   * Contar páginas num ficheiro PDF; [implementado]
   * Criar um novo ficheiro PDF [implementado]
+
+Autores:
+```
+* Ana Pinho
+* Joao Pinto
+* Nuno Miguel Rolo
+* Paulo Nicolau
+```
