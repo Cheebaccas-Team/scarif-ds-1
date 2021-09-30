@@ -1,4 +1,4 @@
-# ChewbaccasPDF (Nome de Projecto: Scarif DS-1)
+# ChewbaccasPDF [Nome de Projecto: Scarif DS-1]
 
 ## O que é?
 
